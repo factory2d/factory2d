@@ -1,0 +1,16 @@
+#ifndef __FACTORY2D_TEXTUREOBJECT_H
+#define __FACTORY2D_TEXTUREOBJECT_H
+
+#include "FactoryObject.h"
+
+class TextureObject :
+	public Object {
+public:
+	TextureObject();
+	~TextureObject();
+
+	int Width();
+	int Height();
+};
+
+#endif
