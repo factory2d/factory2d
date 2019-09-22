@@ -120,6 +120,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Debug.cpp" />
     <ClCompile Include="ResourceManager\ResourceManager.cpp" />
     <ClCompile Include="FactoryObjects\CameraObject.cpp" />
     <ClCompile Include="FactoryObjects\FactoryObject.cpp" />
@@ -133,10 +134,12 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SceneManager\SceneManager.cpp" />
+    <ClCompile Include="TagManager\TagManager.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Debug.h" />
     <ClInclude Include="ResourceManager\ResourceManager.h" />
     <ClInclude Include="Factory2D.h" />
     <ClInclude Include="FactoryObjects\CameraObject.h" />
@@ -151,6 +154,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SceneManager\SceneManager.h" />
+    <ClInclude Include="TagManager\TagManager.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

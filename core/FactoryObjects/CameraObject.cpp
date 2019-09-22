@@ -1,33 +1,36 @@
 #include "CameraObject.h"
 
-std::vector <CameraObject*>CameraObject::__cameras = {};
-CameraObject* CameraObject::__activeCamera;
+namespace F2D
+{
+	std::vector <CameraObject*>CameraObject::__cameras = {};
+	CameraObject* CameraObject::__activeCamera;
 
-CameraObject::CameraObject(std::string name) : FactoryObject(name) {
-	__cameras.push_back(this);
-}
+	CameraObject::CameraObject(std::string name) : FactoryObject(name) {
+		__cameras.push_back(this);
+	}
 
-CameraObject::~CameraObject() {}
+	CameraObject::~CameraObject() {}
 
-void CameraObject::Update() {}
+	void CameraObject::Update() {}
 
-void CameraObject::Draw() {}
+	void CameraObject::Draw() {}
 
-unsigned int CameraObject::Count() {
-	return __cameras.size();;
-}
+	unsigned int CameraObject::Count() {
+		return __cameras.size();;
+	}
 
-CameraObject * CameraObject::GetCameraAt(unsigned int index) {
-	if(index >= 0 && index < __cameras.size())
-		return __cameras[index];
+	CameraObject * CameraObject::GetCameraAt(unsigned int index) {
+		if(index >= 0 && index < __cameras.size())
+			return __cameras[index];
 
-	return nullptr;
-}
+		return nullptr;
+	}
 
-CameraObject * CameraObject::GetActiveCamera() {
-	return __activeCamera;
-}
+	CameraObject * CameraObject::GetActiveCamera() {
+		return __activeCamera;
+	}
 
-void CameraObject::SetActiveCamera(CameraObject * camera) {
-	__activeCamera = camera;
+	void CameraObject::SetActiveCamera(CameraObject * camera) {
+		__activeCamera = camera;
+	}
 }

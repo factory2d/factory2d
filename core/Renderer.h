@@ -3,18 +3,20 @@
 
 #include "Window.h"
 
-class Renderer
+namespace F2D
 {
-private:
-	Renderer();
-	~Renderer();
+	class Renderer {
+	private:
+		Renderer();
+		~Renderer();
 
-public:
-	static Window* window;
-	static bool integerPosition;
+	public:
+		static Window* window;
+		static bool integerPosition;
 
-	static void Begin();
-	static void End();
-};
+		static void Begin();
+		static void End();
+	};
+}
 
 #endif

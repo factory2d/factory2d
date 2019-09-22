@@ -3,20 +3,23 @@
 
 #include <string>
 
-class Object {
-private:
-	bool __destroy = false;
-	unsigned int __uuid = 0;
+namespace F2D
+{
+	class Object {
+	private:
+		bool __destroy = false;
+		unsigned int __uuid = 0;
 
-public:
-	std::string name;
-	bool enabled = true;
+	public:
+		std::string name;
+		bool enabled = true;
 
-	static bool Destroy() {};
-	
-	Object();
-	~Object();
-	unsigned int GetUUID();
-};
+		static bool Destroy() {};
+
+		Object();
+		~Object();
+		unsigned int GetUUID();
+	};
+}
 
 #endif

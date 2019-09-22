@@ -3,13 +3,15 @@
 
 #include "FactoryObject.h"
 
-class SceneObject :
-	public FactoryObject {
+namespace F2D {
+	class SceneObject :
+		public FactoryObject {
 
-public:
-	SceneObject() {};
-	SceneObject(std::string name);
-	~SceneObject();
-};
+	public:
+		SceneObject() {};
+		SceneObject(std::string name);
+		~SceneObject();
+	};
+}
 
 #endif

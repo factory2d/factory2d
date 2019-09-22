@@ -6,19 +6,28 @@
 #include "../Object.h"
 #include "../Transform.h"
 
-class Transform;
+namespace F2D
+{
+	class Transform;
 
-class FactoryObject :
-	public Object {
-public:
-	Transform* transform;
+	class FactoryObject :
+		public Object {
+	private:
+		std::string __tag;
 
-	FactoryObject() {};
-	FactoryObject(std::string name);
-	~FactoryObject();
+	public:
+		Transform* transform;
 
-	virtual void Update();
-	virtual void Draw();
-};
+		FactoryObject() {};
+		FactoryObject(std::string name);
+		~FactoryObject();
+
+		virtual void Update();
+		virtual void Draw();
+		std::string GetTag();
+		void SetTag(std::string tag);
+		void RemoveTag();
+	};
+}
 
 #endif

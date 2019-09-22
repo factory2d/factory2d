@@ -9,26 +9,29 @@
 #include "../Math.h"
 #include "FactoryObject.h"
 
-class CameraObject :
-	public FactoryObject {
-private:
-	static std::vector <CameraObject*> __cameras;
-	static CameraObject* __activeCamera;
+namespace F2D
+{
+	class CameraObject :
+		public FactoryObject {
+	private:
+		static std::vector <CameraObject*> __cameras;
+		static CameraObject* __activeCamera;
 
-public:
-	CameraObject() {};
-	CameraObject(std::string name);
-	~CameraObject();
+	public:
+		CameraObject() {};
+		CameraObject(std::string name);
+		~CameraObject();
 
-	void Update() override;
-	void Draw() override;
+		void Update() override;
+		void Draw() override;
 
-	Rect* viewport = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
+		Rect* viewport = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
 
-	static unsigned int Count();
-	static CameraObject* GetCameraAt(unsigned int index);
-	static CameraObject* GetActiveCamera();
-	static void SetActiveCamera(CameraObject *camera);
-};
+		static unsigned int Count();
+		static CameraObject* GetCameraAt(unsigned int index);
+		static CameraObject* GetActiveCamera();
+		static void SetActiveCamera(CameraObject *camera);
+	};
+}
 
 #endif

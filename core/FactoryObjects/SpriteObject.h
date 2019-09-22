@@ -3,15 +3,18 @@
 
 #include "FactoryObject.h"
 
-class SpriteObject :
-	public FactoryObject {
-public:
-	SpriteObject() {};
-	SpriteObject(std::string name);
-	~SpriteObject();
+namespace F2D
+{
+	class SpriteObject :
+		public FactoryObject {
+	public:
+		SpriteObject() {};
+		SpriteObject(std::string name);
+		~SpriteObject();
 
-	void Update() override;
-	void Draw() override;
-};
+		void Update() override;
+		void Draw() override;
+	};
+}
 
 #endif

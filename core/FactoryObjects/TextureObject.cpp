@@ -1,5 +1,8 @@
 #include "TextureObject.h"
 
-TextureObject::TextureObject() {}
+namespace F2D
+{
+	TextureObject::TextureObject() {}
 
-TextureObject::~TextureObject() {}
+	TextureObject::~TextureObject() {}
+}

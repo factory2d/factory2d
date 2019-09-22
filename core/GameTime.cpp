@@ -1,5 +1,8 @@
 #include "GameTime.h"
 
-GameTime::GameTime() {}
+namespace F2D
+{
+	GameTime::GameTime() {}
 
-GameTime::~GameTime() {}
+	GameTime::~GameTime() {}
+}

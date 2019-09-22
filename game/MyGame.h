@@ -2,7 +2,7 @@
 #include "../core/Factory2D.h"
 
 class MyGame :
-	public Game {
+	public F2D::Game {
 public:
 	MyGame();
 	~MyGame();

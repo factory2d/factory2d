@@ -3,14 +3,17 @@
 
 #include "FactoryObject.h"
 
-class TextureObject :
-	public Object {
-public:
-	TextureObject();
-	~TextureObject();
+namespace F2D
+{
+	class TextureObject :
+		public Object {
+	public:
+		TextureObject();
+		~TextureObject();
 
-	int Width();
-	int Height();
-};
+		int Width();
+		int Height();
+	};
+}
 
 #endif
