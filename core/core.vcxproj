@@ -121,12 +121,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Debug.cpp" />
-    <ClCompile Include="ResourceManager\ResourceManager.cpp" />
+    <ClCompile Include="Asset.cpp" />
+    <ClCompile Include="ResourceManager\Picture.cpp" />
+    <ClCompile Include="ResourceManager\AssetManager.cpp" />
     <ClCompile Include="FactoryObjects\CameraObject.cpp" />
     <ClCompile Include="FactoryObjects\FactoryObject.cpp" />
     <ClCompile Include="FactoryObjects\SceneObject.cpp" />
     <ClCompile Include="FactoryObjects\SpriteObject.cpp" />
-    <ClCompile Include="FactoryObjects\Texture2D.cpp" />
     <ClCompile Include="FactoryObjects\TextureObject.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameTime.cpp" />
@@ -140,13 +141,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h" />
-    <ClInclude Include="ResourceManager\ResourceManager.h" />
+    <ClInclude Include="Asset.h" />
+    <ClInclude Include="ResourceManager\Picture.h" />
+    <ClInclude Include="ResourceManager\AssetManager.h" />
     <ClInclude Include="Factory2D.h" />
     <ClInclude Include="FactoryObjects\CameraObject.h" />
     <ClInclude Include="FactoryObjects\FactoryObject.h" />
     <ClInclude Include="FactoryObjects\SceneObject.h" />
     <ClInclude Include="FactoryObjects\SpriteObject.h" />
-    <ClInclude Include="FactoryObjects\Texture2D.h" />
     <ClInclude Include="FactoryObjects\TextureObject.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameTime.h" />
