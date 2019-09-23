@@ -10,16 +10,22 @@
 #include "Window.h"
 #include "Renderer.h"
 #include "Object.h"
+#include "Asset.h"
 #include "Transform.h"
 
+/* TAG*/
+#include "TagManager/TagManager.h"
+
+/* ASSETS */
+#include "AssetManager/AssetManager.h"
+#include "AssetManager/Picture.h"
+
+/* SCENE */
+#include "SceneManager/SceneManager.h"
+
+/* OBJECTS */
 #include "FactoryObjects/FactoryObject.h"
 #include "FactoryObjects/SceneObject.h"
 #include "FactoryObjects/CameraObject.h"
-
 #include "FactoryObjects/TextureObject.h"
-#include "FactoryObjects/Texture2D.h"
 #include "FactoryObjects/SpriteObject.h"
-
-#include "TagManager/TagManager.h"
-#include "ResourceManager/ResourceManager.h"
-#include "SceneManager/SceneManager.h"

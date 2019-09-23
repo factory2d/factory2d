@@ -13,8 +13,8 @@ bool MyGame::Initialize() {
 
 	//	teste
 	F2D::TagManager::SetTag("teste", NULL);
-	F2D::AssetManager::LoadPicture("256.png", F2D::PNG);
-	F2D::AssetManager::LoadPicture("256.PNG", F2D::PNG);
+	//F2D::AssetManager::LoadPicture("256.png", F2D::PNG);
+	//F2D::AssetManager::LoadPicture("256.PNG", F2D::PNG);
 
 	//	cria a cena
 	scene1 = new F2D::SceneObject("scene1");

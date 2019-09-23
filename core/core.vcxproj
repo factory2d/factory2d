@@ -122,8 +122,8 @@
   <ItemGroup>
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Asset.cpp" />
-    <ClCompile Include="ResourceManager\Picture.cpp" />
-    <ClCompile Include="ResourceManager\AssetManager.cpp" />
+    <ClCompile Include="AssetManager\Picture.cpp" />
+    <ClCompile Include="AssetManager\AssetManager.cpp" />
     <ClCompile Include="FactoryObjects\CameraObject.cpp" />
     <ClCompile Include="FactoryObjects\FactoryObject.cpp" />
     <ClCompile Include="FactoryObjects\SceneObject.cpp" />
@@ -142,8 +142,8 @@
   <ItemGroup>
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Asset.h" />
-    <ClInclude Include="ResourceManager\Picture.h" />
-    <ClInclude Include="ResourceManager\AssetManager.h" />
+    <ClInclude Include="AssetManager\Picture.h" />
+    <ClInclude Include="AssetManager\AssetManager.h" />
     <ClInclude Include="Factory2D.h" />
     <ClInclude Include="FactoryObjects\CameraObject.h" />
     <ClInclude Include="FactoryObjects\FactoryObject.h" />
