@@ -6,7 +6,7 @@ namespace F2D
 
 	Asset::~Asset() {}
 
-	void * Asset::Data() {
+	void *Asset::Data() {
 		return __data;
 	}
 

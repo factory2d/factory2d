@@ -17,11 +17,14 @@ namespace F2D
 	void SpriteObject::Draw() {
 		//glLoadIdentity();
 
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, (GLuint)p->Data());
+
 		glBegin(GL_QUADS);
-		glColor3f(1.f, 0.f, 0.f); glVertex2f(0.0f, 0.0f);
-		glColor3f(0.f, 1.f, 0.f); glVertex2f(64.0f, 0.0f);
-		glColor3f(0.f, 0.f, 1.f); glVertex2f(64.0f, 64.0f);
-		glColor3f(1.f, 1.f, 0.f); glVertex2f(0.0f, 64.0f);
+		glTexCoord2f(0.f, 0.f); glColor3f(1.f, 1.f, 1.f); glVertex2f(0.0f, 0.0f);
+		glTexCoord2f(1.f, 0.f); glColor3f(1.f, 1.f, 1.f); glVertex2f(64.0f, 0.0f);
+		glTexCoord2f(1.f, 1.f); glColor3f(1.f, 1.f, 1.f); glVertex2f(64.0f, 64.0f);
+		glTexCoord2f(0.f, 1.f); glColor3f(1.f, 1.f, 1.f); glVertex2f(0.0f, 64.0f);
 		glEnd();
 
 		FactoryObject::Draw();

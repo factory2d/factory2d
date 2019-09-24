@@ -13,13 +13,13 @@ namespace F2D
 		return __scenes.size();
 	}
 
-	void SceneManager::Load(SceneObject* scene) {
+	void SceneManager::Load(SceneObject * scene) {
 		__scenes.push_back(scene);
 	}
 
 	void SceneManager::Unload(std::string name) {}
 
-	void SceneManager::Unload(SceneObject* scene) {}
+	void SceneManager::Unload(SceneObject * scene) {}
 
 	SceneObject* SceneManager::GetActiveScenes() {
 		return nullptr;

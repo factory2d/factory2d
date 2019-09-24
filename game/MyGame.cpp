@@ -13,6 +13,12 @@ bool MyGame::Initialize() {
 
 	//	teste
 	F2D::TagManager::SetTag("teste", NULL);
+
+	F2D::Picture *p = new F2D::Picture();
+	p->Load("Assets/256.png");
+	p->Load("Assets/256.png");
+	p->Load("Assets/256.png");
+
 	//F2D::AssetManager::LoadPicture("256.png", F2D::PNG);
 	//F2D::AssetManager::LoadPicture("256.PNG", F2D::PNG);
 
@@ -22,12 +28,15 @@ bool MyGame::Initialize() {
 
 	//	cria objetos da cena
 	object1 = new F2D::SpriteObject("object1");
+	object1->p = p;
+	object1->GetUUID();
 	object1->transform->origin->x = object1->transform->origin->y = 32.0f;
 	object1->transform->position->x = object1->transform->position->y = 100.0f;
 	object1->transform->rotate->y = 45.0f;
 	object1->transform->SetParent(scene1->transform);
 
 	object2 = new F2D::SpriteObject("object2");
+	object2->p = p;
 	object2->transform->origin->x = object2->transform->origin->y = 32.0f;
 	object2->transform->position->x = object2->transform->position->y = 100.0f;
 	object2->transform->rotate->y = 15.0f;

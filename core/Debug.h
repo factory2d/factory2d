@@ -21,7 +21,7 @@ enum DebugTypes {
 */
 #define LOG(message, ...) Debug::Write(__FUNCTION__, __LINE__, message, COLOR_CONSOLE)
 #define WARNING(message, ...) Debug::Write(__FUNCTION__, __LINE__,  message, COLOR_WARNING)
-//#define ERROR(message, ...) Debug::Write(__FUNCTION__, __LINE__, message, COLOR_ERROR)
+#define ERROR(message, ...) Debug::Write(__FUNCTION__, __LINE__, message, COLOR_ERROR)
 
 namespace F2D
 {

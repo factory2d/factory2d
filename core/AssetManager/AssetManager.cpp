@@ -1,3 +1,16 @@
+/**
+ * @license
+ */
+
+ /**
+  * @fileoverview Asset Manager Header for Factory2D Game Engine.
+  *
+  * Here we manage the assets to make sure we didn't load more than one
+  * instance of each files to make the memory happy :)
+  *
+  * @author @alexribeirodesa (Alexandre Ribeiro de Sá)
+  */
+
 #include <locale>
 #include <algorithm>
 
@@ -7,40 +20,23 @@ namespace F2D
 {
 	std::map <std::string, Asset*> AssetManager::__assets = {};
 
-	void * AssetManager::Load(std::string name) {
-		// get file extension to know what type of file it is
-		std::string ext = name.substr(name.find_last_of(".") + 1);
-		std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
+	void AssetManager::PushAsset(std::string key, Asset * asset) {
+		// we use lower case for the key
+		std::string k = key;
+		std::transform(k.begin(), k.end(), k.begin(), ::tolower);
 
-
-		//for(std::string::size_type i = 0; i < ext.length(); ++i)
-		//	std::cout << std::tolower(str[i], loc);
-
-		// pictures jpg, jpeg, png
-
-		// sound wav, ogg
-		return nullptr;
+		// if we didn't have this asset yet we register it
+		if(__assets[k] == NULL) {
+			__assets[k] = asset;
+		}
 	}
 
-	/*void * AssetManager::LoadPicture(std::string name, ImagesTypes type) {
-		
-		std::string key = name;
-		std::transform(key.begin(), key.end(), key.begin(), ::tolower);
+	Asset * AssetManager::PullAsset(std::string key) {
+		// we use lower case for the key
+		std::string k = key;
+		std::transform(k.begin(), k.end(), k.begin(), ::tolower);
 
-		// check if resource already loaded
-		if(__resources.find(key) == __resources.end()) {
-			// not found
-			Resource r;
-			r.path = name;
-			r.type = IMAGE;
-			
-
-
-			__resources[key] = &r;
-		}
-
-		// return resource data
-		return __resources[key]->data;
-		
-	}*/
+		// get the asset from our "cache"
+		return __assets[k];
+	}
 }

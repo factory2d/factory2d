@@ -20,14 +20,15 @@ namespace F2D
 	};*/
 
 	class Asset {
+	public:
 		AssetTypes __type;
-		void * __data;
+		void *__data;
 
 	public:
 		Asset();
 		~Asset();
-
-		void * Data();
+			
+		void *Data();
 		virtual void Load(std::string asset);
 		virtual void LoadFromFile(std::string path);
 	};
