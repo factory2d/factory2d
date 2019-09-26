@@ -19,6 +19,7 @@
 #include <vector> 
 
 #include "../Asset.h"
+#include "Picture.h"
 
 namespace F2D
 {
@@ -27,6 +28,13 @@ namespace F2D
 		static std::map <std::string, Asset*> __assets;
 
 	public:
+
+		static bool LoadAsset(Picture * asset, std::string path);
+
+		//template< typename T> static double foo(vector<T> arr);
+		//template <typename T> static T LoadAsset(std::string asset);
+		//inline static <Picture> Picture *LoadAsset(std:string asset) {}
+
 		static void PushAsset(std::string key, Asset *asset);
 		static Asset * PullAsset(std::string key);
 	};

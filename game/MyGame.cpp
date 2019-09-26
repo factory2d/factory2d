@@ -11,22 +11,19 @@ F2D::SpriteObject* object2;
 bool MyGame::Initialize() {
 	Game::Initialize();
 
-	//	teste
+	// tag test, not working yet, just to test the tag listing
 	F2D::TagManager::SetTag("teste", NULL);
 
+	// load a picture into the memory
 	F2D::Picture *p = new F2D::Picture();
-	p->Load("Assets/256.png");
-	p->Load("Assets/256.png");
-	p->Load("Assets/256.png");
+	F2D::AssetManager::LoadAsset(p, "Assets/256.png");	// load the picture and put in cache
+	F2D::AssetManager::LoadAsset(p, "Assets/256.png");	// loading the same picture, we will use the cached
 
-	//F2D::AssetManager::LoadPicture("256.png", F2D::PNG);
-	//F2D::AssetManager::LoadPicture("256.PNG", F2D::PNG);
-
-	//	cria a cena
+	// create a new scene
 	scene1 = new F2D::SceneObject("scene1");
 	F2D::SceneManager::Load(scene1);
 
-	//	cria objetos da cena
+	// create objects inside the scene
 	object1 = new F2D::SpriteObject("object1");
 	object1->p = p;
 	object1->GetUUID();
@@ -42,7 +39,7 @@ bool MyGame::Initialize() {
 	object2->transform->rotate->y = 15.0f;
 	object2->transform->SetParent(object1->transform);
 
-	//	cria a camera da cena
+	// create the scene camera
 	F2D::CameraObject* camera1 = new F2D::CameraObject("camera1");
 	camera1->viewport = new F2D::Rect(0.0f, 0.0f, 1.0f, 1.0f);
 	camera1->transform->SetParent(scene1->transform);

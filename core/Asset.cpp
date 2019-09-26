@@ -1,3 +1,15 @@
+/**
+ * @license
+ */
+
+ /**
+  * @fileoverview Asset
+  *
+  * Base Asset Object
+  *
+  * @author @alexribeirodesa (Alexandre Ribeiro de Sá)
+  */
+
 #include "Asset.h"
 
 namespace F2D
@@ -10,9 +22,7 @@ namespace F2D
 		return __data;
 	}
 
-	void Asset::Load(std::string asset) {}
+	bool Asset::Load(std::string asset) { return false; }
 
-	void Asset::LoadFromFile(std::string path) {}
-
-	
+	bool Asset::LoadFromFile(std::string path) { return false; }
 }

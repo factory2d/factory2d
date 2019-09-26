@@ -1,3 +1,15 @@
+/**
+ * @license
+ */
+
+ /**
+  * @fileoverview Asset Header
+  *
+  * Base Asset Object
+  *
+  * @author @alexribeirodesa (Alexandre Ribeiro de Sá)
+  */
+
 #ifndef FACTORY2D_RESOURCEMANAGER_RESOURCE_H_
 #define FACTORY2D_RESOURCEMANAGER_RESOURCE_H_
 
@@ -20,7 +32,7 @@ namespace F2D
 	};*/
 
 	class Asset {
-	public:
+	protected:
 		AssetTypes __type;
 		void *__data;
 
@@ -29,8 +41,8 @@ namespace F2D
 		~Asset();
 			
 		void *Data();
-		virtual void Load(std::string asset);
-		virtual void LoadFromFile(std::string path);
+		virtual bool Load(std::string asset);
+		virtual bool LoadFromFile(std::string path);
 	};
 }
 

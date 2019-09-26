@@ -1,3 +1,15 @@
+/**
+ * @license
+ */
+
+ /**
+  * @fileoverview Picture Asset Header
+  *
+  * Load picture files into the memory
+  *
+  * @author @alexribeirodesa (Alexandre Ribeiro de Sá)
+  */
+
 #ifndef FACTORY2D_RESOURCEMANAGER_PICTURERESOURCE_H_
 #define FACTORY2D_RESOURCEMANAGER_PICTURERESOURCE_H_
 
@@ -9,10 +21,10 @@ namespace F2D
 	class Picture :
 		public Asset {
 	private:
-		//GLuint __texture;
+
 	public:
 		//virtual void * Data();
-		virtual void Load(std::string asset);
+		virtual bool Load(std::string path);
 	};
 }
 
