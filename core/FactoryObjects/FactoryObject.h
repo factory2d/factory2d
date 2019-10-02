@@ -1,5 +1,17 @@
-#ifndef __FACTORY2D_FACTORYOBJECT
-#define __FACTORY2D_FACTORYOBJECT
+/**
+ * @license
+ */
+
+ /**
+  * @fileoverview Base Factory2D Objects Header
+  *
+  * Base scene objects
+  *
+  * @author @alexribeirodesa (Alexandre Ribeiro de Sá)
+  */
+
+#ifndef FACTORY2D_FACTORYOBJECT_FACTORYOBJECT_H_
+#define FACTORY2D_FACTORYOBJECT_FACTORYOBJECT_H_
 
 #include <string>
 
@@ -24,10 +36,14 @@ namespace F2D
 
 		virtual void Update();
 		virtual void Draw();
+
 		std::string GetTag();
 		void SetTag(std::string tag);
 		void RemoveTag();
+
+		virtual std::string Serialize();
+		virtual bool Deserialize();
 	};
 }
 
-#endif
+#endif // FACTORY2D_FACTORYOBJECT_FACTORYOBJECT_H_

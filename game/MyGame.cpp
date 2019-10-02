@@ -16,8 +16,8 @@ bool MyGame::Initialize() {
 
 	// load a picture into the memory
 	F2D::Picture *p = new F2D::Picture();
-	F2D::AssetManager::LoadAsset(p, "Assets/256.png");	// load the picture and put in cache
-	F2D::AssetManager::LoadAsset(p, "Assets/256.png");	// loading the same picture, we will use the cached
+	p = F2D::AssetManager::Load<F2D::Picture>("Assets/256.png"); // load the picture and put in cache
+	p = F2D::AssetManager::Load<F2D::Picture>("Assets/256.png"); // loading the same picture, we will use the cached
 
 	// create a new scene
 	scene1 = new F2D::SceneObject("scene1");

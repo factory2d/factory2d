@@ -27,13 +27,19 @@ namespace F2D
 	private:
 		static std::map <std::string, Asset*> __assets;
 
-	public:
-
 		static bool LoadAsset(Picture * asset, std::string path);
 
-		//template< typename T> static double foo(vector<T> arr);
-		//template <typename T> static T LoadAsset(std::string asset);
-		//inline static <Picture> Picture *LoadAsset(std:string asset) {}
+	public:
+		template<typename T>
+		static T * Load(std::string path) {
+			T * asset = new T();
+
+			if(LoadAsset(asset, path)) {
+				return asset;
+			}
+
+			return NULL;
+		}
 
 		static void PushAsset(std::string key, Asset *asset);
 		static Asset * PullAsset(std::string key);

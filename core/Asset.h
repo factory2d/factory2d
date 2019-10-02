@@ -26,11 +26,6 @@ namespace F2D
 		FONT,
 	};
 
-	/*enum ImagesTypes {
-		PNG = 0,
-		JPG,
-	};*/
-
 	class Asset {
 	protected:
 		AssetTypes __type;

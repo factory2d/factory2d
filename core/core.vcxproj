@@ -131,6 +131,7 @@
     <ClCompile Include="FactoryObjects\TextureObject.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameTime.cpp" />
+    <ClCompile Include="InputManager\InputManager.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="FactoryObjects\TextureObject.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameTime.h" />
+    <ClInclude Include="InputManager\InputManager.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Renderer.h" />

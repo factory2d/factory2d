@@ -1,3 +1,15 @@
+/**
+ * @license
+ */
+
+ /**
+  * @fileoverview Base Factory2D Objects
+  *
+  * Base scene objects
+  *
+  * @author @alexribeirodesa (Alexandre Ribeiro de Sá)
+  */
+
 #include "SDL.h"
 #include "SDL_opengl.h"
 #include <GL\GLU.h>
@@ -53,4 +65,11 @@ namespace F2D
 	}
 
 	void FactoryObject::RemoveTag() {}
+
+	std::string FactoryObject::Serialize() {
+		return std::string();
+	}
+	bool FactoryObject::Deserialize() {
+		return false;
+	}
 }
