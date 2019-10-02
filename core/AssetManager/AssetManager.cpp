@@ -36,7 +36,7 @@ namespace F2D
 		}
 		
 		// get the picture from cache
-		asset = p;
+		*asset = *p;
 		return true;
 	}
 
