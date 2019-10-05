@@ -120,6 +120,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="InputManager\ActionObject.cpp" />
+    <ClCompile Include="InputManager\ControllerObject.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Asset.cpp" />
     <ClCompile Include="AssetManager\Picture.cpp" />
@@ -139,9 +141,12 @@
     <ClCompile Include="SceneManager\SceneManager.cpp" />
     <ClCompile Include="TagManager\TagManager.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="InputManager\TriggerObject.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="InputManager\ActionObject.h" />
+    <ClInclude Include="InputManager\ControllerObject.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Asset.h" />
     <ClInclude Include="AssetManager\Picture.h" />
@@ -162,6 +167,7 @@
     <ClInclude Include="SceneManager\SceneManager.h" />
     <ClInclude Include="TagManager\TagManager.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="InputManager\TriggerObject.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

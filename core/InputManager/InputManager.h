@@ -27,12 +27,27 @@ a little about my UTools (https://pt.slideshare.net/alexrdes/u-tools-unite-brasi
 	- attack
 	  - joystick button
 	  - keyboard button
+	  - mouse button
 */
 
-class InputManager {
-public:
-	InputManager();
-	~InputManager();
-};
+#include <string>
+#include <vector> 
+
+#include "ControllerObject.h"
+
+namespace F2D_Input
+{
+	class InputManager {
+	private:
+		static std::vector <ControllerObject*> __controllers;
+
+	public:
+		static float GetAxis(std::string);
+
+		static bool GetButton(std::string);
+		static bool GetButtonUp(std::string);
+		static bool GetButtonDown(std::string);
+	};
+}
 
 #endif // FACTORY2D_INPUTMANAGER_INPUTMANAGER_H_

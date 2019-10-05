@@ -29,3 +29,9 @@
 #include "FactoryObjects/CameraObject.h"
 #include "FactoryObjects/TextureObject.h"
 #include "FactoryObjects/SpriteObject.h"
+
+/* INPUT */
+#include "InputManager/InputManager.h"
+#include "InputManager/ControllerObject.h"
+#include "InputManager/ActionObject.h"
+#include "InputManager/TriggerObject.h"

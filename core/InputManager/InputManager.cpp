@@ -12,6 +12,23 @@
 
 #include "InputManager.h"
 
-InputManager::InputManager() {}
+namespace F2D_Input
+{
+	std::vector <ControllerObject*>InputManager::__controllers = {};
 
-InputManager::~InputManager() {}
+	float InputManager::GetAxis(std::string) {
+		return 0.0f;
+	}
+
+	bool InputManager::GetButton(std::string) {
+		return false;
+	}
+
+	bool InputManager::GetButtonUp(std::string) {
+		return false;
+	}
+
+	bool InputManager::GetButtonDown(std::string) {
+		return false;
+	}
+}
