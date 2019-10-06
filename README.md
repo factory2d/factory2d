@@ -4,8 +4,8 @@ Project License
 
 ## Getting Started
 ### Prerequisites
-* SDL2 [https://www.libsdl.org](https://www.libsdl.org)
-* SDL_image2 [https://www.libsdl.org/projects/SDL_image/](https://www.libsdl.org/projects/SDL_image/)
+* SDL2 (https://www.libsdl.org)
+* SDL_image2 (https://www.libsdl.org/projects/SDL_image/)
 
 ### Installing
 
