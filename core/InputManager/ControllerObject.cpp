@@ -13,9 +13,37 @@
 
 #include "ControllerObject.h"
 
-namespace F2D_Input
+namespace F2D
 {
-	ControllerObject::ControllerObject() {}
+	ControllerObject::ControllerObject(std::string n) {
+		name = n;
+		enabled = true;
+	}
 
 	ControllerObject::~ControllerObject() {}
+
+	void ControllerObject::Push(ActionObject * action) {
+		__actions.push_back(action);
+	}
+
+	bool ControllerObject::Pop(std::string name) {
+		for(int x = 0; x < __actions.size(); x++) {
+			if(__actions[x]->name == name) {
+				__actions.erase(__actions.begin() + x);
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	ActionObject* ControllerObject::Get(std::string name) {
+		for(int x = 0; x < __actions.size(); x++) {
+			if(__actions[x]->name == name) {
+				return __actions[x];
+			}
+		}
+
+		return nullptr;
+	}
 }

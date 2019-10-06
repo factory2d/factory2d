@@ -13,9 +13,12 @@
 
 #include "ActionObject.h"
 
-namespace F2D_Input
+namespace F2D
 {
-	ActionObject::ActionObject() {}
+	ActionObject::ActionObject(std::string n) {
+		name = n;
+		enabled = true;
+	}
 
 	ActionObject::~ActionObject() {}
 }

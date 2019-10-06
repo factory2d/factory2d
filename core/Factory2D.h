@@ -34,4 +34,6 @@
 #include "InputManager/InputManager.h"
 #include "InputManager/ControllerObject.h"
 #include "InputManager/ActionObject.h"
+#include "InputManager/AxisObject.h"
+#include "InputManager/ButtonObject.h"
 #include "InputManager/TriggerObject.h"

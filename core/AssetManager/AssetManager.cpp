@@ -22,11 +22,11 @@ namespace F2D
 	std::map <std::string, Asset*> AssetManager::__assets = {};
 
 	bool AssetManager::LoadAsset(Picture * asset, std::string path) {
-		Picture *p = (Picture*)AssetManager::PullAsset(path);
+		Picture *p = (Picture*)AssetManager::Get(path);
 
 		if(p == NULL) {
 			if(asset->Load(path)) {
-				PushAsset(path, asset);
+				Push(path, asset);
 				return true;
 			}
 			else {
@@ -40,7 +40,7 @@ namespace F2D
 		return true;
 	}
 
-	void AssetManager::PushAsset(std::string key, Asset * asset) {
+	void AssetManager::Push(std::string key, Asset * asset) {
 		// we use lower case for the key
 		std::string k = key;
 		std::transform(k.begin(), k.end(), k.begin(), ::tolower);
@@ -51,7 +51,7 @@ namespace F2D
 		}
 	}
 
-	Asset * AssetManager::PullAsset(std::string key) {
+	Asset * AssetManager::Get(std::string key) {
 		// we use lower case for the key
 		std::string k = key;
 		std::transform(k.begin(), k.end(), k.begin(), ::tolower);

@@ -120,6 +120,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="InputManager\ButtonObject.cpp" />
+    <ClCompile Include="InputManager\AxisObject.cpp" />
     <ClCompile Include="InputManager\ActionObject.cpp" />
     <ClCompile Include="InputManager\ControllerObject.cpp" />
     <ClCompile Include="Debug.cpp" />
@@ -145,6 +147,8 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="InputManager\ButtonObject.h" />
+    <ClInclude Include="InputManager\AxisObject.h" />
     <ClInclude Include="InputManager\ActionObject.h" />
     <ClInclude Include="InputManager\ControllerObject.h" />
     <ClInclude Include="Debug.h" />

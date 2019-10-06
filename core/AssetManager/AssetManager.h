@@ -27,7 +27,13 @@ namespace F2D
 	private:
 		static std::map <std::string, Asset*> __assets;
 
+		// load picture asset
 		static bool LoadAsset(Picture * asset, std::string path);
+
+		// manage assets inside the manager
+		static void Push(std::string key, Asset *asset);
+		static void Pop(std::string key);
+		static Asset * Get(std::string key);
 
 	public:
 		template<typename T>
@@ -40,9 +46,6 @@ namespace F2D
 
 			return NULL;
 		}
-
-		static void PushAsset(std::string key, Asset *asset);
-		static Asset * PullAsset(std::string key);
 	};
 }
 

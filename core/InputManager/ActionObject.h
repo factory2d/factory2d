@@ -16,12 +16,12 @@
 
 #include "../Object.h"
 
-namespace F2D_Input
+namespace F2D
 {
 	class ActionObject :
 		public F2D::Object {
 	public:
-		ActionObject();
+		ActionObject(std::string name);
 		~ActionObject();
 	};
 }

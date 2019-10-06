@@ -14,6 +14,16 @@ bool MyGame::Initialize() {
 	// tag test, not working yet, just to test the tag listing
 	F2D::TagManager::SetTag("teste", NULL);
 
+	// create a new controller
+	F2D::ControllerObject *controller1 = new F2D::ControllerObject("player");
+	F2D::AxisObject *axisX = new F2D::AxisObject("x");
+	F2D::AxisObject *axisY = new F2D::AxisObject("y");
+	F2D::ButtonObject *actionBtn = new F2D::ButtonObject("attack");
+	controller1->Push(axisX);
+	controller1->Push(axisY);
+	controller1->Push(actionBtn);
+
+
 	// load a picture into the memory
 	F2D::Picture *p = new F2D::Picture();
 	p = F2D::AssetManager::Load<F2D::Picture>("Assets/256.png"); // load the picture and put in cache

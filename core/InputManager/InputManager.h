@@ -35,7 +35,7 @@ a little about my UTools (https://pt.slideshare.net/alexrdes/u-tools-unite-brasi
 
 #include "ControllerObject.h"
 
-namespace F2D_Input
+namespace F2D
 {
 	class InputManager {
 	private:

@@ -12,7 +12,7 @@
 
 #include "TriggerObject.h"
 
-namespace F2D_Input
+namespace F2D
 {
 	TriggerObject::TriggerObject() {}
 

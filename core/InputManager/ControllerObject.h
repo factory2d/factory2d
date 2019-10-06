@@ -14,16 +14,26 @@
 #ifndef FACTORY2D_INPUTMANAGER_CONTROLLEROBJECT_H_
 #define FACTORY2D_INPUTMANAGER_CONTROLLEROBJECT_H_
 
-#include "../Object.h"
+#include <iostream>
+#include <vector> 
 
-namespace F2D_Input
+#include "../Object.h"
+#include "ActionObject.h"
+
+namespace F2D
 {
 	class ControllerObject :
 		public F2D::Object {
+	private:
+		std::vector <ActionObject*> __actions = {};
 
 	public:
-		ControllerObject();
+		ControllerObject(std::string name);
 		~ControllerObject();
+
+		void Push(ActionObject* action);
+		bool Pop(std::string name);
+		ActionObject* Get(std::string name);
 	};
 }
 

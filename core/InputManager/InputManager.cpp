@@ -12,7 +12,7 @@
 
 #include "InputManager.h"
 
-namespace F2D_Input
+namespace F2D
 {
 	std::vector <ControllerObject*>InputManager::__controllers = {};
 
