@@ -14,6 +14,11 @@ Project License
 ## Built With
 
 ## The Creator
+Hi, I'm Alexandre Ribeiro de Sá. <a href="https://www.instagram.com/alexribeirodesa" target="_blank">@alexribeirodesa</a>
+
+In past years I have developed several assets for Unity, GameMaker, Construct, original games for arcade machines and more :)
+
+Now I'm using some of my free time to develop a free, powerfull and easy to use 2D game engine... And create a YouTube channel with my niece too...
 
 ## Support the Project
 <a href="https://www.buymeacoffee.com/yWQrz9kq2" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
