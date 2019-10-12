@@ -144,7 +144,7 @@
     <ClCompile Include="TagManager\TagManager.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="InputManager\TriggerObject.cpp" />
-    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="WindowManager\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputManager\ButtonObject.h" />
@@ -172,7 +172,7 @@
     <ClInclude Include="TagManager\TagManager.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="InputManager\TriggerObject.h" />
-    <ClInclude Include="Window.h" />
+    <ClInclude Include="WindowManager\WindowManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

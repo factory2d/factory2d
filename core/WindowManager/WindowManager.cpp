@@ -1,25 +1,26 @@
-#include "Window.h"
+#include "WindowManager.h"
+#include <iostream>
 
 namespace F2D {
-	Window::Window() {
-		this->Initialize();
-	}
+	std::string WindowManager::__title = "Factory2D Game";					// window title
+	bool WindowManager::__alowUserResize = false;							// allow user to resize the window
 
-	Window::~Window() {}
+	SDL_Window* WindowManager::__sdl_window = NULL;
+	SDL_GLContext WindowManager::__sdl_context;
 
-	bool Window::Initialize() {
+	bool WindowManager::Initialize() {
 		bool output = false;
 
-		//Initialize SDL
+		// initialize SDL
 		if(SDL_Init(SDL_INIT_VIDEO) < 0) {
 			printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
 		}
 		else {
-			//Use OpenGL 2.1
+			// use OpenGL 2.1
 			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
 			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
-			//Create window
+			// create window
 			__sdl_window = SDL_CreateWindow(__title.c_str(),
 				SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 				800, 600, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
@@ -28,18 +29,18 @@ namespace F2D {
 				printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
 			}
 			else {
-				//Create context
+				// create context
 				__sdl_context = SDL_GL_CreateContext(__sdl_window);
 				if(__sdl_context == NULL) {
 					printf("OpenGL context could not be created! SDL Error: %s\n", SDL_GetError());
 				}
 				else {
-					//Use Vsync
+					// use Vsync
 					if(SDL_GL_SetSwapInterval(1) < 0) {
 						printf("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
 					}
 
-					//Initialize OpenGL
+					// initialize OpenGL
 					output = true;
 				}
 			}
@@ -48,26 +49,38 @@ namespace F2D {
 		return output;
 	}
 
-	std::string & Window::Title() {
+	void WindowManager::Update(void * event) {
+		SDL_Event *e = (SDL_Event *)event;
+
+		switch(e->type) {
+		case SDL_WINDOWEVENT:		//	https://wiki.libsdl.org/SDL_WindowEvent
+			// Here we will get window events we will use in editor
+			std::cout << "window event" << e->window.event  << "\n";
+			break;
+		}
+	}
+
+	void WindowManager::Draw() {
+		SDL_GL_SwapWindow(__sdl_window);
+	}
+
+	std::string WindowManager::Title() {
 		return __title;
 	}
 
-	void Window::Title(std::string & title) {
+	void WindowManager::Title(std::string title) {
 		__title = title;
 		if(__sdl_window != NULL) {
 			SDL_SetWindowTitle(__sdl_window, __title.c_str());
 		}
 	}
 
-	SDL_Window* Window::SDLWindow() {
-		return __sdl_window;
-	};
-
-	int Window::Width() {
+	// cache this stuff
+	int WindowManager::Width() {
 		return SDL_GetWindowSurface(__sdl_window)->w;
 	}
 
-	int Window::Height() {
+	int WindowManager::Height() {
 		return SDL_GetWindowSurface(__sdl_window)->h;
 	}
 }

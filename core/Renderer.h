@@ -1,7 +1,7 @@
 #ifndef __FACTORY2D_RENDERER
 #define __FACTORY2D_RENDERER
 
-#include "Window.h"
+#include "WindowManager/WindowManager.h"
 
 namespace F2D
 {
@@ -11,7 +11,6 @@ namespace F2D
 		~Renderer();
 
 	public:
-		static Window* window;
 		static bool integerPosition;
 
 		static void Begin();

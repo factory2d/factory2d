@@ -7,7 +7,6 @@
 
 namespace F2D
 {
-	Window* Renderer::window = NULL;
 	bool Renderer::integerPosition = false;
 
 	Renderer::Renderer() {}
@@ -18,17 +17,15 @@ namespace F2D
 		CameraObject *c = CameraObject::GetActiveCamera();
 
 		//Set the viewport
-		glViewport(window->Width()*c->viewport->x,
-			window->Height()*c->viewport->y,
-			window->Width()*c->viewport->width,
-			window->Height()*c->viewport->height);
+		glViewport(WindowManager::Width()*c->viewport->x,
+			WindowManager::Height()*c->viewport->y,
+			WindowManager::Width()*c->viewport->width,
+			WindowManager::Height()*c->viewport->height);
 
 		//Initialize Projection Matrix
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(0.0, window->Width()*c->viewport->width, window->Height()*c->viewport->height, 0.0, 1.0, -1.0);
-
-
+		glOrtho(0.0, WindowManager::Width()*c->viewport->width, WindowManager::Height()*c->viewport->height, 0.0, 1.0, -1.0);
 
 		glTranslatef(-c->transform->position->x, -c->transform->position->y, -c->transform->position->z);
 

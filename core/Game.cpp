@@ -5,6 +5,8 @@
 
 #include "Game.h"
 #include "Renderer.h"
+#include "WindowManager/WindowManager.h"
+#include "InputManager/InputManager.h"
 #include "SceneManager/SceneManager.h"
 
 namespace F2D
@@ -13,7 +15,7 @@ namespace F2D
 	Game::~Game() {}
 
 	bool Game::Initialize() {
-		Renderer::window = new Window();
+		WindowManager::Initialize();
 		__time = new GameTime();
 
 		return true;
@@ -29,17 +31,18 @@ namespace F2D
 	}
 
 	void Game::Update() {
-		SDL_Event event;
+		SDL_Event e;
 
 		//	https://wiki.libsdl.org/SDL_Event
-		while(SDL_PollEvent(&event)) {
-			//	window events
-			switch(event.type) {
-			case SDL_WINDOWEVENT:		//	https://wiki.libsdl.org/SDL_WindowEvent
-				LOG("Window Event");
-				//TEST("Window Event");
-				//std::cout << "window event" << event.window.event  << "\n";
-				break;
+		while(SDL_PollEvent(&e)) {
+			// window events
+			WindowManager::Update(&e);
+
+			// input events
+			InputManager::Update(&e);
+
+			// game events
+			switch(e.type) {
 			case SDL_QUIT:
 				__quit = true;
 				break;
@@ -59,6 +62,6 @@ namespace F2D
 		glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		SceneManager::Draw();
-		SDL_GL_SwapWindow(Renderer::window->SDLWindow());
+		WindowManager::Draw();
 	}
 }
