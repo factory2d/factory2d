@@ -5,6 +5,7 @@
 
 #include "Game.h"
 #include "Renderer.h"
+#include "GameTime.h"
 #include "WindowManager/WindowManager.h"
 #include "InputManager/InputManager.h"
 #include "SceneManager/SceneManager.h"
@@ -16,7 +17,6 @@ namespace F2D
 
 	bool Game::Initialize() {
 		WindowManager::Initialize();
-		__time = new GameTime();
 
 		return true;
 	}
@@ -25,6 +25,7 @@ namespace F2D
 		while(!__quit) {
 			this->Update();
 			this->Draw();
+			GameTime::Update();
 		}
 
 		//	TODO: destroy everything before close the app
@@ -32,6 +33,8 @@ namespace F2D
 
 	void Game::Update() {
 		SDL_Event e;
+
+
 
 		//	https://wiki.libsdl.org/SDL_Event
 		while(SDL_PollEvent(&e)) {

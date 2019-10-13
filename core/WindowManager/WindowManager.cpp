@@ -1,5 +1,9 @@
-#include "WindowManager.h"
 #include <iostream>
+#include <sstream>
+
+
+#include "WindowManager.h"
+#include "../GameTime.h"
 
 namespace F2D {
 	std::string WindowManager::__title = "Factory2D Game";					// window title
@@ -36,7 +40,7 @@ namespace F2D {
 				}
 				else {
 					// use Vsync
-					if(SDL_GL_SetSwapInterval(1) < 0) {
+					if(SDL_GL_SetSwapInterval(0) < 0) {
 						printf("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
 					}
 
@@ -62,6 +66,12 @@ namespace F2D {
 
 	void WindowManager::Draw() {
 		SDL_GL_SwapWindow(__sdl_window);
+
+		if(__sdl_window != NULL) {
+			std::ostringstream t;
+			t << __title << " (" << GameTime::FPS() << ")";
+			SDL_SetWindowTitle(__sdl_window, t.str().c_str());
+		}
 	}
 
 	std::string WindowManager::Title() {
@@ -70,9 +80,6 @@ namespace F2D {
 
 	void WindowManager::Title(std::string title) {
 		__title = title;
-		if(__sdl_window != NULL) {
-			SDL_SetWindowTitle(__sdl_window, __title.c_str());
-		}
 	}
 
 	// cache this stuff

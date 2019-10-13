@@ -47,10 +47,10 @@ namespace F2D
 
 			//	TODO: cache the matrix transform and just update when need
 			if(p != NULL)
-				glTranslatef(p->origin->x, p->origin->y, p->origin->z);
-			glTranslatef(t->position->x, t->position->y, t->position->z);
-			glRotatef(t->rotate->y, 0.0f, 0.0f, 1.0f);
-			glTranslatef(-t->origin->x, -t->origin->y, -t->origin->z);
+				glTranslatef(p->GetOrigin()->x, p->GetOrigin()->y, p->GetOrigin()->z);
+			glTranslatef(t->GetPosition()->x, t->GetPosition()->y, t->GetPosition()->z);
+			glRotatef(t->GetRotate()->y, 0.0f, 0.0f, 1.0f);
+			glTranslatef(-t->GetOrigin()->x, -t->GetOrigin()->y, -t->GetOrigin()->z);
 
 			t->GetFactoryObject()->Draw();
 			glPopMatrix();

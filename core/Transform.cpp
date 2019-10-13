@@ -1,13 +1,29 @@
 #include "Transform.h"
 
+#include "GameTime.h"
+
 namespace F2D
 {
 
 	Transform::Transform(FactoryObject* factoryObject) {
 		__factoryObject = factoryObject;
+		__position->x = __position->y = __position->z = 0.0f;
+		__rotate->x = __rotate->y = __rotate->z = 0.0f;
 	}
 
 	Transform::~Transform() {}
+
+	void Transform::Translate(float x, float y, float z) {
+		__position->x += x * GameTime::Delta();
+		__position->y += y * GameTime::Delta();
+		__position->z += z * GameTime::Delta();
+	}
+
+	void Transform::Rotate(float x, float y, float z) {
+		if(x != 0.0f) { __rotate->x += x * GameTime::Delta(); }
+		if(y != 0.0f) { __rotate->y += y * GameTime::Delta(); }
+		if(z != 0.0f) { __rotate->z += z * GameTime::Delta(); }
+	}
 
 	unsigned int Transform::GetChildCount() {
 		return __childs.size();

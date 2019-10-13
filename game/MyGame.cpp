@@ -37,16 +37,16 @@ bool MyGame::Initialize() {
 	object1 = new F2D::SpriteObject("object1");
 	object1->p = p;
 	object1->GetUUID();
-	object1->transform->origin->x = object1->transform->origin->y = 32.0f;
-	object1->transform->position->x = object1->transform->position->y = 100.0f;
-	object1->transform->rotate->y = 45.0f;
+	object1->transform->SetOrigin(32.0f, 32.0f, 0.0f);
+	object1->transform->SetPosition(100.0f, 100.0f, 0.0f);
+	object1->transform->SetRotate(0.0f, 45.0f, 0.0f);
 	object1->transform->SetParent(scene1->transform);
 
 	object2 = new F2D::SpriteObject("object2");
 	object2->p = p;
-	object2->transform->origin->x = object2->transform->origin->y = 32.0f;
-	object2->transform->position->x = object2->transform->position->y = 100.0f;
-	object2->transform->rotate->y = 15.0f;
+	object2->transform->SetOrigin(32.0f, 32.0f, 0.0f);
+	object2->transform->SetPosition(100.0f, 100.0f, 0.0f);
+	object2->transform->SetRotate(0.0f, 15.0f, 0.0f);
 	object2->transform->SetParent(object1->transform);
 
 	// create the scene camera
@@ -58,12 +58,15 @@ bool MyGame::Initialize() {
 }
 
 void MyGame::Update() {
+	object1->transform->Rotate(0.0f, 5.0f, 0.0f);
+	object2->transform->Rotate(0.0f, 1.0f, 0.0f);
+	/*
 	object1->transform->rotate->y += 1.0f;
 	if(object1->transform->rotate->y >= 360.0f)
 		object1->transform->rotate->y -= 360.0f;
 
 	object2->transform->rotate->y = object1->transform->rotate->y;
-
+	*/
 	Game::Update();
 }
 

@@ -79,12 +79,28 @@ namespace F2D
 		case SDL_MOUSEMOTION:
 			std::cout << "mouse motion event: " << (int)(e->motion.xrel) << ", " << (int)(e->motion.yrel) << "\n";
 			break;
-		}
-
+		
 		// joystick
+		case SDL_JOYDEVICEADDED:
+			std::cout << "joystick added: " << e->jdevice.which << "\n";
+			break;
+		case SDL_JOYDEVICEREMOVED:
+			std::cout << "joystick removed: " << e->jdevice.which << "\n";
+			break;
+		case SDL_JOYBUTTONDOWN:
+			break;
+		case SDL_JOYBUTTONUP:
+			break;
+		case SDL_JOYHATMOTION:
+			break;
+		case SDL_JOYAXISMOTION:
+			break;
+
+		// xinput?
 
 		// touch
 
 		// sensores
+		}
 	}
 }

@@ -14,7 +14,6 @@ namespace F2D {
 		std::vector <Transform*> __childs = {};
 		FactoryObject* __factoryObject;
 
-
 		glm::vec3* __position = new glm::vec3(0.0f, 0.0f, 0.0f);
 		glm::vec3* __origin = new glm::vec3(0.0f, 0.0f, 0.0f);
 		glm::vec3* __scale = new glm::vec3(1.0f, 1.0f, 1.0f);
@@ -24,10 +23,12 @@ namespace F2D {
 		glm::mat4x4* __worldTransform = new glm::mat4x4();
 
 	public:
+		/*
 		glm::vec3* position = __position;
 		glm::vec3* origin = __origin;
 		glm::vec3* scale = __scale;
 		glm::vec3* rotate = __rotate;
+		*/
 
 		Transform(FactoryObject* factoryObject);
 		~Transform();
@@ -35,6 +36,7 @@ namespace F2D {
 		glm::vec3* GetPosition() { return __position; };
 		void SetPosition(glm::vec3 *value) { __position = value; };
 		void SetPosition(float x, float y, float z) { SetPosition(new glm::vec3(x, y, z)); };
+		void Translate(float x, float y, float z);
 
 		glm::vec3* GetOrigin() { return __origin; };
 		void SetOrigin(glm::vec3 *value) { __origin = value; };
@@ -47,6 +49,7 @@ namespace F2D {
 		glm::vec3* GetRotate() { return __rotate; };
 		void SetRotate(glm::vec3 *value) { __rotate = value; };
 		void SetRotate(float x, float y, float z) { SetRotate(new glm::vec3(x, y, z)); };
+		void Rotate(float x, float y, float z);
 
 		unsigned int GetChildCount();
 		FactoryObject* GetFactoryObject();

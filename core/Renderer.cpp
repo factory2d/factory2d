@@ -27,7 +27,9 @@ namespace F2D
 		glLoadIdentity();
 		glOrtho(0.0, WindowManager::Width()*c->viewport->width, WindowManager::Height()*c->viewport->height, 0.0, 1.0, -1.0);
 
-		glTranslatef(-c->transform->position->x, -c->transform->position->y, -c->transform->position->z);
+		glTranslatef(-c->transform->GetPosition()->x, 
+					 -c->transform->GetPosition()->y, 
+					 -c->transform->GetPosition()->z);
 
 		//Initialize Modelview Matrix
 		glMatrixMode(GL_MODELVIEW);
