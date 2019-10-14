@@ -9,6 +9,12 @@ F2D::SpriteObject* object1;
 F2D::SpriteObject* object2;
 
 bool MyGame::Initialize() {
+	// configure our windows
+	F2D::WindowManager::Title("My Game Sample");
+	F2D::WindowManager::Resizable(true);
+	F2D::WindowManager::VSync(false);
+	F2D::WindowManager::Width(640);
+	F2D::WindowManager::Height(480);
 	Game::Initialize();
 
 	// tag test, not working yet, just to test the tag listing

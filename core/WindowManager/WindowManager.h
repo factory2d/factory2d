@@ -39,19 +39,23 @@ namespace F2D {
 	class WindowManager {
 	private:
 		static std::string __title;
-		static bool __alowUserResize;
+		static bool __allowUserResize;
+		static bool __allowVSync;
 		static SDL_Window* __sdl_window;
 		static SDL_GLContext __sdl_context;
+		static int __width;
+		static int __height;
 
 	public:
 		static bool Initialize();
 		static void Update(void *event);
 		static void Draw();
 
-		static std::string Title();
-		static void Title(std::string title);
-		static int Width();
-		static int Height();
+		static std::string Title();	static void Title(std::string title);
+		static bool Resizable(); static void Resizable(bool value);
+		static bool VSync(); static void VSync(bool value);
+		static int Width(); static void Width(int value);
+		static int Height(); static void Height(int value);
 	};
 }
 

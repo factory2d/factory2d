@@ -35,7 +35,7 @@ namespace F2D
 {
 	float GameTime::__fps = 0.0f;
 	float GameTime::__deltaTime = 0.0f;
-	float GameTime::__scaleTime = 1.0;
+	float GameTime::scale = 1.0;
 
 	float GameTime::__smooth = 0.2f;
 	unsigned int GameTime::__getTicks = 0;
@@ -55,13 +55,14 @@ namespace F2D
 		return __fps;
 	}
 
+	// TODO: CACHE DT / UCDT
 	float GameTime::Delta() {
-		if(__deltaTime == 0.0f) return 0.0f;
-		return 1.0f / (__fps * __scaleTime);
+		if(__fps == 0.0f) return 0.0f;
+		return 1.0f / (__fps * scale);
 	}
 
-	float GameTime::UnsaledDelta() {
-		if(__deltaTime == 0.0f) return 0.0f;
+	float GameTime::UnscaledDelta() {
+		if(__fps == 0.0f) return 0.0f;
 		return 1.0f / __fps;
 	}
 }

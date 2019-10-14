@@ -15,6 +15,10 @@ namespace F2D
 
 	void Renderer::Begin() {
 		CameraObject *c = CameraObject::GetActiveCamera();
+		int w = WindowManager::Width(); int h = WindowManager::Height();
+		w = 320; h = 240;
+
+		
 
 		//Set the viewport
 		glViewport(WindowManager::Width()*c->viewport->x,
@@ -26,6 +30,7 @@ namespace F2D
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		glOrtho(0.0, WindowManager::Width()*c->viewport->width, WindowManager::Height()*c->viewport->height, 0.0, 1.0, -1.0);
+		//glOrtho(0.0, w, h, 0.0, 1.0, -1.0);
 
 		glTranslatef(-c->transform->GetPosition()->x, 
 					 -c->transform->GetPosition()->y, 

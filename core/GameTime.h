@@ -35,16 +35,17 @@ namespace F2D
 	class GameTime {
 	private:
 		static float __fps;
-		static float __scaleTime;
 		static float __deltaTime;
 
 		static float __smooth;
 		static unsigned int __getTicks, __frameTimeDelta, __frameTimeLast;
 	public:
+		static float scale;
+
 		static void Update();
 		static float FPS();
 		static float Delta();
-		static float UnsaledDelta();
+		static float UnscaledDelta();
 	};
 }
 
