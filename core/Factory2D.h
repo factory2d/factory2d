@@ -24,7 +24,7 @@
   *
   * Factory2D core include
   *
-  * @author @alexribeirodesa (Alexandre Ribeiro de Sá)
+  * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
 #ifndef FACTORY2D_FACTORY2D_H_
@@ -33,41 +33,49 @@
 #define DllExport   __declspec( dllexport )
 
 #include "Debug.h"
-
-#include "Math.h"
 #include "Game.h"
-#include "GameTime.h"
-#include "Renderer.h"
-#include "Object.h"
-#include "Asset.h"
+
+
+/* MATH */
+#include "Math.h"
 #include "Transform.h"
 
-/* WINDOW */
-#include "WindowManager/WindowManager.h"
+/* OBJECTS */
+#include "Objects/Object.h"
+#include "Objects/FactoryObject.h"
+#include "Objects/TextureObject.h"
+#include "Objects/SpriteObject.h"
+
+/* ASSETS */
+#include "Asset.h"
+#include "Asset/AssetManager.h"
+#include "Asset/Picture.h"
+
+/* INPUT */
+#include "Input/InputManager.h"
+#include "Input/ControllerObject.h"
+#include "Input/ActionObject.h"
+#include "Input/AxisObject.h"
+#include "Input/ButtonObject.h"
+#include "Input/TriggerObject.h"
+
+/* MATERIAL */
+
+/* SCENE */
+#include "Scene/SceneManager.h"
+#include "Scene/SceneObject.h"
+
+/* RENDER */
+#include "Renderer.h"
+#include "Objects/CameraObject.h"
 
 /* TAG*/
 #include "TagManager/TagManager.h"
 
-/* ASSETS */
-#include "AssetManager/AssetManager.h"
-#include "AssetManager/Picture.h"
+/* TIME */
+#include "Time/TimeManager.h"
 
-/* SCENE */
-#include "SceneManager/SceneManager.h"
-
-/* OBJECTS */
-#include "FactoryObjects/FactoryObject.h"
-#include "FactoryObjects/SceneObject.h"
-#include "FactoryObjects/CameraObject.h"
-#include "FactoryObjects/TextureObject.h"
-#include "FactoryObjects/SpriteObject.h"
-
-/* INPUT */
-#include "InputManager/InputManager.h"
-#include "InputManager/ControllerObject.h"
-#include "InputManager/ActionObject.h"
-#include "InputManager/AxisObject.h"
-#include "InputManager/ButtonObject.h"
-#include "InputManager/TriggerObject.h"
+/* WINDOW */
+#include "Window/WindowManager.h"
 
 #endif // FACTORY2D_FACTORY2D_H_

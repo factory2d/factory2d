@@ -20,35 +20,54 @@
  */
 
  /**
-  * @fileoverview Debug.cpp
+  * @fileoverview InputManager.h
   *
-  * Debug output
+  * Here we manage our input, I'm using my old UTools plugin as referenct
+  * (https://pt.slideshare.net/alexrdes/u-tools-unite-brasil-42578443)
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include <iostream>
+#ifndef FACTORY2D_INPUT_INPUTMANAGER_H_
+#define FACTORY2D_INPUT_INPUTMANAGER_H_
 
-#include "Debug.h"
+/*
+a little about my UTools (https://pt.slideshare.net/alexrdes/u-tools-unite-brasil-42578443)
+
+- input manager
+  - player
+    - x [typeAxis]
+	  - joystick X
+	  - keyboard button +/-
+    - y [typeAxis]
+	  - joystick Y
+	  - keyboard button +/-
+	- attack
+	  - joystick button
+	  - keyboard button
+	  - mouse button
+*/
+
+#include <string>
+#include <vector> 
+
+#include "ControllerObject.h"
 
 namespace F2D
 {
-	void Debug::Write(std::string file, unsigned int line, std::string string, std::string color) {
-		if(enabled == false)
-			return;
+	class InputManager {
+	private:
+		static std::vector <ControllerObject*> __controllers;
 
-		std::cout << color << file << " [" << line << "] : " << string << COLOR_CONSOLE << std::endl;
-	}
+	public:
+		static float GetAxis(std::string);
 
-	/*void Debug::Log(std::string string, std::string file) {
-		Write(string, 0);
-	}
+		static bool GetButton(std::string);
+		static bool GetButtonUp(std::string);
+		static bool GetButtonDown(std::string);
 
-	void Debug::Warning(std::string string, std::string file) {
-		Write(string, 1);
-	}
-
-	void Debug::Error(std::string string, std::string file) {
-		Write(string, 2);
-	}*/
+		static void Update(void *event);
+	};
 }
+
+#endif // FACTORY2D_INPUT_INPUTMANAGER_H_

@@ -20,35 +20,40 @@
  */
 
  /**
-  * @fileoverview Debug.cpp
+  * @fileoverview SceneManager.h
   *
-  * Debug output
+  * Manage the game scenes
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include <iostream>
+#ifndef FACTORY2D_SCENE_SCENEMANAGER_H_
+#define FACTORY2D_SCENE_SCENEMANAGER_H_
 
-#include "Debug.h"
+#include "SceneObject.h"
+
+#include <string>
+#include <vector> 
 
 namespace F2D
 {
-	void Debug::Write(std::string file, unsigned int line, std::string string, std::string color) {
-		if(enabled == false)
-			return;
+	class SceneManager {
+	private:
+		static std::vector <SceneObject*> __scenes;
 
-		std::cout << color << file << " [" << line << "] : " << string << COLOR_CONSOLE << std::endl;
-	}
+		SceneManager();
+		~SceneManager();
 
-	/*void Debug::Log(std::string string, std::string file) {
-		Write(string, 0);
-	}
-
-	void Debug::Warning(std::string string, std::string file) {
-		Write(string, 1);
-	}
-
-	void Debug::Error(std::string string, std::string file) {
-		Write(string, 2);
-	}*/
+	public:
+		static unsigned int Count();
+		static void Load(SceneObject* scene);
+		static void Unload(std::string name);
+		static void Unload(SceneObject* scene);
+		static SceneObject* GetActiveScenes();
+		static SceneObject* GetSceneAt(unsigned int index);
+		static void Update();
+		static void Draw();
+	};
 }
+
+#endif // FACTORY2D_SCENE_SCENEMANAGER_H_

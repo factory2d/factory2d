@@ -20,35 +20,46 @@
  */
 
  /**
-  * @fileoverview Debug.cpp
+  * @fileoverview ControllerObject.cpp
   *
-  * Debug output
+  * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include <iostream>
-
-#include "Debug.h"
+#include "ControllerObject.h"
 
 namespace F2D
 {
-	void Debug::Write(std::string file, unsigned int line, std::string string, std::string color) {
-		if(enabled == false)
-			return;
-
-		std::cout << color << file << " [" << line << "] : " << string << COLOR_CONSOLE << std::endl;
+	ControllerObject::ControllerObject(std::string n) {
+		name = n;
+		enabled = true;
 	}
 
-	/*void Debug::Log(std::string string, std::string file) {
-		Write(string, 0);
+	ControllerObject::~ControllerObject() {}
+
+	void ControllerObject::Push(ActionObject * action) {
+		__actions.push_back(action);
 	}
 
-	void Debug::Warning(std::string string, std::string file) {
-		Write(string, 1);
+	bool ControllerObject::Pop(std::string name) {
+		for(int x = 0; x < __actions.size(); x++) {
+			if(__actions[x]->name == name) {
+				__actions.erase(__actions.begin() + x);
+				return true;
+			}
+		}
+
+		return false;
 	}
 
-	void Debug::Error(std::string string, std::string file) {
-		Write(string, 2);
-	}*/
+	ActionObject* ControllerObject::Get(std::string name) {
+		for(int x = 0; x < __actions.size(); x++) {
+			if(__actions[x]->name == name) {
+				return __actions[x];
+			}
+		}
+
+		return nullptr;
+	}
 }

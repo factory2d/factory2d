@@ -1,9 +1,39 @@
+/**
+ * @license
+ * F2D are available under the zlib license:
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty.  In no event will the authors be held liable for any damages
+ * varising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ *    claim that you wrote the original software. If you use this software
+ *    in a product, an acknowledgment in the product documentation would be
+ *    appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ *    misrepresented as being the original software.
+ * 3. This notice may not be removed or altered from any source distribution.
+ */
+
+ /**
+  * @fileoverview Transform.cpp
+  *
+  * --- FILE NOTES ---
+  *
+  * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+  */
+
 #include "Transform.h"
 
-#include "GameTime.h"
+#include "Time/TimeManager.h"
 
 namespace F2D
 {
+	float dt = 0.0f; 
 
 	Transform::Transform(FactoryObject* factoryObject) {
 		__factoryObject = factoryObject;
@@ -14,15 +44,17 @@ namespace F2D
 	Transform::~Transform() {}
 
 	void Transform::Translate(float x, float y, float z) {
-		__position->x += x * GameTime::Delta();
-		__position->y += y * GameTime::Delta();
-		__position->z += z * GameTime::Delta();
+		dt = TimeManager::Delta();
+		__position->x += x * dt;
+		__position->y += y * dt;
+		__position->z += z * dt;
 	}
 
 	void Transform::Rotate(float x, float y, float z) {
-		if(x != 0.0f) { __rotate->x += x * GameTime::Delta(); }
-		if(y != 0.0f) { __rotate->y += y * GameTime::Delta(); }
-		if(z != 0.0f) { __rotate->z += z * GameTime::Delta(); }
+		dt = TimeManager::Delta();
+		if(x != 0.0f) { __rotate->x += x * dt; }
+		if(y != 0.0f) { __rotate->y += y * dt; }
+		if(z != 0.0f) { __rotate->z += z * dt; }
 	}
 
 	unsigned int Transform::GetChildCount() {

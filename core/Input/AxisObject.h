@@ -20,35 +20,26 @@
  */
 
  /**
-  * @fileoverview Debug.cpp
+  * @fileoverview AxisObject.h
   *
-  * Debug output
+  * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include <iostream>
+#ifndef FACTORY2D_INPUT_AXISOBJECT_H_
+#define FACTORY2D_INPUT_AXISOBJECT_H_
 
-#include "Debug.h"
+#include "ActionObject.h"
 
 namespace F2D
 {
-	void Debug::Write(std::string file, unsigned int line, std::string string, std::string color) {
-		if(enabled == false)
-			return;
-
-		std::cout << color << file << " [" << line << "] : " << string << COLOR_CONSOLE << std::endl;
-	}
-
-	/*void Debug::Log(std::string string, std::string file) {
-		Write(string, 0);
-	}
-
-	void Debug::Warning(std::string string, std::string file) {
-		Write(string, 1);
-	}
-
-	void Debug::Error(std::string string, std::string file) {
-		Write(string, 2);
-	}*/
+	class AxisObject :
+		public ActionObject {
+	public:
+		AxisObject(std::string name);
+		~AxisObject();
+	};
 }
+
+#endif // FACTORY2D_INPUT_AXISOBJECT_H_

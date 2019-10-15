@@ -20,35 +20,27 @@
  */
 
  /**
-  * @fileoverview Debug.cpp
+  * @fileoverview SceneObject.h
   *
-  * Debug output
+  * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include <iostream>
+#ifndef FACTORY2D_SCENE_SCENEOBJECT_H_
+#define FACTORY2D_SCENE_SCENEOBJECT_H_
 
-#include "Debug.h"
+#include "../Objects/FactoryObject.h"
 
-namespace F2D
-{
-	void Debug::Write(std::string file, unsigned int line, std::string string, std::string color) {
-		if(enabled == false)
-			return;
+namespace F2D {
+	class SceneObject :
+		public FactoryObject {
 
-		std::cout << color << file << " [" << line << "] : " << string << COLOR_CONSOLE << std::endl;
-	}
-
-	/*void Debug::Log(std::string string, std::string file) {
-		Write(string, 0);
-	}
-
-	void Debug::Warning(std::string string, std::string file) {
-		Write(string, 1);
-	}
-
-	void Debug::Error(std::string string, std::string file) {
-		Write(string, 2);
-	}*/
+	public:
+		SceneObject() {};
+		SceneObject(std::string name);
+		~SceneObject();
+	};
 }
+
+#endif // FACTORY2D_SCENE_SCENEOBJECT_H_

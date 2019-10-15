@@ -20,35 +20,37 @@
  */
 
  /**
-  * @fileoverview Debug.cpp
+  * @fileoverview ControllerObject.h
   *
-  * Debug output
+  * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include <iostream>
+#ifndef FACTORY2D_INPUT_CONTROLLEROBJECT_H_
+#define FACTORY2D_INPUT_CONTROLLEROBJECT_H_
 
-#include "Debug.h"
+#include <iostream>
+#include <vector> 
+
+#include "../Objects/Object.h"
+#include "ActionObject.h"
 
 namespace F2D
 {
-	void Debug::Write(std::string file, unsigned int line, std::string string, std::string color) {
-		if(enabled == false)
-			return;
+	class ControllerObject :
+		public F2D::Object {
+	private:
+		std::vector <ActionObject*> __actions = {};
 
-		std::cout << color << file << " [" << line << "] : " << string << COLOR_CONSOLE << std::endl;
-	}
+	public:
+		ControllerObject(std::string name);
+		~ControllerObject();
 
-	/*void Debug::Log(std::string string, std::string file) {
-		Write(string, 0);
-	}
-
-	void Debug::Warning(std::string string, std::string file) {
-		Write(string, 1);
-	}
-
-	void Debug::Error(std::string string, std::string file) {
-		Write(string, 2);
-	}*/
+		void Push(ActionObject* action);
+		bool Pop(std::string name);
+		ActionObject* Get(std::string name);
+	};
 }
+
+#endif // FACTORY2D_INPUT_CONTROLLEROBJECT_H_

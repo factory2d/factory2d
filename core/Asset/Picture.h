@@ -20,35 +20,29 @@
  */
 
  /**
-  * @fileoverview Debug.cpp
+  * @fileoverview Picture.h
   *
-  * Debug output
+  * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include <iostream>
+#ifndef FACTORY2D_ASSET_PICTURE_H_
+#define FACTORY2D_ASSET_PICTURE_H_
 
-#include "Debug.h"
+#include <SDL_opengl.h>
+#include "../Asset.h"
 
 namespace F2D
 {
-	void Debug::Write(std::string file, unsigned int line, std::string string, std::string color) {
-		if(enabled == false)
-			return;
+	class Picture :
+		public Asset {
+	private:
 
-		std::cout << color << file << " [" << line << "] : " << string << COLOR_CONSOLE << std::endl;
-	}
-
-	/*void Debug::Log(std::string string, std::string file) {
-		Write(string, 0);
-	}
-
-	void Debug::Warning(std::string string, std::string file) {
-		Write(string, 1);
-	}
-
-	void Debug::Error(std::string string, std::string file) {
-		Write(string, 2);
-	}*/
+	public:
+		//virtual void * Data();
+		virtual bool Load(std::string path);
+	};
 }
+
+#endif // FACTORY2D_ASSET_PICTURE_H_

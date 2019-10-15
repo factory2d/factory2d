@@ -20,35 +20,47 @@
  */
 
  /**
-  * @fileoverview Debug.cpp
+  * @fileoverview FactoryObject.h
   *
-  * Debug output
+  * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include <iostream>
+#ifndef FACTORY2D_OBJECTS_FACTORYOBJECT_H_
+#define FACTORY2D_OBJECTS_FACTORYOBJECT_H_
 
-#include "Debug.h"
+#include <string>
+
+#include "Object.h"
+#include "../Transform.h"
 
 namespace F2D
 {
-	void Debug::Write(std::string file, unsigned int line, std::string string, std::string color) {
-		if(enabled == false)
-			return;
+	class Transform;
 
-		std::cout << color << file << " [" << line << "] : " << string << COLOR_CONSOLE << std::endl;
-	}
+	class FactoryObject :
+		public Object {
+	private:
+		std::string __tag;
 
-	/*void Debug::Log(std::string string, std::string file) {
-		Write(string, 0);
-	}
+	public:
+		Transform* transform;
 
-	void Debug::Warning(std::string string, std::string file) {
-		Write(string, 1);
-	}
+		FactoryObject() {};
+		FactoryObject(std::string name);
+		~FactoryObject();
 
-	void Debug::Error(std::string string, std::string file) {
-		Write(string, 2);
-	}*/
+		virtual void Update();
+		virtual void Draw();
+
+		std::string GetTag();
+		void SetTag(std::string tag);
+		void RemoveTag();
+
+		virtual std::string Serialize();
+		virtual bool Deserialize();
+	};
 }
+
+#endif // FACTORY2D_OBJECTS_FACTORYOBJECT_H_

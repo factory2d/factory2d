@@ -20,35 +20,21 @@
  */
 
  /**
-  * @fileoverview Debug.cpp
+  * @fileoverview ActionObject.cpp
   *
-  * Debug output
+  * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include <iostream>
-
-#include "Debug.h"
+#include "ActionObject.h"
 
 namespace F2D
 {
-	void Debug::Write(std::string file, unsigned int line, std::string string, std::string color) {
-		if(enabled == false)
-			return;
-
-		std::cout << color << file << " [" << line << "] : " << string << COLOR_CONSOLE << std::endl;
+	ActionObject::ActionObject(std::string n) {
+		name = n;
+		enabled = true;
 	}
 
-	/*void Debug::Log(std::string string, std::string file) {
-		Write(string, 0);
-	}
-
-	void Debug::Warning(std::string string, std::string file) {
-		Write(string, 1);
-	}
-
-	void Debug::Error(std::string string, std::string file) {
-		Write(string, 2);
-	}*/
+	ActionObject::~ActionObject() {}
 }
