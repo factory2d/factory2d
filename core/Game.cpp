@@ -63,8 +63,6 @@ namespace F2D
 	void Game::Update() {
 		SDL_Event e;
 
-
-
 		//	https://wiki.libsdl.org/SDL_Event
 		while(SDL_PollEvent(&e)) {
 			// window events

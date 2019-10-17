@@ -37,4 +37,8 @@ namespace F2D
 	}
 
 	ActionObject::~ActionObject() {}
+
+	void ActionObject::Push(TriggerObject * trigger) {
+		__triggers.push_back(trigger);
+	}
 }

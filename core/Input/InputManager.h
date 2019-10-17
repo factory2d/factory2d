@@ -58,6 +58,7 @@ namespace F2D
 	class InputManager {
 	private:
 		static std::vector <ControllerObject*> __controllers;
+		static std::vector <unsigned char>__keyboardKeys;
 
 	public:
 		static float GetAxis(std::string);

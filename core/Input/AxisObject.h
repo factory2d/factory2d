@@ -39,6 +39,8 @@ namespace F2D
 	public:
 		AxisObject(std::string name);
 		~AxisObject();
+
+		//bool Pop(std::string name);
 	};
 }
 

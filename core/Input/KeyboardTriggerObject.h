@@ -20,39 +20,27 @@
  */
 
  /**
-  * @fileoverview Object.h
+  * @fileoverview TriggerObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include <iostream>
-#include <iomanip>
-#include <sstream>
+#ifndef FACTORY2D_INPUT_KEYBOARDTRIGGEROBJECT_H_
+#define FACTORY2D_INPUT_KEYBOARDTRIGGEROBJECT_H_
 
-#include "Object.h"
+#include "TriggerObject.h"
 
 namespace F2D
 {
-	Object::Object() {
-		std::stringstream hexuuid;
-
-		__uuid = (unsigned int)this;
-
-		hexuuid << std::hex << __uuid;
-		name = hexuuid.str();
-	}
-
-	Object::~Object() {}
-
-	unsigned int Object::GetUUID() {
-		return __uuid;
-	}
-	std::string Object::Serialize() {
-		return std::string();
-	}
-	bool Object::Deserialize() {
-		return false;
-	}
+	// Button
+	class KeyboardButtonObject :
+		public F2D::TriggerObject {
+	public:
+		KeyboardButtonObject(std::string name, unsigned char key1, unsigned char key2 = NULL );
+		~KeyboardButtonObject();
+	};
 }
+
+#endif // FACTORY2D_INPUT_KEYBOARDTRIGGEROBJECT_H_

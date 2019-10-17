@@ -43,11 +43,12 @@ namespace F2D
 		std::string name;
 		bool enabled = true;
 
-		static bool Destroy() {};
-
 		Object();
 		~Object();
 		unsigned int GetUUID();
+
+		virtual std::string Serialize();
+		virtual bool Deserialize();
 	};
 }
 

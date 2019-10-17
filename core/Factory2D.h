@@ -58,6 +58,7 @@
 #include "Input/AxisObject.h"
 #include "Input/ButtonObject.h"
 #include "Input/TriggerObject.h"
+#include "Input/KeyboardTriggerObject.h"
 
 /* MATERIAL */
 

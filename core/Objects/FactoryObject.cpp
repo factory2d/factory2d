@@ -82,11 +82,4 @@ namespace F2D
 	}
 
 	void FactoryObject::RemoveTag() {}
-
-	std::string FactoryObject::Serialize() {
-		return std::string();
-	}
-	bool FactoryObject::Deserialize() {
-		return false;
-	}
 }

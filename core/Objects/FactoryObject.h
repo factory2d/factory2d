@@ -51,15 +51,12 @@ namespace F2D
 		FactoryObject(std::string name);
 		~FactoryObject();
 
-		virtual void Update();
 		virtual void Draw();
+		virtual void Update();
 
 		std::string GetTag();
 		void SetTag(std::string tag);
 		void RemoveTag();
-
-		virtual std::string Serialize();
-		virtual bool Deserialize();
 	};
 }
 

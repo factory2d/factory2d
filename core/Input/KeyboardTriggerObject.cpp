@@ -20,39 +20,17 @@
  */
 
  /**
-  * @fileoverview Object.h
+  * @fileoverview TriggerObject.cpp
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include <iostream>
-#include <iomanip>
-#include <sstream>
+#include "KeyboardTriggerObject.h"
 
-#include "Object.h"
-
-namespace F2D
-{
-	Object::Object() {
-		std::stringstream hexuuid;
-
-		__uuid = (unsigned int)this;
-
-		hexuuid << std::hex << __uuid;
-		name = hexuuid.str();
-	}
-
-	Object::~Object() {}
-
-	unsigned int Object::GetUUID() {
-		return __uuid;
-	}
-	std::string Object::Serialize() {
-		return std::string();
-	}
-	bool Object::Deserialize() {
-		return false;
-	}
+F2D::KeyboardButtonObject::KeyboardButtonObject(std::string n, unsigned char k1, unsigned char k2) {
+	name = n;
 }
+
+F2D::KeyboardButtonObject::~KeyboardButtonObject() {}

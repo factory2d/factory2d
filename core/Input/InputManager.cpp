@@ -35,6 +35,7 @@
 namespace F2D
 {
 	std::vector <ControllerObject*>InputManager::__controllers = {};
+	std::vector <unsigned char>InputManager::__keyboardKeys = {};
 
 	float InputManager::GetAxis(std::string) {
 		return 0.0f;
@@ -58,13 +59,15 @@ namespace F2D
 		switch(e->type) {
 		// keyboard
 		case SDL_KEYDOWN:
-			std::cout << "keyboard key event: press " << SDL_GetKeyName(e->key.keysym.sym) << "\n";
+			//std::cout << "keyboard key event: press " << SDL_GetKeyName(e->key.keysym.sym) << "\n";
+
 			break;
 		case SDL_KEYUP:
-			std::cout << "keyboard key event: release " << SDL_GetKeyName(e->key.keysym.sym) << "\n";
+			//std::cout << "keyboard key event: release " << SDL_GetKeyName(e->key.keysym.sym) << "\n";
 			break;
 
 		// mouse
+		/*
 		case SDL_MOUSEBUTTONDOWN:
 			std::cout << "mouse button event: press " << (int)e->button.button << "\n";
 			break;
@@ -80,8 +83,10 @@ namespace F2D
 		case SDL_MOUSEMOTION:
 			std::cout << "mouse motion event: " << (int)(e->motion.xrel) << ", " << (int)(e->motion.yrel) << "\n";
 			break;
-		
+		*/
+
 		// joystick
+		/*
 		case SDL_JOYDEVICEADDED:
 			std::cout << "joystick added: " << e->jdevice.which << "\n";
 			break;
@@ -96,6 +101,7 @@ namespace F2D
 			break;
 		case SDL_JOYAXISMOTION:
 			break;
+		*/
 
 		// xinput?
 

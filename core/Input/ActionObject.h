@@ -30,15 +30,23 @@
 #ifndef FACTORY2D_INPUT_ACTIONOBJECT_H_
 #define FACTORY2D_INPUT_ACTIONOBJECT_H_
 
+#include <vector> 
+
 #include "../Objects/Object.h"
+#include "TriggerObject.h"
 
 namespace F2D
 {
 	class ActionObject :
 		public F2D::Object {
+	private:
+		std::vector <TriggerObject*> __triggers = {};
+
 	public:
 		ActionObject(std::string name);
 		~ActionObject();
+
+		void Push(TriggerObject* trigger);
 	};
 }
 
