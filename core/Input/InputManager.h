@@ -50,6 +50,7 @@ a little about my UTools (https://pt.slideshare.net/alexrdes/u-tools-unite-brasi
 
 #include <string>
 #include <vector> 
+#include <map>
 
 #include "ControllerObject.h"
 
@@ -58,16 +59,21 @@ namespace F2D
 	class InputManager {
 	private:
 		static std::vector <ControllerObject*> __controllers;
-		static std::vector <unsigned char>__keyboardKeys;
+		static std::map <unsigned char, bool> __keyboardKeys;
 
 	public:
-		static float GetAxis(std::string);
+		// controller manager
+		static float GetAxis(std::string controller, std::string action);
+		static bool GetButton(std::string controller, std::string action);
+		static bool GetButtonUp(std::string controller, std::string action);
+		static bool GetButtonDown(std::string controller, std::string action);
 
-		static bool GetButton(std::string);
-		static bool GetButtonUp(std::string);
-		static bool GetButtonDown(std::string);
+		static bool GetKeyboardKey(unsigned char key);
 
+		// generic stuff
 		static void Update(void *event);
+		static ControllerObject* Push(ControllerObject* controller);
+		static void Pop(std::string key);
 	};
 }
 

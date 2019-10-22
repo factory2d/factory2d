@@ -40,7 +40,7 @@ namespace F2D
 		AxisObject(std::string name);
 		~AxisObject();
 
-		//bool Pop(std::string name);
+		virtual float GetAxis();
 	};
 }
 

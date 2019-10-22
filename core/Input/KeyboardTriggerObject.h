@@ -37,9 +37,17 @@ namespace F2D
 	// Button
 	class KeyboardButtonObject :
 		public F2D::TriggerObject {
+	private:
+		unsigned char negative = 0;
+		unsigned char positive = 0;
+
 	public:
-		KeyboardButtonObject(std::string name, unsigned char key1, unsigned char key2 = NULL );
+		KeyboardButtonObject(std::string name, unsigned char key);
+		KeyboardButtonObject(std::string name, unsigned char negative, unsigned char positive);
 		~KeyboardButtonObject();
+
+		virtual float GetAxis();
+		virtual bool GetButton();
 	};
 }
 

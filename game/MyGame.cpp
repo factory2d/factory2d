@@ -12,29 +12,27 @@ bool MyGame::Initialize() {
 	// configure our windows
 	F2D::WindowManager::Title("My Game Sample");
 	F2D::WindowManager::Resizable(true);
-	F2D::WindowManager::VSync(false);
 	F2D::WindowManager::Width(640);
 	F2D::WindowManager::Height(480);
 	F2D::WindowManager::Initialize();
-	//Game::Initialize();
+	F2D::Renderer::VSync(false);
 
-	// tag test, not working yet, just to test the tag listing
-	F2D::TagManager::SetTag("teste", NULL);
-
+	// cobfigure our input
 	// create a new controller
-	F2D::ControllerObject *controller1 = new F2D::ControllerObject("player");
-	F2D::AxisObject *axisX = new F2D::AxisObject("x");
-	controller1->Push(axisX);
+	F2D::ControllerObject *controller1 = F2D::InputManager::Push(new F2D::ControllerObject("player"));
+
+	// axis
+	F2D::AxisObject *axisX = (F2D::AxisObject*)controller1->Push(new F2D::AxisObject("x"));
 	axisX->Push(new F2D::KeyboardButtonObject("keyboard", 'a', 'd'));
-	F2D::AxisObject *axisY = new F2D::AxisObject("y");
-	controller1->Push(axisY);
+	F2D::AxisObject *axisY = (F2D::AxisObject*)controller1->Push(new F2D::AxisObject("y"));
 	axisY->Push(new F2D::KeyboardButtonObject("keyboard", 'w', 's'));
 
-	// Attack Button
-	F2D::ButtonObject *actionBtn = new F2D::ButtonObject("attack");
-	controller1->Push(actionBtn);
-	actionBtn->Push(new F2D::KeyboardButtonObject("keyboard", 'p'));
-	
+	// attack button
+	F2D::ButtonObject *actionBtn = (F2D::ButtonObject*)controller1->Push(new F2D::ButtonObject("attack"));
+	actionBtn->Push(new F2D::KeyboardButtonObject("keyboard", 'p'));	// primary button
+	actionBtn->Push(new F2D::KeyboardButtonObject("keyboard", 'e'));	// alternative button
+
+	// load our game assets
 	// load a picture into the memory
 	F2D::Picture *p = new F2D::Picture();
 	p = F2D::AssetManager::Load<F2D::Picture>("Assets/256.png"); // load the picture and put in cache
@@ -65,10 +63,25 @@ bool MyGame::Initialize() {
 	camera1->viewport = new F2D::Rect(0.0f, 0.0f, 1.0f, 1.0f);
 	camera1->transform->SetParent(scene1->transform);
 
+
+
+	// WIP STUFF, IGNORE IT FOR NOW!!
+	// I'm using this space to test new stuff, the game must work with
+	// this, but, the feature can have some issues os just didn't work
+	// yet... Sorry for that xD
+	// tag test, not working yet, just to test the tag listing
+	F2D::TagManager::SetTag("teste", NULL);
+
 	return false;
 }
 
 void MyGame::Update() {
+	// input
+	float axisX = F2D::InputManager::GetAxis("player", "x") * 100.0f;
+	float axisY = F2D::InputManager::GetAxis("player", "y") * 100.0f;
+
+	object1->transform->Translate(axisX, axisY, 0.0f);
+
 	object1->transform->Rotate(0.0f, 5.0f, 0.0f);
 	object2->transform->Rotate(0.0f, 1.0f, 0.0f);
 	/*

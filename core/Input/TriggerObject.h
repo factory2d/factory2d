@@ -39,6 +39,11 @@ namespace F2D
 	public:
 		TriggerObject();
 		~TriggerObject();
+
+		virtual float GetAxis() { return 0.0f; };
+		virtual bool GetButton() { return false; };
+		virtual bool GetButtonUp() { return false; };
+		virtual bool GetButtonDown() { return false; };
 	};
 }
 

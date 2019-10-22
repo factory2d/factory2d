@@ -39,7 +39,7 @@ namespace F2D
 {
 	class ActionObject :
 		public F2D::Object {
-	private:
+	protected:
 		std::vector <TriggerObject*> __triggers = {};
 
 	public:
@@ -47,6 +47,11 @@ namespace F2D
 		~ActionObject();
 
 		void Push(TriggerObject* trigger);
+
+		virtual float GetAxis() { return 0.0f; };
+		virtual bool GetButton() { return false; };
+		virtual bool GetButtonUp() { return false; };
+		virtual bool GetButtonDown() { return false; };
 	};
 }
 

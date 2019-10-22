@@ -47,7 +47,7 @@ namespace F2D
 		ControllerObject(std::string name);
 		~ControllerObject();
 
-		void Push(ActionObject* action);
+		ActionObject* Push(ActionObject* action);
 		bool Pop(std::string name);
 		ActionObject* Get(std::string name);
 	};

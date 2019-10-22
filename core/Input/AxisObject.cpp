@@ -33,4 +33,19 @@ namespace F2D
 	AxisObject::AxisObject(std::string n) : ActionObject(n) {}
 
 	AxisObject::~AxisObject() {}
+	float AxisObject::GetAxis() {
+		unsigned int totalTriggers = __triggers.size();
+		float axisOutput = 0.0f;
+
+		for(int x = 0; x < totalTriggers; x++) {
+			if(__triggers[x]->enabled) {
+				axisOutput = __triggers[x]->GetAxis();
+
+				if(axisOutput != 0.0f)
+					return axisOutput;
+			}
+		}
+
+		return 0.0f;
+	}
 }

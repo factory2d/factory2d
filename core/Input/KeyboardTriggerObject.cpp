@@ -28,9 +28,31 @@
   */
 
 #include "KeyboardTriggerObject.h"
+#include "InputManager.h"
 
-F2D::KeyboardButtonObject::KeyboardButtonObject(std::string n, unsigned char k1, unsigned char k2) {
-	name = n;
+namespace F2D
+{
+	KeyboardButtonObject::KeyboardButtonObject(std::string n, unsigned char key) :
+		KeyboardButtonObject(n, key, NULL) {}
+
+	KeyboardButtonObject::KeyboardButtonObject(std::string n, unsigned char neg, unsigned char pos) {
+		name = n;
+		negative = neg;
+		positive = pos;
+	}
+
+	KeyboardButtonObject::~KeyboardButtonObject() {}
+
+	float KeyboardButtonObject::GetAxis() {
+		if(InputManager::GetKeyboardKey(negative))
+			return -1.0f;
+		else if(InputManager::GetKeyboardKey(positive))
+
+			return 1.0f;
+		return 0.0f;
+	}
+
+	bool KeyboardButtonObject::GetButton() {
+		return InputManager::GetKeyboardKey(negative);
+	}
 }
-
-F2D::KeyboardButtonObject::~KeyboardButtonObject() {}

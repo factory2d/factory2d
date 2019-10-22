@@ -39,6 +39,10 @@ namespace F2D
 	public:
 		ButtonObject(std::string name);
 		~ButtonObject();
+
+		virtual bool GetButton();
+		virtual bool GetButtonUp();
+		virtual bool GetButtonDown();
 	};
 }
 

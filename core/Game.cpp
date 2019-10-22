@@ -89,8 +89,7 @@ namespace F2D
 	float b = 0.0f;
 
 	void Game::Draw() {
-		glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 		SceneManager::Draw();
 		WindowManager::Draw();
 	}

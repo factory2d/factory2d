@@ -40,6 +40,9 @@ namespace F2D
 		static float __smooth;
 		static unsigned int __getTicks, __frameTimeDelta, __frameTimeLast;
 
+		static unsigned long __frameCount;
+		static unsigned long __renderedFrameCount;
+
 		static float __cacheDelta;
 		static float __cacheUnscaledDelta;
 	public:
@@ -49,6 +52,7 @@ namespace F2D
 		static float FPS();
 		static float Delta();
 		static float UnscaledDelta();
+		static unsigned long FrameCount();
 	};
 }
 

@@ -27,6 +27,7 @@
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
+#define GL_GLEXT_PROTOTYPES
 
 #include "SDL.h"
 #include "SDL_opengl.h"
@@ -34,21 +35,21 @@
 
 #include "Renderer.h"
 #include "Objects/CameraObject.h"
+#include "Debug.h"
 
 namespace F2D
 {
+	GLuint pbo;
+	bool start = false;
 	bool Renderer::integerPosition = false;
-
-	Renderer::Renderer() {}
-
-	Renderer::~Renderer() {}
+	bool Renderer::__allowVSync = true; // allow user use monitor vsync
 
 	void Renderer::Begin() {
 		CameraObject *c = CameraObject::GetActiveCamera();
 		int w = WindowManager::Width(); int h = WindowManager::Height();
-		w = 320; h = 240;
 
-		
+		glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		//Set the viewport
 		glViewport(WindowManager::Width()*c->viewport->x,
@@ -69,11 +70,26 @@ namespace F2D
 		//Initialize Modelview Matrix
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
+		//glBlitFramebuffer(0, 0, 640, 480, 0, 0, 320, 240, GL_COLOR_BUFFER_BIT, GL_NEAREST);
 
 		//Initialize clear color
 		//glClearColor(1.0f, 0.0f, 0.0f, 1.f);
 		//glClear(GL_COLOR_BUFFER_BIT);
+
 	}
 
 	void Renderer::End() {}
+
+	bool Renderer::VSync() {
+		return __allowVSync;
+	}
+
+	// send it to renderer
+	void Renderer::VSync(bool value) {
+		__allowVSync = value;
+		if(SDL_GL_SetSwapInterval(__allowVSync) < 0) {
+			_ERROR(SDL_GetError());
+			//printf("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
+		}
+	}
 }

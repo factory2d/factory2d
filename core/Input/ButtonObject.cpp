@@ -34,4 +34,21 @@ namespace F2D
 	ButtonObject::ButtonObject(std::string n) : ActionObject(n) {}
 
 	ButtonObject::~ButtonObject() {}
+	bool ButtonObject::GetButton() {
+		unsigned int totalTriggers = 0;
+
+		totalTriggers = __triggers.size();
+
+		for(int x = 0; x < totalTriggers; x++) {
+			if(__triggers[x]->enabled && __triggers[x]->GetButton())
+				return true;
+		}
+		return false;
+	}
+	bool ButtonObject::GetButtonUp() {
+		return false;
+	}
+	bool ButtonObject::GetButtonDown() {
+		return false;
+	}
 }

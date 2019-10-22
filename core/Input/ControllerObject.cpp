@@ -38,8 +38,9 @@ namespace F2D
 
 	ControllerObject::~ControllerObject() {}
 
-	void ControllerObject::Push(ActionObject * action) {
+	ActionObject* ControllerObject::Push(ActionObject * action) {
 		__actions.push_back(action);
+		return __actions.back();
 	}
 
 	bool ControllerObject::Pop(std::string name) {

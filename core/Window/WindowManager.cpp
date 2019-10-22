@@ -44,7 +44,6 @@ namespace F2D {
 	// window properties
 	std::string WindowManager::__title = "Factory2D Game"; // window title
 	bool WindowManager::__allowUserResize = true; // allow user to resize the window
-	bool WindowManager::__allowVSync = true; // allow user use monitor vsync
 	int WindowManager::__width = 800;
 	int WindowManager::__height = 600;
 
@@ -58,8 +57,11 @@ namespace F2D {
 		}
 		else {
 			// use OpenGL 2.1
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+
+			//SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, 0);
+			//SDL_RenderSetLogicalSize(_renderer, 640, 480)
 
 			// create window
 			__sdl_window = SDL_CreateWindow(__title.c_str(),
@@ -82,7 +84,7 @@ namespace F2D {
 				}
 				else {
 					// use VSync
-					if(SDL_GL_SetSwapInterval(__allowVSync) < 0) {
+					if(SDL_GL_SetSwapInterval(false) < 0) {
 						_ERROR(SDL_GetError());
 						//printf("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
 					}
@@ -145,20 +147,6 @@ namespace F2D {
 		__allowUserResize = value;
 		if(__sdl_window != NULL) {
 			SDL_SetWindowResizable(__sdl_window, (SDL_bool)__allowUserResize);
-		}
-	}
-
-	bool WindowManager::VSync() {
-		return __allowVSync;
-	}
-
-	void WindowManager::VSync(bool value) {
-		__allowVSync = value;
-		if(__sdl_window != NULL) {
-			if(SDL_GL_SetSwapInterval(__allowVSync) < 0) {
-				_ERROR(SDL_GetError());
-				//printf("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
-			}
 		}
 	}
 

@@ -32,24 +32,53 @@
 
 #include "SDL.h"
 
+#include "../Time/TimeManager.h"
+
 namespace F2D
 {
 	std::vector <ControllerObject*>InputManager::__controllers = {};
-	std::vector <unsigned char>InputManager::__keyboardKeys = {};
+	std::map <unsigned char, bool>InputManager::__keyboardKeys = {};
 
-	float InputManager::GetAxis(std::string) {
+	float InputManager::GetAxis(std::string controller, std::string action) {
+		unsigned int totalController = __controllers.size();
+
+		for(unsigned int x = 0; x < totalController; x++) {
+			if(__controllers[x]->enabled) {
+				F2D::ActionObject *a = __controllers[x]->Get(action);
+				if(a != nullptr) {
+					return a->GetAxis();
+				}
+			}
+		}
+
 		return 0.0f;
 	}
 
-	bool InputManager::GetButton(std::string) {
+	bool InputManager::GetButton(std::string controller, std::string action) {
+		unsigned int totalController = __controllers.size();
+
+		for(unsigned int x = 0; x < totalController; x++) {
+			if(__controllers[x]->enabled) {
+				F2D::ActionObject *a = __controllers[x]->Get(action);
+				if(a != nullptr) {
+					return a->GetButton();
+				}
+			}
+		}
 		return false;
 	}
 
-	bool InputManager::GetButtonUp(std::string) {
+	bool InputManager::GetButtonUp(std::string controller, std::string action) {
 		return false;
 	}
 
-	bool InputManager::GetButtonDown(std::string) {
+	bool InputManager::GetButtonDown(std::string controller, std::string action) {
+		return false;
+	}
+
+	bool InputManager::GetKeyboardKey(unsigned char key) {
+		if(__keyboardKeys[key] != NULL)
+			return __keyboardKeys[key];
 		return false;
 	}
 
@@ -60,10 +89,11 @@ namespace F2D
 		// keyboard
 		case SDL_KEYDOWN:
 			//std::cout << "keyboard key event: press " << SDL_GetKeyName(e->key.keysym.sym) << "\n";
-
+			__keyboardKeys[e->key.keysym.sym] = true;
 			break;
 		case SDL_KEYUP:
 			//std::cout << "keyboard key event: release " << SDL_GetKeyName(e->key.keysym.sym) << "\n";
+			__keyboardKeys[e->key.keysym.sym] = false;
 			break;
 
 		// mouse
@@ -109,5 +139,9 @@ namespace F2D
 
 		// sensores
 		}
+	}
+	ControllerObject* InputManager::Push(ControllerObject * controller) {
+		__controllers.push_back(controller);
+		return __controllers.back();
 	}
 }

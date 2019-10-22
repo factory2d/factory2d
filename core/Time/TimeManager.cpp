@@ -37,6 +37,9 @@ namespace F2D
 	float TimeManager::__deltaTime = 0.0f;
 	float TimeManager::scale = 1.0;
 
+	unsigned long TimeManager::__frameCount = 0;
+	unsigned long TimeManager::__renderedFrameCount = 0;
+
 	float TimeManager::__smooth = 0.2f;
 	unsigned int TimeManager::__getTicks = 0;
 	unsigned int TimeManager::__frameTimeDelta = 0;
@@ -57,6 +60,8 @@ namespace F2D
 			__cacheUnscaledDelta = 1.0f / __fps;
 			__cacheDelta = __cacheUnscaledDelta * scale;
 		}
+
+		__frameCount++;
 	}
 
 	float TimeManager::FPS() {
@@ -71,5 +76,9 @@ namespace F2D
 	float TimeManager::UnscaledDelta() {
 		if(__fps == 0.0f) return 0.0f;
 		return __cacheUnscaledDelta;
+	}
+
+	unsigned long TimeManager::FrameCount() {
+		return __frameCount;
 	}
 }

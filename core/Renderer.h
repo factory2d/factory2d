@@ -36,14 +36,16 @@ namespace F2D
 {
 	class Renderer {
 	private:
-		Renderer();
-		~Renderer();
+		static bool __allowVSync;
 
 	public:
 		static bool integerPosition;
 
 		static void Begin();
 		static void End();
+
+		static bool VSync(); static void VSync(bool value);
+
 	};
 }
 

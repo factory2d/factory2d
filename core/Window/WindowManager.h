@@ -53,7 +53,6 @@ namespace F2D {
 
 		static std::string Title();	static void Title(std::string title);
 		static bool Resizable(); static void Resizable(bool value);
-		static bool VSync(); static void VSync(bool value);
 		static int Width(); static void Width(int value);
 		static int Height(); static void Height(int value);
 	};
