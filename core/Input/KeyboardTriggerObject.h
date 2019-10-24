@@ -20,7 +20,7 @@
  */
 
  /**
-  * @fileoverview TriggerObject.h
+  * @fileoverview KeyboardTriggerObject.h
   *
   * --- FILE NOTES ---
   *

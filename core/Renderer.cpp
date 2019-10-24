@@ -46,36 +46,45 @@ namespace F2D
 
 	void Renderer::Begin() {
 		CameraObject *c = CameraObject::GetActiveCamera();
-		int w = WindowManager::Width(); int h = WindowManager::Height();
+		int windowWidth = WindowManager::Width(); int windowHeight = WindowManager::Height();
 
 		glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		//Set the viewport
-		glViewport(WindowManager::Width()*c->viewport->x,
-			WindowManager::Height()*c->viewport->y,
-			WindowManager::Width()*c->viewport->width,
-			WindowManager::Height()*c->viewport->height);
+		glViewport(windowWidth*c->viewport->x,
+				   windowHeight*c->viewport->y,
+				   windowWidth*c->viewport->width,
+				   windowHeight*c->viewport->height);
 
 		//Initialize Projection Matrix
 		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(0.0, WindowManager::Width()*c->viewport->width, WindowManager::Height()*c->viewport->height, 0.0, 1.0, -1.0);
-		//glOrtho(0.0, w, h, 0.0, 1.0, -1.0);
 
-		glTranslatef(-c->transform->GetPosition()->x, 
-					 -c->transform->GetPosition()->y, 
-					 -c->transform->GetPosition()->z);
+		glLoadIdentity();
+		glOrtho(0.0, windowWidth*c->viewport->width, windowHeight*c->viewport->height, 0.0, 1.0, -1.0);
+		
+		glTranslatef(windowWidth*0.5f,
+			windowHeight*0.5f,
+			0.0f);
+
+		//glMultMatrixf(glm::value_ptr(c->transform->GetWorldTransform()));
+		
+		/*
+		glTranslatef(-c->transform->GetPosition().x, 
+					 -c->transform->GetPosition().y, 
+					 -c->transform->GetPosition().z);
+					 */
 
 		//Initialize Modelview Matrix
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
+
+
 		//glBlitFramebuffer(0, 0, 640, 480, 0, 0, 320, 240, GL_COLOR_BUFFER_BIT, GL_NEAREST);
 
 		//Initialize clear color
 		//glClearColor(1.0f, 0.0f, 0.0f, 1.f);
 		//glClear(GL_COLOR_BUFFER_BIT);
-
 	}
 
 	void Renderer::End() {}

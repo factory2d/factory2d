@@ -31,30 +31,102 @@
 
 #include "Time/TimeManager.h"
 
+#include "SDL_opengl.h"
+#include <GL\GLU.h>
+
 namespace F2D
 {
 	float dt = 0.0f; 
 
 	Transform::Transform(FactoryObject* factoryObject) {
 		__factoryObject = factoryObject;
-		__position->x = __position->y = __position->z = 0.0f;
-		__rotate->x = __rotate->y = __rotate->z = 0.0f;
+		__position.x = __position.y = __position.z = 0.0f;
+		__rotate.x = __rotate.y = __rotate.z = 0.0f;
 	}
 
 	Transform::~Transform() {}
 
-	void Transform::Translate(float x, float y, float z) {
-		dt = TimeManager::Delta();
-		__position->x += x * dt;
-		__position->y += y * dt;
-		__position->z += z * dt;
+	void Transform::SetPosition(glm::vec3 value) {
+		__position = value;
+
+		//__localPosition = glm::translate(glm::mat4(1.0f), value);
+		__matrixUpdate = true;
 	}
 
-	void Transform::Rotate(float x, float y, float z) {
+	void Transform::Translate(glm::vec3 value) {
 		dt = TimeManager::Delta();
-		if(x != 0.0f) { __rotate->x += x * dt; }
-		if(y != 0.0f) { __rotate->y += y * dt; }
-		if(z != 0.0f) { __rotate->z += z * dt; }
+		__position.x += value.x * dt;
+		__position.y += value.y * dt;
+		__position.z += value.z * dt;
+
+		//__localPosition = glm::translate(__localPosition, (value*dt));
+		__matrixUpdate = true;
+	}
+
+	void Transform::SetOrigin(glm::vec3 value) {
+		__origin = value;
+		
+		//__localOrigin = glm::translate(glm::mat4(1.0f), -value);
+		__matrixUpdate = true;
+	}
+
+	void Transform::SetRotate(glm::vec3 value) {
+		__rotate = value;
+
+		//__localAngle = glm::rotate(glm::mat4(1.0f), 6.28319f, value);
+		__matrixUpdate = true;
+	}
+
+	void Transform::Rotate(glm::vec3 value) {
+		dt = TimeManager::Delta();
+		__rotate += value * dt;
+		//if(x != 0.0f) { __rotate.x += x * dt; }
+		//if(y != 0.0f) { __rotate.y += y * dt; }
+		//if(z != 0.0f) { __rotate.z += z * dt; }
+
+		//__localAngle = glm::rotate(glm::mat4(1.0f), 0.0174533f, (value*dt));
+		__matrixUpdate = true;
+	}
+
+	void Transform::ApplyTransform(bool childUpdate) {
+		//glm::mat4 projection = glm::perspective(70.0f, ((float)800) / (float)600, 1.0f, 1000.0f);
+		//glm::mat4 view = glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+
+		// local transform matrix cache
+		if(__matrixUpdate || childUpdate) {
+			__localTransform = glm::mat4(1.0f);
+
+			if(__parent != nullptr )
+				__localTransform = glm::translate(__localTransform, __parent->GetOrigin());
+
+			__localTransform = glm::translate(__localTransform, __position);
+			__localTransform = glm::rotate(__localTransform, __rotate.y * 0.0174533f, glm::vec3(0.0f, 0.0f, 1.0f));
+			__localTransform = glm::translate(__localTransform, -__origin);
+
+			childUpdate = true;
+			__matrixUpdate = false;
+
+			if(__parent == nullptr)
+				__worldTransform = __localTransform;
+			else
+				__worldTransform = (-__parent->GetWorldTransform());// *__localTransform;
+		}
+		
+		// update child matrix
+		if(childUpdate){
+			for(unsigned int x = 0; x < __childs.size(); x++) {
+				__childs[x]->ApplyTransform(childUpdate);
+			}
+		}
+
+
+		//model = scale * translate * rotate;
+		//__localTransform = __localScale * __localPosition * __localAngle;
+		//glMultMatrixf(Transform.M);
+
+		//glUniformMatrix4fv(glGetUniformLocation(programID, "MV"), 1, GL_TRUE, glm::value_ptr(ModelViewMatrix));
+		//glUniformMatrix4fv(glGetUniformLocation(programID, "MVP"), 1, GL_TRUE, glm::value_ptr(ModelViewProjectionMatrix));
+		
 	}
 
 	unsigned int Transform::GetChildCount() {
@@ -82,6 +154,7 @@ namespace F2D
 		if(parent != NULL) {
 			__parent = parent;
 			parent->AttachChild(this);
+			__matrixUpdate = true;
 		}
 	}
 

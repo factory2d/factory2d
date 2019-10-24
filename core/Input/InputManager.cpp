@@ -38,6 +38,7 @@ namespace F2D
 {
 	std::vector <ControllerObject*>InputManager::__controllers = {};
 	std::map <unsigned char, bool>InputManager::__keyboardKeys = {};
+	long InputManager::__lastUpdate = -1;
 
 	float InputManager::GetAxis(std::string controller, std::string action) {
 		unsigned int totalController = __controllers.size();
@@ -97,23 +98,44 @@ namespace F2D
 			break;
 
 		// mouse
-		/*
 		case SDL_MOUSEBUTTONDOWN:
-			std::cout << "mouse button event: press " << (int)e->button.button << "\n";
+			//std::cout << "mouse button event: press " << SDL_GetKeyName((int)e->button.button) << "\n";
+			switch(e->button.button) {
+			case 1:
+				__keyboardKeys[F2D_MOUSE_LEFT] = true;
+				break;
+			case 2:
+				__keyboardKeys[F2D_MOUSE_MIDDLE] = true;
+				break;			
+			case 3:
+				__keyboardKeys[F2D_MOUSE_RIGHT] = true;
+				break;
+			}
 			break;
 		case SDL_MOUSEBUTTONUP:
-			std::cout << "mouse button event: release " << (int)e->button.button << "\n";
+			//std::cout << "mouse button event: release " << (int)e->button.button << "\n";
+			switch(e->button.button) {
+			case 1:
+				__keyboardKeys[F2D_MOUSE_LEFT] = false;
+				break;
+			case 2:
+				__keyboardKeys[F2D_MOUSE_MIDDLE] = false;
+				break;
+			case 3:
+				__keyboardKeys[F2D_MOUSE_RIGHT] = false;
+				break;
+			}
 			break;
 		case SDL_MOUSEWHEEL:
-			if(e->wheel.x != 0)
-				std::cout << "mouse wheel X event: " << (int)(e->wheel.x) << "\n";
-			if(e->wheel.y != 0)
-				std::cout << "mouse wheel Y event: " << (int)(e->wheel.y) << "\n";
+			__keyboardKeys[F2D_MOUSE_WRIGHT] = (e->wheel.x > 0);
+			__keyboardKeys[F2D_MOUSE_WLEFT] = (e->wheel.x < 0);
+			__keyboardKeys[F2D_MOUSE_WDOWN] = (e->wheel.y < 0);
+			__keyboardKeys[F2D_MOUSE_WUP] = (e->wheel.y > 0);
+
 			break;
 		case SDL_MOUSEMOTION:
-			std::cout << "mouse motion event: " << (int)(e->motion.xrel) << ", " << (int)(e->motion.yrel) << "\n";
+			//std::cout << "mouse motion event: " << (int)(e->motion.xrel) << ", " << (int)(e->motion.yrel) << "\n";
 			break;
-		*/
 
 		// joystick
 		/*

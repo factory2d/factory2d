@@ -44,8 +44,8 @@ namespace F2D {
 	// window properties
 	std::string WindowManager::__title = "Factory2D Game"; // window title
 	bool WindowManager::__allowUserResize = true; // allow user to resize the window
-	int WindowManager::__width = 800;
-	int WindowManager::__height = 600;
+	int WindowManager::__width = 1280;
+	int WindowManager::__height = 720;
 
 	bool WindowManager::Initialize() {
 		bool output = false;

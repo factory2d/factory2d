@@ -20,39 +20,35 @@
  */
 
  /**
-  * @fileoverview KeyboardTriggerObject.cpp
+  * @fileoverview MouseTriggerObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include "KeyboardTriggerObject.h"
-#include "InputManager.h"
+#ifndef FACTORY2D_INPUT_MOUSETRIGGEROBJECT_H_
+#define FACTORY2D_INPUT_MOUSETRIGGEROBJECT_H_
+
+#include "TriggerObject.h"
 
 namespace F2D
 {
-	KeyboardButtonObject::KeyboardButtonObject(std::string n, unsigned char key) :
-		KeyboardButtonObject(n, key, NULL) {}
+	// Button
+	class MouseButtonObject :
+		public F2D::TriggerObject {
+	private:
+		unsigned char negative = 0;
+		unsigned char positive = 0;
 
-	KeyboardButtonObject::KeyboardButtonObject(std::string n, unsigned char neg, unsigned char pos) {
-		name = n;
-		negative = neg;
-		positive = pos;
-	}
+	public:
+		MouseButtonObject(std::string name, unsigned char key);
+		MouseButtonObject(std::string name, unsigned char negative, unsigned char positive);
+		~MouseButtonObject();
 
-	KeyboardButtonObject::~KeyboardButtonObject() {}
-
-	float KeyboardButtonObject::GetAxis() {
-		if(InputManager::GetKeyboardKey(negative))
-			return -1.0f;
-		else if(InputManager::GetKeyboardKey(positive))
-
-			return 1.0f;
-		return 0.0f;
-	}
-
-	bool KeyboardButtonObject::GetButton() {
-		return InputManager::GetKeyboardKey(negative);
-	}
+		virtual float GetAxis();
+		virtual bool GetButton();
+	};
 }
+
+#endif // FACTORY2D_INPUT_MOUSETRIGGEROBJECT_H_

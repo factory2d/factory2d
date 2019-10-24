@@ -62,12 +62,16 @@ namespace F2D
 			p = t->GetParent();
 			glPushMatrix();
 
-			//	TODO: cache the matrix transform and just update when need
-			if(p != NULL)
-				glTranslatef(p->GetOrigin()->x, p->GetOrigin()->y, p->GetOrigin()->z);
-			glTranslatef(t->GetPosition()->x, t->GetPosition()->y, t->GetPosition()->z);
-			glRotatef(t->GetRotate()->y, 0.0f, 0.0f, 1.0f);
-			glTranslatef(-t->GetOrigin()->x, -t->GetOrigin()->y, -t->GetOrigin()->z);
+			//if(p != NULL)
+			//	glTranslatef(p->GetOrigin().x, p->GetOrigin().y, p->GetOrigin().z);
+			//glTranslatef(t->GetPosition().x, t->GetPosition().y, t->GetPosition().z);
+			//glRotatef(t->GetRotate().y, 0.0f, 0.0f, 1.0f);
+			//glTranslatef(-t->GetOrigin().x, -t->GetOrigin().y, -t->GetOrigin().z);
+
+			// calculate transform matrix and cache it
+			// we will only calculate it again if need :3
+			t->ApplyTransform();
+			glMultMatrixf(glm::value_ptr(t->GetLocalTransform()));
 
 			t->GetFactoryObject()->Draw();
 			glPopMatrix();

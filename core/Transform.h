@@ -39,17 +39,35 @@ namespace F2D {
 
 	class Transform {
 	private:
+		bool __matrixUpdate = true;
+
 		Transform* __parent = nullptr;
 		std::vector <Transform*> __childs = {};
 		FactoryObject* __factoryObject;
 
-		glm::vec3* __position = new glm::vec3(0.0f, 0.0f, 0.0f);
-		glm::vec3* __origin = new glm::vec3(0.0f, 0.0f, 0.0f);
-		glm::vec3* __scale = new glm::vec3(1.0f, 1.0f, 1.0f);
-		glm::vec3* __rotate = new glm::vec3(0.0f, 0.0f, 0.0f);
+		// matrix cache
+		// Final Transform
+		//Matrix4fT   Transform = { 1.0f, 0.0f, 0.0f, 0.0f,
+		//						  0.0f, 1.0f, 0.0f, 0.0f,
+		//						  0.0f, 0.0f, 1.0f, 0.0f,
+		//						  0.0f, 0.0f, 0.0f, 1.0f };
+		
+		glm::mat4 __localTransform = glm::mat4(1.0f);
+		glm::mat4 __worldTransform = glm::mat4(1.0f);
+		
+		//glm::mat4 __localOrigin = glm::mat4(1.0f);
+		//glm::mat4 __localPosition = glm::mat4(1.0f);
+		//glm::mat4 __localScale = glm::mat4(1.0f);
+		//glm::mat4 __localAngle = glm::mat4(1.0f);
+		
+		// old
+		glm::vec3 __position = glm::vec3(0.0f, 0.0f, 0.0f);
+		glm::vec3 __origin = glm::vec3(0.0f, 0.0f, 0.0f);
+		glm::vec3 __scale = glm::vec3(1.0f, 1.0f, 1.0f);
+		glm::vec3 __rotate = glm::vec3(0.0f, 0.0f, 0.0f);
 
-		glm::mat4x4* __localTransform = new glm::mat4x4();
-		glm::mat4x4* __worldTransform = new glm::mat4x4();
+		//glm::mat4x4* __localTransform = new glm::mat4x4();
+		//glm::mat4x4* __worldTransform = new glm::mat4x4();
 
 	public:
 		/*
@@ -62,23 +80,30 @@ namespace F2D {
 		Transform(FactoryObject* factoryObject);
 		~Transform();
 
-		glm::vec3* GetPosition() { return __position; };
-		void SetPosition(glm::vec3 *value) { __position = value; };
-		void SetPosition(float x, float y, float z) { SetPosition(new glm::vec3(x, y, z)); };
-		void Translate(float x, float y, float z);
+		glm::vec3 GetPosition() { return __position; };
+		void SetPosition(glm::vec3 value);
+		void SetPosition(float x, float y, float z) { SetPosition(glm::vec3(x, y, z)); };
+		void Translate(glm::vec3 value);
+		void Translate(float x, float y, float z) { Translate(glm::vec3(x, y, z)); };
 
-		glm::vec3* GetOrigin() { return __origin; };
-		void SetOrigin(glm::vec3 *value) { __origin = value; };
-		void SetOrigin(float x, float y, float z) { SetOrigin(new glm::vec3(x, y, z)); };
+		glm::vec3 GetOrigin() { return __origin; };
+		void SetOrigin(glm::vec3 value);
+		void SetOrigin(float x, float y, float z) { SetOrigin(glm::vec3(x, y, z)); };
 
-		glm::vec3* GetScale() { return __scale; };
-		void SetScale(glm::vec3 *value) { __scale = value; };
-		void SetScale(float x, float y, float z) { SetOrigin(new glm::vec3(x, y, z)); };
+		glm::vec3 GetScale() { return __scale; };
+		void SetScale(glm::vec3 value) { __scale = value; };
+		void SetScale(float x, float y, float z) { SetOrigin(glm::vec3(x, y, z)); };
 
-		glm::vec3* GetRotate() { return __rotate; };
-		void SetRotate(glm::vec3 *value) { __rotate = value; };
-		void SetRotate(float x, float y, float z) { SetRotate(new glm::vec3(x, y, z)); };
-		void Rotate(float x, float y, float z);
+		glm::vec3 GetRotate() { return __rotate; };
+		void SetRotate(glm::vec3 value);
+		void SetRotate(float x, float y, float z) { SetRotate(glm::vec3(x, y, z)); };
+		void Rotate(glm::vec3 value);
+		void Rotate(float x, float y, float z) { Rotate(glm::vec3(x, y, z)); };
+
+		glm::mat4 GetLocalTransform() { return __localTransform; };
+		glm::mat4 GetWorldTransform() { return __worldTransform; };
+
+		void ApplyTransform(bool childUpdate = false);
 
 		unsigned int GetChildCount();
 		FactoryObject* GetFactoryObject();

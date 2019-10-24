@@ -129,6 +129,7 @@
     <ClCompile Include="Asset\Picture.cpp" />
     <ClCompile Include="Asset\AssetManager.cpp" />
     <ClCompile Include="Input\KeyboardTriggerObject.cpp" />
+    <ClCompile Include="Input\MouseTriggerObject.cpp" />
     <ClCompile Include="Objects\CameraObject.cpp" />
     <ClCompile Include="Objects\FactoryObject.cpp" />
     <ClCompile Include="Scene\SceneObject.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Asset\AssetManager.h" />
     <ClInclude Include="Factory2D.h" />
     <ClInclude Include="Input\KeyboardTriggerObject.h" />
+    <ClInclude Include="Input\MouseTriggerObject.h" />
     <ClInclude Include="Objects\CameraObject.h" />
     <ClInclude Include="Objects\FactoryObject.h" />
     <ClInclude Include="Scene\SceneObject.h" />
