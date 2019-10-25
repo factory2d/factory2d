@@ -5,6 +5,7 @@ MyGame::~MyGame() {}
 
 F2D::SceneObject* scene1;
 F2D::CameraObject* camera1;
+F2D::CameraObject* camera2;
 F2D::SpriteObject* object1;
 F2D::SpriteObject* object2;
 
@@ -53,21 +54,27 @@ bool MyGame::Initialize() {
 	object1->GetUUID();
 	object1->transform->SetOrigin(32.0f, 32.0f, 0.0f);
 	object1->transform->SetPosition(100.0f, 100.0f, 0.0f);
-	object1->transform->SetRotate(0.0f, 0.0f, 0.0f);
+	object1->transform->SetRotate(0.0f);
 	object1->transform->SetParent(scene1->transform);
 
 	object2 = new F2D::SpriteObject("object2");
 	object2->p = F2D::AssetManager::Load<F2D::Picture>("Assets/256_green.png");
 	object2->transform->SetOrigin(32.0f, 32.0f, 0.0f);
 	object2->transform->SetPosition(100.0f, 100.0f, 0.0f);
-	object2->transform->SetRotate(0.0f, 15.0f, 0.0f);
+	object2->transform->SetRotate(0.0f);
 	object2->transform->SetParent(object1->transform);
 
 	// create the scene camera
 	camera1 = new F2D::CameraObject("camera1");
 	camera1->viewport = new F2D::Rect(0.0f, 0.0f, 1.0f, 1.0f);
+	camera1->color[0] = 1.0f; camera1->color[1] = 0.0f; camera1->color[2] = 0.0f;
 	camera1->transform->SetPosition(0.0f, 0.0f, 0.0f);
-	camera1->transform->SetParent(object1->transform);
+	camera1->transform->SetParent(scene1->transform);
+
+	camera2 = new F2D::CameraObject("camera2");
+	camera2->viewport = new F2D::Rect(0.0f, 0.0f, 0.5f, 0.5f);
+	camera2->transform->SetPosition(0.0f, 0.0f, 0.0f);
+	camera2->transform->SetParent(object2->transform);
 
 
 
@@ -87,9 +94,8 @@ void MyGame::Update() {
 	float axisY = F2D::InputManager::GetAxis("player", "y") * 100.0f;
 
 	object1->transform->Translate(axisX, axisY, 0.0f);
-
-	//object1->transform->Rotate(0.0f, 5.0f, 0.0f);
-	//object2->transform->Rotate(0.0f, 1.0f, 0.0f);
+	object1->transform->Rotate(5.0f);
+	object2->transform->Rotate(15.0f);
 	/*
 	object1->transform->rotate->y += 1.0f;
 	if(object1->transform->rotate->y >= 360.0f)

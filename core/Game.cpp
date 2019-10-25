@@ -89,7 +89,6 @@ namespace F2D
 	float b = 0.0f;
 
 	void Game::Draw() {
-
 		SceneManager::Draw();
 		WindowManager::Draw();
 	}

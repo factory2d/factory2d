@@ -31,6 +31,9 @@ namespace F2D
 		static CameraObject* GetCameraAt(unsigned int index);
 		static CameraObject* GetActiveCamera();
 		static void SetActiveCamera(CameraObject *camera);
+
+
+		float color[3] = { 0.25f, 0.25f, 0.25f };
 	};
 }
 

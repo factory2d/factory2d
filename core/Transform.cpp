@@ -36,7 +36,9 @@
 
 namespace F2D
 {
-	float dt = 0.0f; 
+	extern float dT = 0.0f; 
+	glm::vec3 Transform::__zero = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 Transform::__one = glm::vec3(0.0f, 0.0f, 0.0f);
 
 	Transform::Transform(FactoryObject* factoryObject) {
 		__factoryObject = factoryObject;
@@ -47,45 +49,40 @@ namespace F2D
 	Transform::~Transform() {}
 
 	void Transform::SetPosition(glm::vec3 value) {
-		__position = value;
-
-		//__localPosition = glm::translate(glm::mat4(1.0f), value);
-		__matrixUpdate = true;
+		if(value != __position) {
+			__position = value;
+			__matrixUpdate = true;
+		}
 	}
 
 	void Transform::Translate(glm::vec3 value) {
-		dt = TimeManager::Delta();
-		__position.x += value.x * dt;
-		__position.y += value.y * dt;
-		__position.z += value.z * dt;
-
-		//__localPosition = glm::translate(__localPosition, (value*dt));
-		__matrixUpdate = true;
+		if(value != __zero) {
+			dT = TimeManager::Delta();
+			__position += value * dT;
+			__matrixUpdate = true;
+		}
 	}
 
 	void Transform::SetOrigin(glm::vec3 value) {
-		__origin = value;
-		
-		//__localOrigin = glm::translate(glm::mat4(1.0f), -value);
-		__matrixUpdate = true;
+		if(__origin != value) {
+			__origin = value;
+			__matrixUpdate = true;
+		}
 	}
 
-	void Transform::SetRotate(glm::vec3 value) {
-		__rotate = value;
-
-		//__localAngle = glm::rotate(glm::mat4(1.0f), 6.28319f, value);
-		__matrixUpdate = true;
+	void Transform::SetRotate(float value) {
+		if(value != __rotate.y) {
+			__rotate.y += value;
+			__matrixUpdate = true;
+		}
 	}
 
-	void Transform::Rotate(glm::vec3 value) {
-		dt = TimeManager::Delta();
-		__rotate += value * dt;
-		//if(x != 0.0f) { __rotate.x += x * dt; }
-		//if(y != 0.0f) { __rotate.y += y * dt; }
-		//if(z != 0.0f) { __rotate.z += z * dt; }
-
-		//__localAngle = glm::rotate(glm::mat4(1.0f), 0.0174533f, (value*dt));
-		__matrixUpdate = true;
+	void Transform::Rotate(float value) {
+		if(value != 0.0f) {
+			dT = TimeManager::Delta();
+			__rotate.y += value * dT;
+			__matrixUpdate = true;
+		}
 	}
 
 	void Transform::ApplyTransform(bool childUpdate) {
@@ -109,7 +106,7 @@ namespace F2D
 			if(__parent == nullptr)
 				__worldTransform = __localTransform;
 			else
-				__worldTransform = (-__parent->GetWorldTransform());// *__localTransform;
+				__worldTransform = __parent->GetWorldTransform() *__localTransform;
 		}
 		
 		// update child matrix

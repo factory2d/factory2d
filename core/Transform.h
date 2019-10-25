@@ -60,7 +60,8 @@ namespace F2D {
 		//glm::mat4 __localScale = glm::mat4(1.0f);
 		//glm::mat4 __localAngle = glm::mat4(1.0f);
 		
-		// old
+		static glm::vec3 __zero;// = glm::vec3(0.0f, 0.0f, 0.0f);
+		static glm::vec3 __one;// = glm::vec3(0.0f, 0.0f, 0.0f);
 		glm::vec3 __position = glm::vec3(0.0f, 0.0f, 0.0f);
 		glm::vec3 __origin = glm::vec3(0.0f, 0.0f, 0.0f);
 		glm::vec3 __scale = glm::vec3(1.0f, 1.0f, 1.0f);
@@ -95,10 +96,8 @@ namespace F2D {
 		void SetScale(float x, float y, float z) { SetOrigin(glm::vec3(x, y, z)); };
 
 		glm::vec3 GetRotate() { return __rotate; };
-		void SetRotate(glm::vec3 value);
-		void SetRotate(float x, float y, float z) { SetRotate(glm::vec3(x, y, z)); };
-		void Rotate(glm::vec3 value);
-		void Rotate(float x, float y, float z) { Rotate(glm::vec3(x, y, z)); };
+		void SetRotate(float value);
+		void Rotate(float value);
 
 		glm::mat4 GetLocalTransform() { return __localTransform; };
 		glm::mat4 GetWorldTransform() { return __worldTransform; };
