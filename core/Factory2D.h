@@ -61,6 +61,7 @@
 #include "Input/KeyboardTriggerObject.h"
 
 /* MATERIAL */
+#include "Color.h"
 
 /* SCENE */
 #include "Scene/SceneManager.h"

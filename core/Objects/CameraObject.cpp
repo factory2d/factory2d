@@ -13,7 +13,17 @@ namespace F2D
 
 	void CameraObject::Update() {}
 
-	void CameraObject::Draw() {}
+	void CameraObject::Draw() {
+		// just for debug
+		/*
+		glBegin(GL_QUADS);
+		glColor3f(1.f, 1.f, 1.f); glVertex2f(-10.0f, -10.0f);
+		glColor3f(1.f, 1.f, 1.f); glVertex2f( 10.0f, -10.0f);
+		glColor3f(1.f, 1.f, 1.f); glVertex2f( 10.0f,  10.0f);
+		glColor3f(1.f, 1.f, 1.f); glVertex2f(-10.0f,  10.0f);
+		glEnd();
+		*/
+	}
 
 	unsigned int CameraObject::Count() {
 		return __cameras.size();;

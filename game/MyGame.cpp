@@ -67,12 +67,14 @@ bool MyGame::Initialize() {
 	// create the scene camera
 	camera1 = new F2D::CameraObject("camera1");
 	camera1->viewport = new F2D::Rect(0.0f, 0.0f, 1.0f, 1.0f);
-	camera1->color[0] = 1.0f; camera1->color[1] = 0.0f; camera1->color[2] = 0.0f;
+	camera1->backgroundColor = F2D::Color(0.25f, 0.25f, 0.25f);
 	camera1->transform->SetPosition(0.0f, 0.0f, 0.0f);
 	camera1->transform->SetParent(scene1->transform);
 
 	camera2 = new F2D::CameraObject("camera2");
-	camera2->viewport = new F2D::Rect(0.0f, 0.0f, 0.5f, 0.5f);
+	camera2->viewport = new F2D::Rect(0.0f, 0.0f, 0.45f, 0.45f);
+	camera2->backgroundColor = F2D::Color(1.0f, 0.0f, 0.0f);
+	camera2->clearColor = false;
 	camera2->transform->SetPosition(0.0f, 0.0f, 0.0f);
 	camera2->transform->SetParent(object2->transform);
 

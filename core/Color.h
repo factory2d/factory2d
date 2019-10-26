@@ -20,51 +20,43 @@
  */
 
  /**
-  * @fileoverview Object.h
+  * @fileoverview Color.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_OBJECTS_CAMERAOBJECT_H_
-#define FACTORY2D_OBJECTS_CAMERAOBJECT_H_
-
-#include "SDL.h"
-#include "SDL_opengl.h"
-#include <GL\GLU.h>
-#include <vector> 
-
-#include "../Math.h"
-#include "FactoryObject.h"
-#include "../Color.h"
+#ifndef FACTORY2D_COLOR_H_
+#define FACTORY2D_COLOR_H_
 
 namespace F2D
 {
-	class CameraObject :
-		public FactoryObject {
-	private:
-		static std::vector <CameraObject*> __cameras;
-		static CameraObject* __activeCamera;
-
+	class Color {
 	public:
-		CameraObject() {};
-		CameraObject(std::string name);
-		~CameraObject();
+		static const Color black;		// (0, 0, 0, 1)
+		static const Color blue;		// (0, 0, 1, 1)
+		static const Color clear;		// (0, 0, 0, 0)
+		static const Color cyan;		// (0, 1, 1, 1)
+		static const Color gray;		// (0.5, 0.5, 0.5, 1)
+		static const Color green;		// (0, 1, 0, 1)
+		static const Color grey;		// (0.5, 0.5, 0.5, 1)
+		static const Color magenta;		// (1, 0, 1, 1)
+		static const Color red;			// (1, 0, 0, 1)
+		static const Color white;		// (1, 1, 1, 1)
+		static const Color yellow;		// (1, 1, 0, 1)
 
-		void Update() override;
-		void Draw() override;
+		Color();
+		Color(float r, float g, float b, float a = 1.0f);
+		~Color();
 
-		Rect* viewport = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
+		float r = 1.0f;
+		float g = 1.0f;
+		float b = 1.0f;
+		float a = 1.0f;
 
-		static unsigned int Count();
-		static CameraObject* GetCameraAt(unsigned int index);
-		static CameraObject* GetActiveCamera();
-		static void SetActiveCamera(CameraObject *camera);
-
-		Color backgroundColor = Color(0.5f, 0.5f, 0.5f);
-		bool clearColor = true;
+		//Color operator = (Color lhs, Color rhs);
 	};
 }
 
-#endif // FACTORY2D_OBJECTS_CAMERAOBJECT_H_
+#endif // FACTORY2D_COLOR_H_

@@ -30,6 +30,7 @@
 #include "Transform.h"
 
 #include "Time/TimeManager.h"
+#include "Renderer.h"
 
 #include "SDL_opengl.h"
 #include <GL\GLU.h>
@@ -86,6 +87,7 @@ namespace F2D
 	}
 
 	void Transform::ApplyTransform(bool childUpdate) {
+		// don't know if I'll use this stuff yet...
 		//glm::mat4 projection = glm::perspective(70.0f, ((float)800) / (float)600, 1.0f, 1000.0f);
 		//glm::mat4 view = glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
@@ -95,10 +97,22 @@ namespace F2D
 
 			if(__parent != nullptr )
 				__localTransform = glm::translate(__localTransform, __parent->GetOrigin());
+			
+			glm::vec3 p = __position;
+			float a = __rotate.y;
+			glm::vec3 o = __origin;
 
-			__localTransform = glm::translate(__localTransform, __position);
-			__localTransform = glm::rotate(__localTransform, __rotate.y * 0.0174533f, glm::vec3(0.0f, 0.0f, 1.0f));
-			__localTransform = glm::translate(__localTransform, -__origin);
+			// round the values when integer position enabled
+			// this is really good in pixel games :3
+			if(Renderer::integerPosition) {
+				p.x = round(p.x); p.y = round(p.y); p.z = round(p.z);
+				a = round(a);
+				o.x = round(o.x); o.y = round(o.y); o.z = round(o.z);
+			}
+
+			__localTransform = glm::translate(__localTransform, p);
+			__localTransform = glm::rotate(__localTransform, a * 0.0174533f, glm::vec3(0.0f, 0.0f, 1.0f));
+			__localTransform = glm::translate(__localTransform, -o);
 
 			childUpdate = true;
 			__matrixUpdate = false;

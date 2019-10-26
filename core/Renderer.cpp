@@ -62,8 +62,10 @@ namespace F2D
 			windowHeight*c->viewport->height);
 		
 		glEnable(GL_SCISSOR_TEST);
-		glClearColor(c->color[0], c->color[1], c->color[2], 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		if(c->clearColor) {
+			glClearColor(c->backgroundColor.r, c->backgroundColor.g, c->backgroundColor.b, 1.0f);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		}
 
 		//Initialize Projection Matrix
 		glMatrixMode(GL_PROJECTION);

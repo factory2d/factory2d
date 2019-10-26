@@ -20,51 +20,23 @@
  */
 
  /**
-  * @fileoverview Object.h
+  * @fileoverview Color.cpp
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_OBJECTS_CAMERAOBJECT_H_
-#define FACTORY2D_OBJECTS_CAMERAOBJECT_H_
-
-#include "SDL.h"
-#include "SDL_opengl.h"
-#include <GL\GLU.h>
-#include <vector> 
-
-#include "../Math.h"
-#include "FactoryObject.h"
-#include "../Color.h"
+#include "Color.h"
 
 namespace F2D
 {
-	class CameraObject :
-		public FactoryObject {
-	private:
-		static std::vector <CameraObject*> __cameras;
-		static CameraObject* __activeCamera;
-
-	public:
-		CameraObject() {};
-		CameraObject(std::string name);
-		~CameraObject();
-
-		void Update() override;
-		void Draw() override;
-
-		Rect* viewport = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
-
-		static unsigned int Count();
-		static CameraObject* GetCameraAt(unsigned int index);
-		static CameraObject* GetActiveCamera();
-		static void SetActiveCamera(CameraObject *camera);
-
-		Color backgroundColor = Color(0.5f, 0.5f, 0.5f);
-		bool clearColor = true;
-	};
+	Color::Color() {}
+	Color::Color(float R, float G, float B, float A) {
+		r = R;
+		g = G;
+		b = B;
+		a = A;
+	}
+	Color::~Color() {}
 }
-
-#endif // FACTORY2D_OBJECTS_CAMERAOBJECT_H_

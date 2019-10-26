@@ -120,6 +120,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="Input\ButtonObject.cpp" />
     <ClCompile Include="Input\AxisObject.cpp" />
     <ClCompile Include="Input\ActionObject.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="Window\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Color.h" />
     <ClInclude Include="Input\ButtonObject.h" />
     <ClInclude Include="Input\AxisObject.h" />
     <ClInclude Include="Input\ActionObject.h" />
