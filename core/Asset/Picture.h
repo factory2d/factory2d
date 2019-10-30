@@ -20,33 +20,29 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview Picture.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
+#ifndef FACTORY2D_ASSET_PICTURE_H_
+#define FACTORY2D_ASSET_PICTURE_H_
 
-#include "Window/WindowManager.h"
+#include <SDL_opengl.h>
+#include "../Asset.h"
 
 namespace F2D
 {
-	class Renderer {
+	class Picture :
+		public Asset {
 	private:
-		static bool __allowVSync;
 
 	public:
-		static bool integerPosition;
-
-		static void Begin();
-		static void End();
-
-		static bool VSync(); static void VSync(bool value);
-
+		//virtual void * Data();
+		virtual bool Load(std::string path);
 	};
 }
 
-#endif // FACTORY2D_RENDERER_H_
+#endif // FACTORY2D_ASSET_PICTURE_H_

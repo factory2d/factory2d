@@ -7,7 +7,7 @@
   *
   * Base Asset Object
   *
-  * @author @alexribeirodesa (Alexandre Ribeiro de Sá)
+  * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
 #include "Asset.h"

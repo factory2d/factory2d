@@ -20,33 +20,32 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview AxisObject.cpp
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
-
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
-
-#include "Window/WindowManager.h"
+#include "AxisObject.h"
 
 namespace F2D
 {
-	class Renderer {
-	private:
-		static bool __allowVSync;
+	AxisObject::AxisObject(std::string n) : ActionObject(n) {}
 
-	public:
-		static bool integerPosition;
+	AxisObject::~AxisObject() {}
+	float AxisObject::GetAxis() {
+		unsigned int totalTriggers = __triggers.size();
+		float axisOutput = 0.0f;
 
-		static void Begin();
-		static void End();
+		for(unsigned int x = 0; x < totalTriggers; x++) {
+			if(__triggers[x]->enabled) {
+				axisOutput = __triggers[x]->GetAxis();
 
-		static bool VSync(); static void VSync(bool value);
+				if(axisOutput != 0.0f)
+					return axisOutput;
+			}
+		}
 
-	};
+		return 0.0f;
+	}
 }
-
-#endif // FACTORY2D_RENDERER_H_

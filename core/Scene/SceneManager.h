@@ -20,33 +20,40 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview SceneManager.h
   *
-  * --- FILE NOTES ---
+  * Manage the game scenes
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
+#ifndef FACTORY2D_SCENE_SCENEMANAGER_H_
+#define FACTORY2D_SCENE_SCENEMANAGER_H_
 
-#include "Window/WindowManager.h"
+#include "SceneObject.h"
+
+#include <string>
+#include <vector> 
 
 namespace F2D
 {
-	class Renderer {
+	class SceneManager {
 	private:
-		static bool __allowVSync;
+		static std::vector <SceneObject*> __scenes;
+
+		SceneManager();
+		~SceneManager();
 
 	public:
-		static bool integerPosition;
-
-		static void Begin();
-		static void End();
-
-		static bool VSync(); static void VSync(bool value);
-
+		static unsigned int Count();
+		static void Load(SceneObject* scene);
+		static void Unload(std::string name);
+		static void Unload(SceneObject* scene);
+		static SceneObject* GetActiveScenes();
+		static SceneObject* GetSceneAt(unsigned int index);
+		static void Update();
+		static void Draw();
 	};
 }
 
-#endif // FACTORY2D_RENDERER_H_
+#endif // FACTORY2D_SCENE_SCENEMANAGER_H_

@@ -20,33 +20,26 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview CameraBehaviour.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
+#ifndef FACTORY2D_BEHAVIOUR_CAMERABEHAVIOUR_H_
+#define FACTORY2D_BEHAVIOUR_CAMERABEHAVIOUR_H_
 
-#include "Window/WindowManager.h"
+#include "BehaviourObject.h"
 
 namespace F2D
 {
-	class Renderer {
-	private:
-		static bool __allowVSync;
-
+	class CameraBehaviour :
+		public F2D::BehaviourObject {
 	public:
-		static bool integerPosition;
-
-		static void Begin();
-		static void End();
-
-		static bool VSync(); static void VSync(bool value);
-
+		CameraBehaviour();
+		~CameraBehaviour();
 	};
 }
 
-#endif // FACTORY2D_RENDERER_H_
+#endif // FACTORY2D_BEHAVIOUR_CAMERABEHAVIOUR_H_

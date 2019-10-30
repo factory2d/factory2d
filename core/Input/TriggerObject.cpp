@@ -20,33 +20,17 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview TriggerObject.cpp
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
-
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
-
-#include "Window/WindowManager.h"
+#include "TriggerObject.h"
 
 namespace F2D
 {
-	class Renderer {
-	private:
-		static bool __allowVSync;
+	TriggerObject::TriggerObject() {}
 
-	public:
-		static bool integerPosition;
-
-		static void Begin();
-		static void End();
-
-		static bool VSync(); static void VSync(bool value);
-
-	};
+	TriggerObject::~TriggerObject() {}
 }
-
-#endif // FACTORY2D_RENDERER_H_

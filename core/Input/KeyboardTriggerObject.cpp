@@ -20,33 +20,39 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview KeyboardTriggerObject.cpp
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
-
-#include "Window/WindowManager.h"
+#include "KeyboardTriggerObject.h"
+#include "InputManager.h"
 
 namespace F2D
 {
-	class Renderer {
-	private:
-		static bool __allowVSync;
+	KeyboardButtonObject::KeyboardButtonObject(std::string n, unsigned char key) :
+		KeyboardButtonObject(n, key, NULL) {}
 
-	public:
-		static bool integerPosition;
+	KeyboardButtonObject::KeyboardButtonObject(std::string n, unsigned char neg, unsigned char pos) {
+		name = n;
+		negative = neg;
+		positive = pos;
+	}
 
-		static void Begin();
-		static void End();
+	KeyboardButtonObject::~KeyboardButtonObject() {}
 
-		static bool VSync(); static void VSync(bool value);
+	float KeyboardButtonObject::GetAxis() {
+		if(InputManager::GetKeyboardKey(negative))
+			return -1.0f;
+		else if(InputManager::GetKeyboardKey(positive))
 
-	};
+			return 1.0f;
+		return 0.0f;
+	}
+
+	bool KeyboardButtonObject::GetButton() {
+		return InputManager::GetKeyboardKey(negative);
+	}
 }
-
-#endif // FACTORY2D_RENDERER_H_

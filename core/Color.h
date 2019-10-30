@@ -20,33 +20,43 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview Color.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
-
-#include "Window/WindowManager.h"
+#ifndef FACTORY2D_COLOR_H_
+#define FACTORY2D_COLOR_H_
 
 namespace F2D
 {
-	class Renderer {
-	private:
-		static bool __allowVSync;
-
+	class Color {
 	public:
-		static bool integerPosition;
+		static const Color black;		// (0, 0, 0, 1)
+		static const Color blue;		// (0, 0, 1, 1)
+		static const Color clear;		// (0, 0, 0, 0)
+		static const Color cyan;		// (0, 1, 1, 1)
+		static const Color gray;		// (0.5, 0.5, 0.5, 1)
+		static const Color green;		// (0, 1, 0, 1)
+		static const Color grey;		// (0.5, 0.5, 0.5, 1)
+		static const Color magenta;		// (1, 0, 1, 1)
+		static const Color red;			// (1, 0, 0, 1)
+		static const Color white;		// (1, 1, 1, 1)
+		static const Color yellow;		// (1, 1, 0, 1)
 
-		static void Begin();
-		static void End();
+		Color();
+		Color(float r, float g, float b, float a = 1.0f);
+		~Color();
 
-		static bool VSync(); static void VSync(bool value);
+		float r = 1.0f;
+		float g = 1.0f;
+		float b = 1.0f;
+		float a = 1.0f;
 
+		//Color operator = (Color lhs, Color rhs);
 	};
 }
 
-#endif // FACTORY2D_RENDERER_H_
+#endif // FACTORY2D_COLOR_H_

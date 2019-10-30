@@ -20,33 +20,35 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview ButtonObject.cpp
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
-
-#include "Window/WindowManager.h"
+#include "ButtonObject.h"
 
 namespace F2D
 {
-	class Renderer {
-	private:
-		static bool __allowVSync;
+	ButtonObject::ButtonObject(std::string n) : ActionObject(n) {}
 
-	public:
-		static bool integerPosition;
+	ButtonObject::~ButtonObject() {}
+	bool ButtonObject::GetButton() {
+		unsigned int totalTriggers = 0;
 
-		static void Begin();
-		static void End();
+		totalTriggers = __triggers.size();
 
-		static bool VSync(); static void VSync(bool value);
-
-	};
+		for(unsigned int x = 0; x < totalTriggers; x++) {
+			if(__triggers[x]->enabled && __triggers[x]->GetButton())
+				return true;
+		}
+		return false;
+	}
+	bool ButtonObject::GetButtonUp() {
+		return false;
+	}
+	bool ButtonObject::GetButtonDown() {
+		return false;
+	}
 }
-
-#endif // FACTORY2D_RENDERER_H_

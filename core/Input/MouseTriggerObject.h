@@ -20,33 +20,35 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview MouseTriggerObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
+#ifndef FACTORY2D_INPUT_MOUSETRIGGEROBJECT_H_
+#define FACTORY2D_INPUT_MOUSETRIGGEROBJECT_H_
 
-#include "Window/WindowManager.h"
+#include "TriggerObject.h"
 
 namespace F2D
 {
-	class Renderer {
+	// Button
+	class MouseButtonObject :
+		public F2D::TriggerObject {
 	private:
-		static bool __allowVSync;
+		unsigned char negative = 0;
+		unsigned char positive = 0;
 
 	public:
-		static bool integerPosition;
+		MouseButtonObject(std::string name, unsigned char key);
+		MouseButtonObject(std::string name, unsigned char negative, unsigned char positive);
+		~MouseButtonObject();
 
-		static void Begin();
-		static void End();
-
-		static bool VSync(); static void VSync(bool value);
-
+		virtual float GetAxis();
+		virtual bool GetButton();
 	};
 }
 
-#endif // FACTORY2D_RENDERER_H_
+#endif // FACTORY2D_INPUT_MOUSETRIGGEROBJECT_H_

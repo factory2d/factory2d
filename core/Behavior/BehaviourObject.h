@@ -20,33 +20,30 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview BehaviourObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
+#ifndef FACTORY2D_BEHAVIOUR_BEHAVIOUROBJECT_H_
+#define FACTORY2D_BEHAVIOUR_BEHAVIOUROBJECT_H_
 
-#include "Window/WindowManager.h"
+#include "../Objects/Object.h"
 
 namespace F2D
 {
-	class Renderer {
-	private:
-		static bool __allowVSync;
+	class BehaviourObject :
+		public F2D::Object {
 
 	public:
-		static bool integerPosition;
+		BehaviourObject() {};
+		~BehaviourObject() {};
 
-		static void Begin();
-		static void End();
-
-		static bool VSync(); static void VSync(bool value);
-
+		virtual void Update() {};
+		virtual void Draw() {};
 	};
 }
 
-#endif // FACTORY2D_RENDERER_H_
+#endif // FACTORY2D_BEHAVIOUR_BEHAVIOUROBJECT_H_

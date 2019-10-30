@@ -20,33 +20,25 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview ActionObject.cpp
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
-
-#include "Window/WindowManager.h"
+#include "ActionObject.h"
 
 namespace F2D
 {
-	class Renderer {
-	private:
-		static bool __allowVSync;
+	ActionObject::ActionObject(std::string n) {
+		name = n;
+		enabled = true;
+	}
 
-	public:
-		static bool integerPosition;
+	ActionObject::~ActionObject() {}
 
-		static void Begin();
-		static void End();
-
-		static bool VSync(); static void VSync(bool value);
-
-	};
+	void ActionObject::Push(TriggerObject * trigger) {
+		__triggers.push_back(trigger);
+	}
 }
-
-#endif // FACTORY2D_RENDERER_H_

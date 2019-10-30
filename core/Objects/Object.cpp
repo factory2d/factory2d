@@ -20,76 +20,39 @@
  */
 
  /**
-  * @fileoverview Game.cpp
+  * @fileoverview Object.h
   *
-  * Base game object
+  * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include "SDL.h"
-#include "SDL_opengl.h"
-#include <GL\GLU.h>
 #include <iostream>
+#include <iomanip>
+#include <sstream>
 
-#include "Game.h"
-#include "Renderer.h"
-#include "Time/TimeManager.h"
-#include "Window/WindowManager.h"
-#include "Input/InputManager.h"
-#include "Scene/SceneManager.h"
+#include "Object.h"
 
 namespace F2D
 {
-	Game::Game() {}
-	Game::~Game() {}
+	Object::Object() {
+		std::stringstream hexuuid;
 
-	bool Game::Initialize() {
-		WindowManager::Initialize();
+		__uuid = (unsigned int)this;
 
-		return true;
+		hexuuid << std::hex << __uuid;
+		name = hexuuid.str();
 	}
 
-	void Game::Run() {
-		while(!__quit) {
-			this->Update();
-			this->Draw();
-			TimeManager::Update();
-		}
+	Object::~Object() {}
 
-		//	TODO: destroy everything before close the app
+	unsigned int Object::GetUUID() {
+		return __uuid;
 	}
-
-	void Game::Update() {
-		SDL_Event e;
-
-		//	https://wiki.libsdl.org/SDL_Event
-		while(SDL_PollEvent(&e)) {
-			// window events
-			WindowManager::Update(&e);
-
-			// input events
-			InputManager::Update(&e);
-
-			// game events
-			switch(e.type) {
-			case SDL_QUIT:
-				__quit = true;
-				break;
-			};
-
-			// TODO: every window, app, input event base
-		}
-
-		SceneManager::Update();
+	std::string Object::Serialize() {
+		return std::string();
 	}
-
-	float r = 0.0f;
-	float g = 0.0f;
-	float b = 0.0f;
-
-	void Game::Draw() {
-		SceneManager::Draw();
-		WindowManager::Draw();
+	bool Object::Deserialize() {
+		return false;
 	}
 }

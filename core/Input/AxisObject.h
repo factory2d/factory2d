@@ -20,33 +20,28 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview AxisObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
+#ifndef FACTORY2D_INPUT_AXISOBJECT_H_
+#define FACTORY2D_INPUT_AXISOBJECT_H_
 
-#include "Window/WindowManager.h"
+#include "ActionObject.h"
 
 namespace F2D
 {
-	class Renderer {
-	private:
-		static bool __allowVSync;
-
+	class AxisObject :
+		public ActionObject {
 	public:
-		static bool integerPosition;
+		AxisObject(std::string name);
+		~AxisObject();
 
-		static void Begin();
-		static void End();
-
-		static bool VSync(); static void VSync(bool value);
-
+		virtual float GetAxis();
 	};
 }
 
-#endif // FACTORY2D_RENDERER_H_
+#endif // FACTORY2D_INPUT_AXISOBJECT_H_

@@ -20,33 +20,47 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview FactoryObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
+#ifndef FACTORY2D_OBJECTS_FACTORYOBJECT_H_
+#define FACTORY2D_OBJECTS_FACTORYOBJECT_H_
 
-#include "Window/WindowManager.h"
+#include <string>
+#include <vector>
+
+#include "Object.h"
+#include "../Transform.h"
+#include "../Behavior/BehaviourObject.h"
 
 namespace F2D
 {
-	class Renderer {
+	class Transform;
+
+	class FactoryObject :
+		public Object {
 	private:
-		static bool __allowVSync;
+		std::string __tag;
+		std::vector <BehaviourObject*> __behaviours;
 
 	public:
-		static bool integerPosition;
+		Transform* transform;
 
-		static void Begin();
-		static void End();
+		FactoryObject() {};
+		FactoryObject(std::string name);
+		~FactoryObject();
 
-		static bool VSync(); static void VSync(bool value);
+		virtual void Draw();
+		virtual void Update();
 
+		std::string GetTag();
+		void SetTag(std::string tag);
+		void RemoveTag();
 	};
 }
 
-#endif // FACTORY2D_RENDERER_H_
+#endif // FACTORY2D_OBJECTS_FACTORYOBJECT_H_

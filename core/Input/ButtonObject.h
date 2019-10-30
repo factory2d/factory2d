@@ -20,33 +20,30 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview ButtonObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
+#ifndef FACTORY2D_INPUT_BUTTONOBJECT_H_
+#define FACTORY2D_INPUT_BUTTONOBJECT_H_
 
-#include "Window/WindowManager.h"
+#include "ActionObject.h"
 
 namespace F2D
 {
-	class Renderer {
-	private:
-		static bool __allowVSync;
-
+	class ButtonObject :
+		public ActionObject {
 	public:
-		static bool integerPosition;
+		ButtonObject(std::string name);
+		~ButtonObject();
 
-		static void Begin();
-		static void End();
-
-		static bool VSync(); static void VSync(bool value);
-
+		virtual bool GetButton();
+		virtual bool GetButtonUp();
+		virtual bool GetButtonDown();
 	};
 }
 
-#endif // FACTORY2D_RENDERER_H_
+#endif // FACTORY2D_INPUT_BUTTONOBJECT_H_

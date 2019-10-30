@@ -1,13 +1,144 @@
+/**
+ * @license
+ * F2D are available under the zlib license:
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty.  In no event will the authors be held liable for any damages
+ * varising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ *    claim that you wrote the original software. If you use this software
+ *    in a product, an acknowledgment in the product documentation would be
+ *    appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ *    misrepresented as being the original software.
+ * 3. This notice may not be removed or altered from any source distribution.
+ */
+
+ /**
+  * @fileoverview Transform.cpp
+  *
+  * --- FILE NOTES ---
+  *
+  * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+  */
+
 #include "Transform.h"
+
+#include "Time/TimeManager.h"
+#include "Renderer.h"
+
+#include "SDL_opengl.h"
+#include <GL\GLU.h>
 
 namespace F2D
 {
+	extern float dT = 0.0f; 
+	glm::vec3 Transform::__zero = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 Transform::__one = glm::vec3(0.0f, 0.0f, 0.0f);
 
 	Transform::Transform(FactoryObject* factoryObject) {
 		__factoryObject = factoryObject;
+		__position.x = __position.y = __position.z = 0.0f;
+		__rotate.x = __rotate.y = __rotate.z = 0.0f;
 	}
 
 	Transform::~Transform() {}
+
+	void Transform::SetPosition(glm::vec3 value) {
+		if(value != __position) {
+			__position = value;
+			__matrixUpdate = true;
+		}
+	}
+
+	void Transform::Translate(glm::vec3 value) {
+		if(value != __zero) {
+			dT = TimeManager::Delta();
+			__position += value * dT;
+			__matrixUpdate = true;
+		}
+	}
+
+	void Transform::SetOrigin(glm::vec3 value) {
+		if(__origin != value) {
+			__origin = value;
+			__matrixUpdate = true;
+		}
+	}
+
+	void Transform::SetRotate(float value) {
+		if(value != __rotate.y) {
+			__rotate.y += value;
+			__matrixUpdate = true;
+		}
+	}
+
+	void Transform::Rotate(float value) {
+		if(value != 0.0f) {
+			dT = TimeManager::Delta();
+			__rotate.y += value * dT;
+			__matrixUpdate = true;
+		}
+	}
+
+	void Transform::ApplyTransform(bool childUpdate) {
+		// don't know if I'll use this stuff yet...
+		//glm::mat4 projection = glm::perspective(70.0f, ((float)800) / (float)600, 1.0f, 1000.0f);
+		//glm::mat4 view = glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+
+		// local transform matrix cache
+		if(__matrixUpdate || childUpdate) {
+			__localTransform = glm::mat4(1.0f);
+
+			if(__parent != nullptr )
+				__localTransform = glm::translate(__localTransform, __parent->GetOrigin());
+			
+			glm::vec3 p = __position;
+			float a = __rotate.y;
+			glm::vec3 o = __origin;
+
+			// round the values when integer position enabled
+			// this is really good in pixel games :3
+			if(Renderer::integerPosition) {
+				p.x = round(p.x); p.y = round(p.y); p.z = round(p.z);
+				a = round(a);
+				o.x = round(o.x); o.y = round(o.y); o.z = round(o.z);
+			}
+
+			__localTransform = glm::translate(__localTransform, p);
+			__localTransform = glm::rotate(__localTransform, a * 0.0174533f, glm::vec3(0.0f, 0.0f, 1.0f));
+			__localTransform = glm::translate(__localTransform, -o);
+
+			childUpdate = true;
+			__matrixUpdate = false;
+
+			if(__parent == nullptr)
+				__worldTransform = __localTransform;
+			else
+				__worldTransform = __parent->GetWorldTransform() *__localTransform;
+		}
+		
+		// update child matrix
+		if(childUpdate){
+			for(unsigned int x = 0; x < __childs.size(); x++) {
+				__childs[x]->ApplyTransform(childUpdate);
+			}
+		}
+
+
+		//model = scale * translate * rotate;
+		//__localTransform = __localScale * __localPosition * __localAngle;
+		//glMultMatrixf(Transform.M);
+
+		//glUniformMatrix4fv(glGetUniformLocation(programID, "MV"), 1, GL_TRUE, glm::value_ptr(ModelViewMatrix));
+		//glUniformMatrix4fv(glGetUniformLocation(programID, "MVP"), 1, GL_TRUE, glm::value_ptr(ModelViewProjectionMatrix));
+		
+	}
 
 	unsigned int Transform::GetChildCount() {
 		return __childs.size();
@@ -34,6 +165,7 @@ namespace F2D
 		if(parent != NULL) {
 			__parent = parent;
 			parent->AttachChild(this);
+			__matrixUpdate = true;
 		}
 	}
 

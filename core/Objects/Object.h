@@ -20,33 +20,36 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview Object.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
+#ifndef FACTORY2D_OBJECTS_OBJECT_H_
+#define FACTORY2D_OBJECTS_OBJECT_H_
 
-#include "Window/WindowManager.h"
+#include <string>
 
 namespace F2D
 {
-	class Renderer {
+	class Object {
 	private:
-		static bool __allowVSync;
+		bool __destroy = false;
+		unsigned int __uuid = 0;
 
 	public:
-		static bool integerPosition;
+		std::string name;
+		bool enabled = true;
 
-		static void Begin();
-		static void End();
+		Object();
+		~Object();
+		unsigned int GetUUID();
 
-		static bool VSync(); static void VSync(bool value);
-
+		virtual std::string Serialize();
+		virtual bool Deserialize();
 	};
 }
 
-#endif // FACTORY2D_RENDERER_H_
+#endif // FACTORY2D_OBJECTS_OBJECT_H_

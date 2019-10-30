@@ -20,33 +20,27 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview SceneObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
+#ifndef FACTORY2D_SCENE_SCENEOBJECT_H_
+#define FACTORY2D_SCENE_SCENEOBJECT_H_
 
-#include "Window/WindowManager.h"
+#include "../Objects/FactoryObject.h"
 
-namespace F2D
-{
-	class Renderer {
-	private:
-		static bool __allowVSync;
+namespace F2D {
+	class SceneObject :
+		public FactoryObject {
 
 	public:
-		static bool integerPosition;
-
-		static void Begin();
-		static void End();
-
-		static bool VSync(); static void VSync(bool value);
-
+		SceneObject() {};
+		SceneObject(std::string name);
+		~SceneObject();
 	};
 }
 
-#endif // FACTORY2D_RENDERER_H_
+#endif // FACTORY2D_SCENE_SCENEOBJECT_H_

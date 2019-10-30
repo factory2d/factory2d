@@ -20,33 +20,37 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview ControllerObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
+#ifndef FACTORY2D_INPUT_CONTROLLEROBJECT_H_
+#define FACTORY2D_INPUT_CONTROLLEROBJECT_H_
 
-#include "Window/WindowManager.h"
+#include <iostream>
+#include <vector> 
+
+#include "../Objects/Object.h"
+#include "ActionObject.h"
 
 namespace F2D
 {
-	class Renderer {
+	class ControllerObject :
+		public F2D::Object {
 	private:
-		static bool __allowVSync;
+		std::vector <ActionObject*> __actions = {};
 
 	public:
-		static bool integerPosition;
+		ControllerObject(std::string name);
+		~ControllerObject();
 
-		static void Begin();
-		static void End();
-
-		static bool VSync(); static void VSync(bool value);
-
+		ActionObject* Push(ActionObject* action);
+		bool Pop(std::string name);
+		ActionObject* Get(std::string name);
 	};
 }
 
-#endif // FACTORY2D_RENDERER_H_
+#endif // FACTORY2D_INPUT_CONTROLLEROBJECT_H_

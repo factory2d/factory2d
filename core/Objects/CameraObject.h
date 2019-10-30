@@ -20,76 +20,51 @@
  */
 
  /**
-  * @fileoverview Game.cpp
+  * @fileoverview Object.h
   *
-  * Base game object
+  * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
+#ifndef FACTORY2D_OBJECTS_CAMERAOBJECT_H_
+#define FACTORY2D_OBJECTS_CAMERAOBJECT_H_
+
 #include "SDL.h"
 #include "SDL_opengl.h"
 #include <GL\GLU.h>
-#include <iostream>
+#include <vector> 
 
-#include "Game.h"
-#include "Renderer.h"
-#include "Time/TimeManager.h"
-#include "Window/WindowManager.h"
-#include "Input/InputManager.h"
-#include "Scene/SceneManager.h"
+#include "../Math.h"
+#include "FactoryObject.h"
+#include "../Color.h"
 
 namespace F2D
 {
-	Game::Game() {}
-	Game::~Game() {}
+	class CameraObject :
+		public FactoryObject {
+	private:
+		static std::vector <CameraObject*> __cameras;
+		static CameraObject* __activeCamera;
 
-	bool Game::Initialize() {
-		WindowManager::Initialize();
+	public:
+		CameraObject() {};
+		CameraObject(std::string name);
+		~CameraObject();
 
-		return true;
-	}
+		void Update() override;
+		void Draw() override;
 
-	void Game::Run() {
-		while(!__quit) {
-			this->Update();
-			this->Draw();
-			TimeManager::Update();
-		}
+		Rect* viewport = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
 
-		//	TODO: destroy everything before close the app
-	}
+		static unsigned int Count();
+		static CameraObject* GetCameraAt(unsigned int index);
+		static CameraObject* GetActiveCamera();
+		static void SetActiveCamera(CameraObject *camera);
 
-	void Game::Update() {
-		SDL_Event e;
-
-		//	https://wiki.libsdl.org/SDL_Event
-		while(SDL_PollEvent(&e)) {
-			// window events
-			WindowManager::Update(&e);
-
-			// input events
-			InputManager::Update(&e);
-
-			// game events
-			switch(e.type) {
-			case SDL_QUIT:
-				__quit = true;
-				break;
-			};
-
-			// TODO: every window, app, input event base
-		}
-
-		SceneManager::Update();
-	}
-
-	float r = 0.0f;
-	float g = 0.0f;
-	float b = 0.0f;
-
-	void Game::Draw() {
-		SceneManager::Draw();
-		WindowManager::Draw();
-	}
+		Color backgroundColor = Color(0.5f, 0.5f, 0.5f);
+		bool clearColor = true;
+	};
 }
+
+#endif // FACTORY2D_OBJECTS_CAMERAOBJECT_H_
