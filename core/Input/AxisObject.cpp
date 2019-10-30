@@ -37,7 +37,7 @@ namespace F2D
 		unsigned int totalTriggers = __triggers.size();
 		float axisOutput = 0.0f;
 
-		for(int x = 0; x < totalTriggers; x++) {
+		for(unsigned int x = 0; x < totalTriggers; x++) {
 			if(__triggers[x]->enabled) {
 				axisOutput = __triggers[x]->GetAxis();
 

@@ -27,6 +27,7 @@
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
+
 #define GL_GLEXT_PROTOTYPES
 
 #include "SDL.h"
@@ -71,13 +72,13 @@ namespace F2D
 		glMatrixMode(GL_PROJECTION);
 
 		glLoadIdentity();
-		glOrtho(0.0, windowWidth*c->viewport->width, windowHeight*c->viewport->height, 0.0, 1.0, -1.0);
+		glOrtho(0.0, windowWidth, windowHeight, 0.0, 1.0, -1.0);
 		
 		// camera matrix test 1
 		// this one is working, but I really really really 
 		// like to use matrix transformation. (cam mat tst 2)
-		glTranslatef(windowWidth*c->viewport->width * 0.5f, 
-					 windowHeight*c->viewport->height * 0.5f, 
+		glTranslatef(windowWidth * 0.5f, 
+					 windowHeight * 0.5f, 
 					 0.0f);
 		
 		wT = -c->transform->GetWorldTransform();

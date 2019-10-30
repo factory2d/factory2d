@@ -37,7 +37,9 @@ namespace F2D
 			}
 		}
 		
+
 		// get the picture from cache
+		_LOG("%u LOADED FROM CACHE", 123);
 		*asset = *p;
 		return true;
 	}

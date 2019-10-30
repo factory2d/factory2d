@@ -64,7 +64,7 @@ namespace F2D
 	void SceneManager::Update() {
 		unsigned int totalScenes = __scenes.size();
 
-		for(unsigned int x = 0; x < __scenes.size(); x++) {
+		for(unsigned int x = 0; x < totalScenes; x++) {
 			__scenes[x]->Update();
 		}
 	}

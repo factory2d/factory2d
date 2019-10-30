@@ -39,7 +39,7 @@ namespace F2D
 
 		totalTriggers = __triggers.size();
 
-		for(int x = 0; x < totalTriggers; x++) {
+		for(unsigned int x = 0; x < totalTriggers; x++) {
 			if(__triggers[x]->enabled && __triggers[x]->GetButton())
 				return true;
 		}

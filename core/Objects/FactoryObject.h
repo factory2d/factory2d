@@ -31,9 +31,11 @@
 #define FACTORY2D_OBJECTS_FACTORYOBJECT_H_
 
 #include <string>
+#include <vector>
 
 #include "Object.h"
 #include "../Transform.h"
+#include "../Behavior/BehaviourObject.h"
 
 namespace F2D
 {
@@ -43,6 +45,7 @@ namespace F2D
 		public Object {
 	private:
 		std::string __tag;
+		std::vector <BehaviourObject*> __behaviours;
 
 	public:
 		Transform* transform;

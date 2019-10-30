@@ -120,6 +120,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Behavior\BehaviourObject.cpp" />
+    <ClCompile Include="Behavior\CameraBehaviour.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Input\ButtonObject.cpp" />
     <ClCompile Include="Input\AxisObject.cpp" />
@@ -137,6 +139,7 @@
     <ClCompile Include="Objects\SpriteObject.cpp" />
     <ClCompile Include="Objects\TextureObject.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Behavior\SpriteBehaviour.cpp" />
     <ClCompile Include="Time\TimeManager.cpp" />
     <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="MaterialManager\MaterialManager.cpp" />
@@ -150,6 +153,8 @@
     <ClCompile Include="Window\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Behavior\BehaviourObject.h" />
+    <ClInclude Include="Behavior\CameraBehaviour.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Input\ButtonObject.h" />
     <ClInclude Include="Input\AxisObject.h" />
@@ -168,6 +173,7 @@
     <ClInclude Include="Objects\SpriteObject.h" />
     <ClInclude Include="Objects\TextureObject.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Behavior\SpriteBehaviour.h" />
     <ClInclude Include="Time\TimeManager.h" />
     <ClInclude Include="Input\InputManager.h" />
     <ClInclude Include="MaterialManager\MaterialManager.h" />

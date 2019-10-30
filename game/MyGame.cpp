@@ -6,6 +6,7 @@ MyGame::~MyGame() {}
 F2D::SceneObject* scene1;
 F2D::CameraObject* camera1;
 F2D::CameraObject* camera2;
+F2D::SpriteObject* center;
 F2D::SpriteObject* object1;
 F2D::SpriteObject* object2;
 
@@ -40,7 +41,7 @@ bool MyGame::Initialize() {
 
 	// load our game assets
 	// load a picture into the memory
-	F2D::Picture *p = new F2D::Picture();
+	F2D::Picture *p;// = new F2D::Picture();
 	p = F2D::AssetManager::Load<F2D::Picture>("Assets/256_orange.png"); // load the picture and put in cache
 	p = F2D::AssetManager::Load<F2D::Picture>("Assets/256_orange.png"); // loading the same picture, we will use the cached
 
@@ -49,11 +50,16 @@ bool MyGame::Initialize() {
 	F2D::SceneManager::Load(scene1);
 
 	// create objects inside the scene
+	center = new F2D::SpriteObject("center");
+	center->p = F2D::AssetManager::Load<F2D::Picture>("Assets/center.png");
+	center->transform->SetOrigin(8.0f, 8.0f, 0.0f);
+	center->transform->SetPosition(0.0f, 0.0f, 0.0f);
+	center->transform->SetParent(scene1->transform);
+
 	object1 = new F2D::SpriteObject("object1");
 	object1->p = F2D::AssetManager::Load<F2D::Picture>("Assets/256_orange.png");
-	object1->GetUUID();
 	object1->transform->SetOrigin(32.0f, 32.0f, 0.0f);
-	object1->transform->SetPosition(100.0f, 100.0f, 0.0f);
+	object1->transform->SetPosition(0.0f, 0.0f, 0.0f);
 	object1->transform->SetRotate(0.0f);
 	object1->transform->SetParent(scene1->transform);
 
@@ -74,9 +80,10 @@ bool MyGame::Initialize() {
 	camera2 = new F2D::CameraObject("camera2");
 	camera2->viewport = new F2D::Rect(0.0f, 0.0f, 0.45f, 0.45f);
 	camera2->backgroundColor = F2D::Color(1.0f, 0.0f, 0.0f);
-	camera2->clearColor = false;
+	camera2->clearColor = true;
 	camera2->transform->SetPosition(0.0f, 0.0f, 0.0f);
 	camera2->transform->SetParent(object2->transform);
+
 
 
 
@@ -98,13 +105,7 @@ void MyGame::Update() {
 	object1->transform->Translate(axisX, axisY, 0.0f);
 	object1->transform->Rotate(5.0f);
 	object2->transform->Rotate(15.0f);
-	/*
-	object1->transform->rotate->y += 1.0f;
-	if(object1->transform->rotate->y >= 360.0f)
-		object1->transform->rotate->y -= 360.0f;
 
-	object2->transform->rotate->y = object1->transform->rotate->y;
-	*/
 	Game::Update();
 }
 

@@ -20,7 +20,7 @@
  */
 
  /**
-  * @fileoverview TriggerObject.h
+  * @fileoverview InputTrigger.h
   *
   * --- FILE NOTES ---
   *
@@ -50,8 +50,13 @@ namespace F2D
 			glGenTextures(1, &t);
 			glBindTexture(GL_TEXTURE_2D, t);
 
-			glTexImage2D(GL_TEXTURE_2D, 0, 3, surface->w,
-				surface->h, 0, GL_RGB,
+			GLenum bytesPerPixel = GL_RGB;
+
+			if(surface->format->BytesPerPixel == 4)
+				bytesPerPixel = GL_RGBA;
+
+			glTexImage2D(GL_TEXTURE_2D, 0, 3, 
+				surface->w, surface->h, 0, bytesPerPixel,
 				GL_UNSIGNED_BYTE, surface->pixels);
 
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
