@@ -20,26 +20,17 @@
  */
 
  /**
-  * @fileoverview SpriteBehaviour.h
+  * @fileoverview TriggerObject.cpp
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
-
-#ifndef FACTORY2D_BEHAVIOUR_SPRITEBEHAVIOUR_H_
-#define FACTORY2D_BEHAVIOUR_SPRITEBEHAVIOUR_H_
-
-#include "Behaviour.h"
+#include "Trigger.h"
 
 namespace F2D
 {
-	class SpriteBehaviour :
-		public Behaviour {
-	public:
-		SpriteBehaviour();
-		~SpriteBehaviour();
-	};
-}
+	Trigger::Trigger() {}
 
-#endif // FACTORY2D_BEHAVIOUR_SPRITEBEHAVIOUR_H_
+	Trigger::~Trigger() {}
+}

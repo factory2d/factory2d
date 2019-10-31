@@ -20,35 +20,34 @@
  */
 
  /**
-  * @fileoverview MouseTriggerObject.h
+  * @fileoverview TriggerObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_INPUT_MOUSETRIGGEROBJECT_H_
-#define FACTORY2D_INPUT_MOUSETRIGGEROBJECT_H_
+#ifndef FACTORY2D_INPUT_TRIGGER_H_
+#define FACTORY2D_INPUT_TRIGGER_H_
 
-#include "TriggerObject.h"
+#include "../Object.h"
+
+// debug
+#include "../Debug.h"
 
 namespace F2D
 {
-	// Button
-	class MouseButtonObject :
-		public F2D::TriggerObject {
-	private:
-		unsigned char negative = 0;
-		unsigned char positive = 0;
-
+	class Trigger :
+		public F2D::Object {
 	public:
-		MouseButtonObject(std::string name, unsigned char key);
-		MouseButtonObject(std::string name, unsigned char negative, unsigned char positive);
-		~MouseButtonObject();
+		Trigger();
+		~Trigger();
 
-		virtual float GetAxis();
-		virtual bool GetButton();
+		virtual float GetAxis() { return 0.0f; };
+		virtual bool GetButton() { return false; };
+		virtual bool GetButtonUp() { return false; };
+		virtual bool GetButtonDown() { return false; };
 	};
 }
 
-#endif // FACTORY2D_INPUT_MOUSETRIGGEROBJECT_H_
+#endif // FACTORY2D_INPUT_TRIGGER_H_

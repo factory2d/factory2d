@@ -30,12 +30,12 @@
 #ifndef FACTORY2D_BEHAVIOUR_CAMERABEHAVIOUR_H_
 #define FACTORY2D_BEHAVIOUR_CAMERABEHAVIOUR_H_
 
-#include "BehaviourObject.h"
+#include "Behaviour.h"
 
 namespace F2D
 {
 	class CameraBehaviour :
-		public F2D::BehaviourObject {
+		public Behaviour {
 	public:
 		CameraBehaviour();
 		~CameraBehaviour();

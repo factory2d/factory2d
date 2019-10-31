@@ -20,39 +20,25 @@
  */
 
  /**
-  * @fileoverview KeyboardTriggerObject.cpp
+  * @fileoverview ActionObject.cpp
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include "KeyboardTriggerObject.h"
-#include "InputManager.h"
+#include "Action.h"
 
 namespace F2D
 {
-	KeyboardButtonObject::KeyboardButtonObject(std::string n, unsigned char key) :
-		KeyboardButtonObject(n, key, NULL) {}
-
-	KeyboardButtonObject::KeyboardButtonObject(std::string n, unsigned char neg, unsigned char pos) {
+	Action::Action(std::string n) {
 		name = n;
-		negative = neg;
-		positive = pos;
+		enabled = true;
 	}
 
-	KeyboardButtonObject::~KeyboardButtonObject() {}
+	Action::~Action() {}
 
-	float KeyboardButtonObject::GetAxis() {
-		if(InputManager::GetKeyboardKey(negative))
-			return -1.0f;
-		else if(InputManager::GetKeyboardKey(positive))
-
-			return 1.0f;
-		return 0.0f;
-	}
-
-	bool KeyboardButtonObject::GetButton() {
-		return InputManager::GetKeyboardKey(negative);
+	void Action::Push(Trigger * trigger) {
+		__triggers.push_back(trigger);
 	}
 }

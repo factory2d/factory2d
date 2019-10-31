@@ -20,51 +20,36 @@
  */
 
  /**
-  * @fileoverview ControllerObject.cpp
+  * @fileoverview Object.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include "ControllerObject.h"
+#ifndef FACTORY2D_OBJECT_H_
+#define FACTORY2D_OBJECT_H_
+
+#include <string>
 
 namespace F2D
 {
-	ControllerObject::ControllerObject(std::string n) {
-		name = n;
-		enabled = true;
-	}
+	class Object {
+	private:
+		bool __destroy = false;
+		unsigned int __uuid = 0;
 
-	ControllerObject::~ControllerObject() {}
+	public:
+		std::string name;
+		bool enabled = true;
 
-	ActionObject* ControllerObject::Push(ActionObject * action) {
-		__actions.push_back(action);
-		return __actions.back();
-	}
+		Object();
+		~Object();
+		unsigned int GetUUID();
 
-	bool ControllerObject::Pop(std::string name) {
-		unsigned int totalActions = __actions.size();
-
-		for(unsigned int x = 0; x < totalActions; x++) {
-			if(__actions[x]->name == name) {
-				__actions.erase(__actions.begin() + x);
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	ActionObject* ControllerObject::Get(std::string name) {
-		unsigned int totalActions = __actions.size();
-
-		for(unsigned int x = 0; x < totalActions; x++) {
-			if(__actions[x]->name == name) {
-				return __actions[x];
-			}
-		}
-
-		return nullptr;
-	}
+		virtual std::string Serialize();
+		virtual bool Deserialize();
+	};
 }
+
+#endif // FACTORY2D_OBJECTS_OBJECT_H_

@@ -20,32 +20,38 @@
  */
 
  /**
-  * @fileoverview AxisObject.cpp
+  * @fileoverview KeyboardTriggerObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
-#include "AxisObject.h"
+
+#ifndef FACTORY2D_INPUT_KEYBOARDTRIGGER_H_
+#define FACTORY2D_INPUT_KEYBOARDTRIGGER_H_
+
+#include "Trigger.h"
+
+// debug
+#include "../Debug.h"
 
 namespace F2D
 {
-	AxisObject::AxisObject(std::string n) : ActionObject(n) {}
+	// Button
+	class KeyboardTrigger :
+		public F2D::Trigger {
+	private:
+		unsigned char negative = 0;
+		unsigned char positive = 0;
 
-	AxisObject::~AxisObject() {}
-	float AxisObject::GetAxis() {
-		unsigned int totalTriggers = __triggers.size();
-		float axisOutput = 0.0f;
+	public:
+		KeyboardTrigger(std::string name, unsigned char key);
+		KeyboardTrigger(std::string name, unsigned char negative, unsigned char positive);
+		~KeyboardTrigger();
 
-		for(unsigned int x = 0; x < totalTriggers; x++) {
-			if(__triggers[x]->enabled) {
-				axisOutput = __triggers[x]->GetAxis();
-
-				if(axisOutput != 0.0f)
-					return axisOutput;
-			}
-		}
-
-		return 0.0f;
-	}
+		virtual float GetAxis();
+		virtual bool GetButton();
+	};
 }
+
+#endif // FACTORY2D_INPUT_KEYBOARDTRIGGER_H_

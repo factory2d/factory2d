@@ -20,30 +20,51 @@
  */
 
  /**
-  * @fileoverview ButtonObject.h
+  * @fileoverview ControllerObject.cpp
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_INPUT_BUTTONOBJECT_H_
-#define FACTORY2D_INPUT_BUTTONOBJECT_H_
-
-#include "ActionObject.h"
+#include "Controller.h"
 
 namespace F2D
 {
-	class ButtonObject :
-		public ActionObject {
-	public:
-		ButtonObject(std::string name);
-		~ButtonObject();
+	Controller::Controller(std::string n) {
+		name = n;
+		enabled = true;
+	}
 
-		virtual bool GetButton();
-		virtual bool GetButtonUp();
-		virtual bool GetButtonDown();
-	};
+	Controller::~Controller() {}
+
+	Action* Controller::Push(Action * action) {
+		__actions.push_back(action);
+		return __actions.back();
+	}
+
+	bool Controller::Pop(std::string name) {
+		unsigned int totalActions = __actions.size();
+
+		for(unsigned int x = 0; x < totalActions; x++) {
+			if(__actions[x]->name == name) {
+				__actions.erase(__actions.begin() + x);
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	Action* Controller::Get(std::string name) {
+		unsigned int totalActions = __actions.size();
+
+		for(unsigned int x = 0; x < totalActions; x++) {
+			if(__actions[x]->name == name) {
+				return __actions[x];
+			}
+		}
+
+		return nullptr;
+	}
 }
-
-#endif // FACTORY2D_INPUT_BUTTONOBJECT_H_

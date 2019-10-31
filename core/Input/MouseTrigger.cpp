@@ -1,8 +1,4 @@
-#include "MouseTriggerObject.h"
-
-
+#include "MouseTrigger.h"
 
 /*MouseTriggerObject::MouseTriggerObject() {}
-
-
 MouseTriggerObject::~MouseTriggerObject() {}*/

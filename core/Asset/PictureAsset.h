@@ -20,25 +20,28 @@
  */
 
  /**
-  * @fileoverview ActionObject.cpp
+  * @fileoverview Picture.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include "ActionObject.h"
+#ifndef FACTORY2D_ASSET_PICTUREASSET_H_
+#define FACTORY2D_ASSET_PICTUREASSET_H_
+
+#include <SDL_opengl.h>
+#include "Asset.h"
 
 namespace F2D
 {
-	ActionObject::ActionObject(std::string n) {
-		name = n;
-		enabled = true;
-	}
+	class PictureAsset :
+		public Asset {
+	private:
 
-	ActionObject::~ActionObject() {}
-
-	void ActionObject::Push(TriggerObject * trigger) {
-		__triggers.push_back(trigger);
-	}
+	public:
+		virtual bool Load(std::string path);
+	};
 }
+
+#endif // FACTORY2D_ASSET_PICTUREASSET_H_

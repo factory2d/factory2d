@@ -27,30 +27,33 @@
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_INPUT_CONTROLLEROBJECT_H_
-#define FACTORY2D_INPUT_CONTROLLEROBJECT_H_
+#ifndef FACTORY2D_INPUT_CONTROLLER_H_
+#define FACTORY2D_INPUT_CONTROLLER_H_
 
 #include <iostream>
 #include <vector> 
 
-#include "../Objects/Object.h"
-#include "ActionObject.h"
+#include "../Object.h"
+#include "Action.h"
+
+// debug
+#include "../Debug.h"
 
 namespace F2D
 {
-	class ControllerObject :
+	class Controller :
 		public F2D::Object {
 	private:
-		std::vector <ActionObject*> __actions = {};
+		std::vector <Action*> __actions = {};
 
 	public:
-		ControllerObject(std::string name);
-		~ControllerObject();
+		Controller(std::string name);
+		~Controller();
 
-		ActionObject* Push(ActionObject* action);
+		Action* Push(Action* action);
 		bool Pop(std::string name);
-		ActionObject* Get(std::string name);
+		Action* Get(std::string name);
 	};
 }
 
-#endif // FACTORY2D_INPUT_CONTROLLEROBJECT_H_
+#endif // FACTORY2D_INPUT_CONTROLLER_H_

@@ -41,24 +41,23 @@
 #include "Transform.h"
 
 /* OBJECTS */
-#include "Objects/Object.h"
+#include "Object.h"
 #include "Objects/FactoryObject.h"
-#include "Objects/TextureObject.h"
 #include "Objects/SpriteObject.h"
 
 /* ASSETS */
-#include "Asset.h"
+#include "Asset/Asset.h"
 #include "Asset/AssetManager.h"
-#include "Asset/Picture.h"
+#include "Asset/PictureAsset.h"
 
 /* INPUT */
 #include "Input/InputManager.h"
-#include "Input/ControllerObject.h"
-#include "Input/ActionObject.h"
-#include "Input/AxisObject.h"
-#include "Input/ButtonObject.h"
-#include "Input/TriggerObject.h"
-#include "Input/KeyboardTriggerObject.h"
+#include "Input/Controller.h"
+#include "Input/Action.h"
+#include "Input/AxisAction.h"
+#include "Input/ButtonAction.h"
+#include "Input/Trigger.h"
+#include "Input/KeyboardTrigger.h"
 
 /* MATERIAL */
 #include "Color.h"

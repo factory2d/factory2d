@@ -33,9 +33,9 @@
 #include <string>
 #include <vector>
 
-#include "Object.h"
+#include "../Object.h"
 #include "../Transform.h"
-#include "../Behavior/BehaviourObject.h"
+#include "../Behavior/Behaviour.h"
 
 namespace F2D
 {
@@ -45,7 +45,7 @@ namespace F2D
 		public Object {
 	private:
 		std::string __tag;
-		std::vector <BehaviourObject*> __behaviours;
+		std::vector <Behaviour*> __behaviours;
 
 	public:
 		Transform* transform;

@@ -20,35 +20,45 @@
  */
 
  /**
-  * @fileoverview ButtonObject.cpp
+  * @fileoverview Asset.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include "ButtonObject.h"
+#ifndef FACTORY2D_ASSET_ASSET_H_
+#define FACTORY2D_ASSET_ASSET_H_
+
+#include <string>
+
+// debug
+#include "../Debug.h"
 
 namespace F2D
 {
-	ButtonObject::ButtonObject(std::string n) : ActionObject(n) {}
+	enum AssetTypes {
+		IMAGE = 0,
+		SPRITE,
+		SOUND,
+		MUSIC,
+		VIDEO,
+		FONT,
+	};
 
-	ButtonObject::~ButtonObject() {}
-	bool ButtonObject::GetButton() {
-		unsigned int totalTriggers = 0;
+	class Asset {
+	protected:
+		AssetTypes __type;
+		void *__data;
 
-		totalTriggers = __triggers.size();
-
-		for(unsigned int x = 0; x < totalTriggers; x++) {
-			if(__triggers[x]->enabled && __triggers[x]->GetButton())
-				return true;
-		}
-		return false;
-	}
-	bool ButtonObject::GetButtonUp() {
-		return false;
-	}
-	bool ButtonObject::GetButtonDown() {
-		return false;
-	}
+	public:
+		Asset();
+		~Asset();
+			
+		void *Data();
+		virtual bool Load(std::string asset);
+		virtual bool LoadFromFile(std::string path);
+	};
 }
+
+#endif // FACTORY2D_ASSET_ASSET_H_

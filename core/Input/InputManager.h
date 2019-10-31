@@ -52,7 +52,10 @@ a little about my UTools (https://pt.slideshare.net/alexrdes/u-tools-unite-brasi
 #include <vector> 
 #include <map>
 #include "SDL.h"
-#include "ControllerObject.h"
+#include "Controller.h"
+
+// debug
+#include "../Debug.h"
 
 namespace F2D
 {
@@ -138,7 +141,7 @@ namespace F2D
 
 	class InputManager {
 	private:
-		static std::vector <ControllerObject*> __controllers;
+		static std::vector <Controller*> __controllers;
 		static std::map <unsigned char, bool> __keyboardKeys;
 		static long __lastUpdate;
 
@@ -153,7 +156,7 @@ namespace F2D
 
 		// generic stuff
 		static void Update(void *event);
-		static ControllerObject* Push(ControllerObject* controller);
+		static Controller* Push(Controller* controller);
 		static void Pop(std::string key);
 	};
 }

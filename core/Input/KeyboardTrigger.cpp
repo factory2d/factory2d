@@ -20,31 +20,39 @@
  */
 
  /**
-  * @fileoverview TriggerObject.h
+  * @fileoverview KeyboardTriggerObject.cpp
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_INPUT_TRIGGEROBJECT_H_
-#define FACTORY2D_INPUT_TRIGGEROBJECT_H_
-
-#include "../Objects/Object.h"
+#include "KeyboardTrigger.h"
+#include "InputManager.h"
 
 namespace F2D
 {
-	class TriggerObject :
-		public F2D::Object {
-	public:
-		TriggerObject();
-		~TriggerObject();
+	KeyboardTrigger::KeyboardTrigger(std::string n, unsigned char key) :
+		KeyboardTrigger(n, key, NULL) {}
 
-		virtual float GetAxis() { return 0.0f; };
-		virtual bool GetButton() { return false; };
-		virtual bool GetButtonUp() { return false; };
-		virtual bool GetButtonDown() { return false; };
-	};
+	KeyboardTrigger::KeyboardTrigger(std::string n, unsigned char neg, unsigned char pos) {
+		name = n;
+		negative = neg;
+		positive = pos;
+	}
+
+	KeyboardTrigger::~KeyboardTrigger() {}
+
+	float KeyboardTrigger::GetAxis() {
+		if(InputManager::GetKeyboardKey(negative))
+			return -1.0f;
+		else if(InputManager::GetKeyboardKey(positive))
+
+			return 1.0f;
+		return 0.0f;
+	}
+
+	bool KeyboardTrigger::GetButton() {
+		return InputManager::GetKeyboardKey(negative);
+	}
 }
-
-#endif // FACTORY2D_INPUT_TRIGGEROBJECT_H_

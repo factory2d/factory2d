@@ -20,36 +20,33 @@
  */
 
  /**
-  * @fileoverview Object.h
+  * @fileoverview ButtonObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_OBJECTS_OBJECT_H_
-#define FACTORY2D_OBJECTS_OBJECT_H_
+#ifndef FACTORY2D_INPUT_BUTTON_H_
+#define FACTORY2D_INPUT_BUTTON_H_
 
-#include <string>
+#include "Action.h"
+
+// debug
+#include "../Debug.h"
 
 namespace F2D
 {
-	class Object {
-	private:
-		bool __destroy = false;
-		unsigned int __uuid = 0;
-
+	class ButtonAction :
+		public Action {
 	public:
-		std::string name;
-		bool enabled = true;
+		ButtonAction(std::string name);
+		~ButtonAction();
 
-		Object();
-		~Object();
-		unsigned int GetUUID();
-
-		virtual std::string Serialize();
-		virtual bool Deserialize();
+		virtual bool GetButton();
+		virtual bool GetButtonUp();
+		virtual bool GetButtonDown();
 	};
 }
 
-#endif // FACTORY2D_OBJECTS_OBJECT_H_
+#endif // FACTORY2D_INPUT_BUTTON_H_

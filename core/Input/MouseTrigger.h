@@ -20,26 +20,38 @@
  */
 
  /**
-  * @fileoverview SpriteBehaviour.h
+  * @fileoverview MouseTriggerObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_BEHAVIOUR_SPRITEBEHAVIOUR_H_
-#define FACTORY2D_BEHAVIOUR_SPRITEBEHAVIOUR_H_
+#ifndef FACTORY2D_INPUT_MOUSETRIGGER_H_
+#define FACTORY2D_INPUT_MOUSETRIGGER_H_
 
-#include "Behaviour.h"
+#include "Trigger.h"
+
+// debug
+#include "../Debug.h"
 
 namespace F2D
 {
-	class SpriteBehaviour :
-		public Behaviour {
+	// Button
+	class MouseTrigger :
+		public F2D::Trigger {
+	private:
+		unsigned char negative = 0;
+		unsigned char positive = 0;
+
 	public:
-		SpriteBehaviour();
-		~SpriteBehaviour();
+		MouseTrigger(std::string name, unsigned char key);
+		MouseTrigger(std::string name, unsigned char negative, unsigned char positive);
+		~MouseTrigger();
+
+		virtual float GetAxis();
+		virtual bool GetButton();
 	};
 }
 
-#endif // FACTORY2D_BEHAVIOUR_SPRITEBEHAVIOUR_H_
+#endif // FACTORY2D_INPUT_MOUSETRIGGER_H_

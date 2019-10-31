@@ -1,7 +1,7 @@
 #ifndef __FACTORY2D_SPRITEOBJECT
 #define __FACTORY2D_SPRITEOBJECT
 
-#include "../Asset/Picture.h"
+#include "../Asset/PictureAsset.h"
 #include "FactoryObject.h"
 
 namespace F2D
@@ -9,7 +9,7 @@ namespace F2D
 	class SpriteObject :
 		public FactoryObject {
 	public:
-		Picture *p;
+		PictureAsset *p;
 
 		SpriteObject() {};
 		SpriteObject(std::string name);

@@ -20,17 +20,25 @@
  */
 
  /**
-  * @fileoverview TriggerObject.cpp
+  * @fileoverview Asset.cpp
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
-#include "TriggerObject.h"
+
+#include "Asset.h"
 
 namespace F2D
 {
-	TriggerObject::TriggerObject() {}
+	Asset::Asset() {}
+	Asset::~Asset() {}
 
-	TriggerObject::~TriggerObject() {}
+	void *Asset::Data() {
+		return __data;
+	}
+
+	bool Asset::Load(std::string asset) { return false; }
+
+	bool Asset::LoadFromFile(std::string path) { return false; }
 }

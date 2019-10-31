@@ -20,39 +20,30 @@
  */
 
  /**
-  * @fileoverview ActionObject.h
+  * @fileoverview BehaviourObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_INPUT_ACTIONOBJECT_H_
-#define FACTORY2D_INPUT_ACTIONOBJECT_H_
+#ifndef FACTORY2D_BEHAVIOUR_BEHAVIOUR_H_
+#define FACTORY2D_BEHAVIOUR_BEHAVIOUR_H_
 
-#include <vector> 
-
-#include "../Objects/Object.h"
-#include "TriggerObject.h"
+#include "../Object.h"
 
 namespace F2D
 {
-	class ActionObject :
+	class Behaviour :
 		public F2D::Object {
-	protected:
-		std::vector <TriggerObject*> __triggers = {};
 
 	public:
-		ActionObject(std::string name);
-		~ActionObject();
+		Behaviour() {};
+		~Behaviour() {};
 
-		void Push(TriggerObject* trigger);
-
-		virtual float GetAxis() { return 0.0f; };
-		virtual bool GetButton() { return false; };
-		virtual bool GetButtonUp() { return false; };
-		virtual bool GetButtonDown() { return false; };
+		virtual void Update() {};
+		virtual void Draw() {};
 	};
 }
 
-#endif // FACTORY2D_INPUT_ACTIONOBJECT_H_
+#endif // FACTORY2D_BEHAVIOUR_BEHAVIOUR_H_

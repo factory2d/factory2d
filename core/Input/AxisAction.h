@@ -20,30 +20,31 @@
  */
 
  /**
-  * @fileoverview BehaviourObject.h
+  * @fileoverview AxisObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_BEHAVIOUR_BEHAVIOUROBJECT_H_
-#define FACTORY2D_BEHAVIOUR_BEHAVIOUROBJECT_H_
+#ifndef FACTORY2D_INPUT_AXIS_H_
+#define FACTORY2D_INPUT_AXIS_H_
 
-#include "../Objects/Object.h"
+#include "Action.h"
+
+// debug
+#include "../Debug.h"
 
 namespace F2D
 {
-	class BehaviourObject :
-		public F2D::Object {
-
+	class AxisAction :
+		public Action {
 	public:
-		BehaviourObject() {};
-		~BehaviourObject() {};
+		AxisAction(std::string name);
+		~AxisAction();
 
-		virtual void Update() {};
-		virtual void Draw() {};
+		virtual float GetAxis();
 	};
 }
 
-#endif // FACTORY2D_BEHAVIOUR_BEHAVIOUROBJECT_H_
+#endif // FACTORY2D_INPUT_AXIS_H_

@@ -20,28 +20,42 @@
  */
 
  /**
-  * @fileoverview AxisObject.h
+  * @fileoverview ActionObject.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_INPUT_AXISOBJECT_H_
-#define FACTORY2D_INPUT_AXISOBJECT_H_
+#ifndef FACTORY2D_INPUT_ACTION_H_
+#define FACTORY2D_INPUT_ACTION_H_
 
-#include "ActionObject.h"
+#include <vector> 
+
+#include "../Object.h"
+#include "Trigger.h"
+
+// debug
+#include "../Debug.h"
 
 namespace F2D
 {
-	class AxisObject :
-		public ActionObject {
-	public:
-		AxisObject(std::string name);
-		~AxisObject();
+	class Action :
+		public F2D::Object {
+	protected:
+		std::vector <Trigger*> __triggers = {};
 
-		virtual float GetAxis();
+	public:
+		Action(std::string name);
+		~Action();
+
+		void Push(Trigger* trigger);
+
+		virtual float GetAxis() { return 0.0f; };
+		virtual bool GetButton() { return false; };
+		virtual bool GetButtonUp() { return false; };
+		virtual bool GetButtonDown() { return false; };
 	};
 }
 
-#endif // FACTORY2D_INPUT_AXISOBJECT_H_
+#endif // FACTORY2D_INPUT_ACTION_H_
