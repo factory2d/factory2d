@@ -6,9 +6,9 @@ MyGame::~MyGame() {}
 F2D::SceneObject* scene1;
 F2D::CameraObject* camera1;
 F2D::CameraObject* camera2;
-F2D::SpriteObject* center;
-F2D::SpriteObject* object1;
-F2D::SpriteObject* object2;
+F2D::FactoryObject* center;
+F2D::FactoryObject* object1;
+F2D::FactoryObject* object2;
 
 bool MyGame::Initialize() {
 	// configure our windows
@@ -19,7 +19,7 @@ bool MyGame::Initialize() {
 	F2D::WindowManager::Initialize();
 	F2D::Renderer::VSync(false);
 
-	// cobfigure our input
+	// configure our input
 	// create a new controller
 	F2D::Controller *controller1 = F2D::InputManager::Push(new F2D::Controller("player"));
 
@@ -41,7 +41,7 @@ bool MyGame::Initialize() {
 
 	// load our game assets
 	// load a picture into the memory
-	F2D::PictureAsset *p;// = new F2D::Picture();
+	F2D::PictureAsset *p;
 	p = F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_orange.png"); // load the picture and put in cache
 	p = F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_orange.png"); // loading the same picture, we will use the cached
 
@@ -50,25 +50,25 @@ bool MyGame::Initialize() {
 	F2D::SceneManager::Load(scene1);
 
 	// create objects inside the scene
-	center = new F2D::SpriteObject("center");
-	center->p = F2D::AssetManager::Load<F2D::PictureAsset>("Assets/center.png");
+	center = new F2D::FactoryObject("center");
 	center->transform->SetOrigin(8.0f, 8.0f, 0.0f);
 	center->transform->SetPosition(0.0f, 0.0f, 0.0f);
 	center->transform->SetParent(scene1->transform);
+	center->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::PictureAsset>("Assets/center.png")));
 
-	object1 = new F2D::SpriteObject("object1");
-	object1->p = F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_orange.png");
+	object1 = new F2D::FactoryObject("object1");
 	object1->transform->SetOrigin(32.0f, 32.0f, 0.0f);
 	object1->transform->SetPosition(0.0f, 0.0f, 0.0f);
 	object1->transform->SetRotate(0.0f);
 	object1->transform->SetParent(scene1->transform);
+	object1->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_orange.png")));
 
-	object2 = new F2D::SpriteObject("object2");
-	object2->p = F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_green.png");
+	object2 = new F2D::FactoryObject("object2");
 	object2->transform->SetOrigin(32.0f, 32.0f, 0.0f);
 	object2->transform->SetPosition(100.0f, 100.0f, 0.0f);
 	object2->transform->SetRotate(0.0f);
 	object2->transform->SetParent(object1->transform);
+	object2->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_green.png")));
 
 	// create the scene camera
 	camera1 = new F2D::CameraObject("camera1");
@@ -76,7 +76,7 @@ bool MyGame::Initialize() {
 	camera1->backgroundColor = F2D::Color(0.25f, 0.25f, 0.25f);
 	camera1->transform->SetPosition(0.0f, 0.0f, 0.0f);
 	camera1->transform->SetParent(scene1->transform);
-
+	
 	camera2 = new F2D::CameraObject("camera2");
 	camera2->viewport = new F2D::Rect(0.0f, 0.0f, 0.45f, 0.45f);
 	camera2->backgroundColor = F2D::Color(1.0f, 0.0f, 0.0f);
@@ -92,7 +92,7 @@ bool MyGame::Initialize() {
 	// this, but, the feature can have some issues os just didn't work
 	// yet... Sorry for that xD
 	// tag test, not working yet, just to test the tag listing
-	F2D::TagManager::SetTag("teste", NULL);
+	F2D::TagManager::SetTag("teste", nullptr);
 
 	return false;
 }

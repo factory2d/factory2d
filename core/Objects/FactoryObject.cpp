@@ -47,34 +47,52 @@ namespace F2D
 
 	void FactoryObject::Update() {
 		//	TODO: there a better way to do that!
-		for(unsigned int x = 0; x < transform->GetChildCount(); x++) {
+		unsigned int totalBehaviours = __behaviours.size();
+		unsigned int totalChilds = transform->GetChildCount();
+		unsigned int x = 0;
+
+		for(x = 0; x < totalBehaviours; x++) {
+			__behaviours[x]->Update();
+		}
+
+		for(x = 0; x < totalChilds; x++) {
 			transform->GetChild(x)->GetFactoryObject()->Update();
 		}
 	}
 
 	void FactoryObject::Draw() {
 		//	TODO: there a better way to do that!
+		unsigned int totalBehaviours = __behaviours.size();
+		unsigned int totalChilds = transform->GetChildCount();
 		Transform *t;
 		Transform *p;
+		unsigned int x = 0;
 
-		for(unsigned int x = 0; x < transform->GetChildCount(); x++) {
-			t = transform->GetChild(x);
-			p = t->GetParent();
-			glPushMatrix();
+		for(x = 0; x < totalBehaviours; x++) {
+			if(__behaviours[x]->enabled)
+				__behaviours[x]->Draw();
+		}
 
-			//if(p != NULL)
-			//	glTranslatef(p->GetOrigin().x, p->GetOrigin().y, p->GetOrigin().z);
-			//glTranslatef(t->GetPosition().x, t->GetPosition().y, t->GetPosition().z);
-			//glRotatef(t->GetRotate().y, 0.0f, 0.0f, 1.0f);
-			//glTranslatef(-t->GetOrigin().x, -t->GetOrigin().y, -t->GetOrigin().z);
+		for(x = 0; x < totalChilds; x++) {
+			if(transform->GetChild(x)->GetFactoryObject()->enabled) {
+				t = transform->GetChild(x);
+				p = t->GetParent();
+				glPushMatrix();
 
-			// calculate transform matrix and cache it
-			// we will only calculate it again if need :3
-			t->ApplyTransform();
-			glMultMatrixf(glm::value_ptr(t->GetLocalTransform()));
+				//if(p != NULL)
+				//	glTranslatef(p->GetOrigin().x, p->GetOrigin().y, p->GetOrigin().z);
+				//glTranslatef(t->GetPosition().x, t->GetPosition().y, t->GetPosition().z);
+				//glRotatef(t->GetRotate().y, 0.0f, 0.0f, 1.0f);
+				//glTranslatef(-t->GetOrigin().x, -t->GetOrigin().y, -t->GetOrigin().z);
 
-			t->GetFactoryObject()->Draw();
-			glPopMatrix();
+				// calculate transform matrix and cache it
+				// we will only calculate it again if need :3
+				t->ApplyTransform();
+				glMultMatrixf(glm::value_ptr(t->GetLocalTransform()));
+
+				t->GetFactoryObject()->Draw();
+				glPopMatrix();
+			}
 		}
 
 	}
@@ -86,4 +104,12 @@ namespace F2D
 	}
 
 	void FactoryObject::RemoveTag() {}
+	Behaviour * FactoryObject::AddBehaviour(Behaviour * behaviour) {
+		behaviour->transform = transform;
+		__behaviours.push_back(behaviour);
+		return __behaviours.back();
+	}
+	bool FactoryObject::RemoveBehaviour(std::string name) {
+		return false;
+	}
 }

@@ -162,7 +162,7 @@ namespace F2D
 		}
 
 		//	add this object to the parent if it exists
-		if(parent != NULL) {
+		if(parent != nullptr) {
 			__parent = parent;
 			parent->AttachChild(this);
 			__matrixUpdate = true;
@@ -170,7 +170,7 @@ namespace F2D
 	}
 
 	void Transform::AttachChild(Transform* child) {
-		if(child == NULL)
+		if(child == nullptr)
 			return;
 
 		__childs.push_back(child);
@@ -178,7 +178,7 @@ namespace F2D
 	}
 
 	void Transform::DetachChild(Transform* child) {
-		if(child == NULL)
+		if(child == nullptr)
 			return;
 
 		for(unsigned int x = 0; x < __childs.size(); x++) {
@@ -188,7 +188,7 @@ namespace F2D
 			}
 		}
 
-		child->SetParent(NULL);
+		child->SetParent(nullptr);
 	}
 
 	Transform* Transform::GetChild(int index) {
@@ -198,6 +198,6 @@ namespace F2D
 	Transform* Transform::GetChilds() {
 		//int output[];// = new Transform*[this->GetChildCount()];
 		//std::copy(v.begin(), v.end(), arr);
-		return NULL;// output;
+		return nullptr;// output;
 	}
 }

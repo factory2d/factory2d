@@ -40,6 +40,7 @@
 namespace F2D
 {
 	class Transform;
+	class Behaviour;
 
 	class FactoryObject :
 		public Object {
@@ -50,16 +51,23 @@ namespace F2D
 	public:
 		Transform* transform;
 
+		// constructor and destructor
 		FactoryObject() {};
 		FactoryObject(std::string name);
 		~FactoryObject();
 
+		// render and update
 		virtual void Draw();
 		virtual void Update();
 
+		// tag
 		std::string GetTag();
 		void SetTag(std::string tag);
 		void RemoveTag();
+
+		// behaviour
+		Behaviour* AddBehaviour(Behaviour* action);
+		bool RemoveBehaviour(std::string name);
 	};
 }
 

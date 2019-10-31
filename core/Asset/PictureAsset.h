@@ -38,9 +38,12 @@ namespace F2D
 	class PictureAsset :
 		public Asset {
 	private:
-
+		int __width = 0;
+		int __height = 0;
 	public:
 		virtual bool Load(std::string path);
+		int Width() { return __width; }
+		int Height() { return __height; }
 	};
 }
 

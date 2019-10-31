@@ -65,7 +65,8 @@ namespace F2D
 		unsigned int totalScenes = __scenes.size();
 
 		for(unsigned int x = 0; x < totalScenes; x++) {
-			__scenes[x]->Update();
+			if(__scenes[x]->enabled)
+				__scenes[x]->Update();
 		}
 	}
 
@@ -83,7 +84,8 @@ namespace F2D
 
 				Renderer::Begin();
 				for(unsigned int scn = 0; scn < totalScenes; scn++) {
-					__scenes[scn]->Draw();
+					if(__scenes[scn]->enabled)
+						__scenes[scn]->Draw();
 				}
 				Renderer::End();
 			}

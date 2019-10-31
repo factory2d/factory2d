@@ -31,14 +31,27 @@
 #define FACTORY2D_BEHAVIOUR_SPRITEBEHAVIOUR_H_
 
 #include "Behaviour.h"
+#include "../Asset/PictureAsset.h"
 
 namespace F2D
 {
 	class SpriteBehaviour :
 		public Behaviour {
+	private:
+
 	public:
+		PictureAsset *picture = nullptr;
+		
+		float width = 0.0f;
+		float height = 0.0f;
+
 		SpriteBehaviour();
+		SpriteBehaviour(std::string name);
+		SpriteBehaviour(PictureAsset * picture);
 		~SpriteBehaviour();
+
+		virtual void Update();
+		virtual void Draw();
 	};
 }
 

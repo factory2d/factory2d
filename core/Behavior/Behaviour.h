@@ -31,13 +31,18 @@
 #define FACTORY2D_BEHAVIOUR_BEHAVIOUR_H_
 
 #include "../Object.h"
+#include "../Transform.h"
 
 namespace F2D
 {
+	class Transform;
+
 	class Behaviour :
 		public F2D::Object {
 
 	public:
+		Transform* transform;
+
 		Behaviour() {};
 		~Behaviour() {};
 

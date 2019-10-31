@@ -39,7 +39,7 @@ namespace F2D
 	bool AssetManager::LoadAsset(PictureAsset * asset, std::string path) {
 		PictureAsset *p = (PictureAsset*)AssetManager::Get(path);
 
-		if(p == NULL) {
+		if(p == nullptr) {
 			if(asset->Load(path)) {
 				Push(path, asset);
 				return true;
@@ -49,7 +49,6 @@ namespace F2D
 				return false;
 			}
 		}
-
 
 		// get the picture from cache
 		_LOG("%u LOADED FROM CACHE", 123);
@@ -63,7 +62,7 @@ namespace F2D
 		std::transform(k.begin(), k.end(), k.begin(), ::tolower);
 
 		// if we didn't have this asset yet we register it
-		if(__assets[k] == NULL) {
+		if(__assets[k] == nullptr) {
 			__assets[k] = asset;
 		}
 	}

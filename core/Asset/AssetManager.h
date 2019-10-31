@@ -59,7 +59,7 @@ namespace F2D
 				return asset;
 			}
 
-			return NULL;
+			return nullptr;
 		}
 	};
 }

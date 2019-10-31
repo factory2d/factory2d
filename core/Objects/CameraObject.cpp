@@ -11,9 +11,12 @@ namespace F2D
 
 	CameraObject::~CameraObject() {}
 
-	void CameraObject::Update() {}
+	void CameraObject::Update() {
+		FactoryObject::Update();
+	}
 
 	void CameraObject::Draw() {
+		FactoryObject::Draw();
 		// just for debug
 		/*
 		glBegin(GL_QUADS);

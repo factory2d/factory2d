@@ -58,6 +58,9 @@ namespace F2D
 				surface->w, surface->h, 0, bytesPerPixel,
 				GL_UNSIGNED_BYTE, surface->pixels);
 
+			__width = surface->w;
+			__height = surface->h;
+
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 

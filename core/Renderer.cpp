@@ -1,4 +1,3 @@
-
 /**
  * @license
  * F2D are available under the zlib license:
@@ -46,21 +45,24 @@ namespace F2D
 	bool Renderer::__allowVSync = true; // allow user use monitor vsync
 	
 	void Renderer::Begin() {
+		// TODO:
+		// every time a render begin I'm re-creating all of these
+		// variables, I need to put it outside and reuse then.
 		glm::mat4 wT;
 		CameraObject *c = CameraObject::GetActiveCamera();
 		int windowWidth = WindowManager::Width(); int windowHeight = WindowManager::Height();
+		int viewportX = windowWidth * c->viewport->x;
+		int viewportY = windowHeight * c->viewport->y;
+		int viewportWidth = windowWidth * c->viewport->width;
+		int viewportHeight = windowHeight * c->viewport->height;
 
 		// set the viewport
-		glViewport(windowWidth*c->viewport->x,
-				   windowHeight*c->viewport->y,
-				   windowWidth*c->viewport->width,
-				   windowHeight*c->viewport->height);
+		glViewport(viewportX, viewportY,
+			viewportWidth, viewportHeight);
 		
 		// cut the window area to clear and render
-		glScissor(windowWidth*c->viewport->x,
-			windowHeight*c->viewport->y,
-			windowWidth*c->viewport->width,
-			windowHeight*c->viewport->height);
+		glScissor(viewportX, viewportY,
+			viewportWidth, viewportHeight);
 		
 		glEnable(GL_SCISSOR_TEST);
 		if(c->clearColor) {

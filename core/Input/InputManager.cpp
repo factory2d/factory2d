@@ -36,7 +36,7 @@
 
 namespace F2D
 {
-	std::vector <ControllerObject*>InputManager::__controllers = {};
+	std::vector <Controller*>InputManager::__controllers = {};
 	std::map <unsigned char, bool>InputManager::__keyboardKeys = {};
 	long InputManager::__lastUpdate = -1;
 
@@ -45,7 +45,7 @@ namespace F2D
 
 		for(unsigned int x = 0; x < totalController; x++) {
 			if(__controllers[x]->enabled) {
-				F2D::ActionObject *a = __controllers[x]->Get(action);
+				F2D::Action *a = __controllers[x]->Get(action);
 				if(a != nullptr) {
 					return a->GetAxis();
 				}
@@ -60,7 +60,7 @@ namespace F2D
 
 		for(unsigned int x = 0; x < totalController; x++) {
 			if(__controllers[x]->enabled) {
-				F2D::ActionObject *a = __controllers[x]->Get(action);
+				F2D::Action *a = __controllers[x]->Get(action);
 				if(a != nullptr) {
 					return a->GetButton();
 				}
@@ -162,7 +162,8 @@ namespace F2D
 		// sensores
 		}
 	}
-	ControllerObject* InputManager::Push(ControllerObject * controller) {
+
+	Controller* InputManager::Push(Controller * controller) {
 		__controllers.push_back(controller);
 		return __controllers.back();
 	}

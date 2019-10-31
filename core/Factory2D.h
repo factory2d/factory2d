@@ -45,6 +45,10 @@
 #include "Objects/FactoryObject.h"
 #include "Objects/SpriteObject.h"
 
+/* BEHAVOUR */
+#include "Behavior/Behaviour.h"
+#include "Behavior/SpriteBehaviour.h"
+
 /* ASSETS */
 #include "Asset/Asset.h"
 #include "Asset/AssetManager.h"
