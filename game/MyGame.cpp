@@ -57,18 +57,20 @@ bool MyGame::Initialize() {
 	center->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::PictureAsset>("Assets/center.png")));
 
 	object1 = new F2D::FactoryObject("object1");
-	object1->transform->SetOrigin(32.0f, 32.0f, 0.0f);
+	object1->transform->SetOrigin(50.0f, 50.0f, 0.0f);
 	object1->transform->SetPosition(0.0f, 0.0f, 0.0f);
 	object1->transform->SetRotate(0.0f);
 	object1->transform->SetParent(scene1->transform);
-	object1->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_orange.png")));
+	F2D::SpriteBehaviour *sprite1 = (F2D::SpriteBehaviour*)object1->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_orange.png")));
+	sprite1->width = 100.0f; sprite1->height = 100.0f;		// set sprite render size
 
 	object2 = new F2D::FactoryObject("object2");
-	object2->transform->SetOrigin(32.0f, 32.0f, 0.0f);
-	object2->transform->SetPosition(100.0f, 100.0f, 0.0f);
+	object2->transform->SetOrigin(25.0f, 25.0f, 0.0f);
+	object2->transform->SetPosition(200.0f, 200.0f, 0.0f);
 	object2->transform->SetRotate(0.0f);
 	object2->transform->SetParent(object1->transform);
-	object2->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_green.png")));
+	F2D::SpriteBehaviour *sprite2 = (F2D::SpriteBehaviour*)object2->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_green.png")));
+	sprite2->width = 50.0f; sprite2->height = 50.0f;		// set sprite render size
 
 	// create the scene camera
 	camera1 = new F2D::CameraObject("camera1");
