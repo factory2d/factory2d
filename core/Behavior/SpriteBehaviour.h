@@ -46,12 +46,12 @@ namespace F2D
 		float height = 0.0f;
 
 		SpriteBehaviour();
-		SpriteBehaviour(std::string name);
+		SpriteBehaviour(std::string path);
 		SpriteBehaviour(PictureAsset * picture);
 		~SpriteBehaviour();
 
-		virtual void Update();
-		virtual void Draw();
+		void Update() override;
+		void Draw() override;
 	};
 }
 

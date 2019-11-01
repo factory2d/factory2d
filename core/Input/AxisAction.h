@@ -43,7 +43,7 @@ namespace F2D
 		AxisAction(std::string name);
 		~AxisAction();
 
-		virtual float GetAxis();
+		float GetAxis() override;
 	};
 }
 

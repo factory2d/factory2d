@@ -44,36 +44,17 @@ namespace F2D
 	Transform::Transform(FactoryObject* factoryObject) {
 		__factoryObject = factoryObject;
 		__position.x = __position.y = __position.z = 0.0f;
-		__rotate.x = __rotate.y = __rotate.z = 0.0f;
+		__origin.x = __origin.y = __origin.z = 0.0f;
+		__scale.x = __scale.y = __scale.z = 1.0f;
+		__angle = 0.0f;
 	}
 
 	Transform::~Transform() {}
 
-	void Transform::SetPosition(glm::vec3 value) {
-		if(value != __position) {
-			__position = value;
-			__matrixUpdate = true;
-		}
-	}
-
 	void Transform::Translate(glm::vec3 value) {
 		if(value != __zero) {
 			dT = TimeManager::Delta();
-			__position += value * dT;
-			__matrixUpdate = true;
-		}
-	}
-
-	void Transform::SetOrigin(glm::vec3 value) {
-		if(__origin != value) {
-			__origin = value;
-			__matrixUpdate = true;
-		}
-	}
-
-	void Transform::SetRotate(float value) {
-		if(value != __rotate.y) {
-			__rotate.y += value;
+			position += value * dT;
 			__matrixUpdate = true;
 		}
 	}
@@ -81,7 +62,7 @@ namespace F2D
 	void Transform::Rotate(float value) {
 		if(value != 0.0f) {
 			dT = TimeManager::Delta();
-			__rotate.y += value * dT;
+			angle += value * dT;
 			__matrixUpdate = true;
 		}
 	}
@@ -91,15 +72,25 @@ namespace F2D
 		//glm::mat4 projection = glm::perspective(70.0f, ((float)800) / (float)600, 1.0f, 1000.0f);
 		//glm::mat4 view = glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
+		// check if any value has changed
+		if(!__matrixUpdate && !childUpdate) {
+			if(__position != position ||
+				__origin != origin ||
+				__scale != scale ||
+				__angle != angle) {
+				__matrixUpdate = true;
+			}
+		}
+
 		// local transform matrix cache
 		if(__matrixUpdate || childUpdate) {
-			__localTransform = glm::mat4(1.0f);
+			__position = position;
+			__origin = origin;
+			__scale = scale;
+			__angle = angle;
 
-			if(__parent != nullptr )
-				__localTransform = glm::translate(__localTransform, __parent->GetOrigin());
-			
 			glm::vec3 p = __position;
-			float a = __rotate.y;
+			float a = __angle;
 			glm::vec3 o = __origin;
 
 			// round the values when integer position enabled
@@ -110,6 +101,11 @@ namespace F2D
 				o.x = round(o.x); o.y = round(o.y); o.z = round(o.z);
 			}
 
+			__localTransform = glm::mat4(1.0f);
+
+			if(__parent != nullptr )
+				__localTransform = glm::translate(__localTransform, __parent->origin);
+			
 			__localTransform = glm::translate(__localTransform, p);
 			__localTransform = glm::rotate(__localTransform, a * 0.0174533f, glm::vec3(0.0f, 0.0f, 1.0f));
 			__localTransform = glm::translate(__localTransform, -o);
@@ -199,5 +195,10 @@ namespace F2D
 		//int output[];// = new Transform*[this->GetChildCount()];
 		//std::copy(v.begin(), v.end(), arr);
 		return nullptr;// output;
+	}
+	std::string Transform::Serialize() {
+		//from - game: {chat: '(%sender%) %message%', action : '* %sender% %message%'}
+		//std::string outpub = "Transform: { x: " + x + ", y: " + y + ", z: " + z + " }";
+		return std::string();
 	}
 }

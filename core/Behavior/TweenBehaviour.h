@@ -20,33 +20,62 @@
  */
 
  /**
-  * @fileoverview ButtonObject.h
+  * @fileoverview TweenBehaviour.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_INPUT_BUTTON_H_
-#define FACTORY2D_INPUT_BUTTON_H_
+#ifndef FACTORY2D_BEHAVIOUR_TWEENBEHAVIOUR_H_
+#define FACTORY2D_BEHAVIOUR_TWEENBEHAVIOUR_H_
 
-#include "Action.h"
-
-// debug
-#include "../Debug.h"
+#include <vector>
+#include "Behaviour.h"
 
 namespace F2D
 {
-	class ButtonAction :
-		public Action {
-	public:
-		ButtonAction(std::string name);
-		~ButtonAction();
+	enum {
+		F2D_TWEEN_LINEAR,
+		F2D_TWEEN_QUADRATIC,
+		F2D_TWEEN_CUBIC,
+		F2D_TWEEN_QUART,
+		F2D_TWEEN_QUINT,
+		F2D_TWEEN_SINE,
+		F2D_TWEEN_CIRCULAR,
+		F2D_TWEEN_BACK,
+		F2D_TWEEN_BOUNCE,
+		F2D_TWEEN_ELASTIC,
 
-		bool GetButton() override;
-		bool GetButtonUp() override;
-		bool GetButtonDown() override;
+		F2D_TWEEN_EASEIN,
+		F2D_TWEEN_EASEOUT,
+		F2D_TWEEN_EASEINOUT,
+	};
+
+	struct Tween {
+		float &value;
+		float from;
+		float to;
+	};
+
+	class TweenBehaviour :
+		public Behaviour {
+	private:
+		std::vector<Tween> __tweens;
+		float __value = 0.0f;
+		int __tween = F2D_TWEEN_LINEAR;
+		int __ease = F2D_TWEEN_EASEIN;
+
+		float __Linear();
+		float __Quadratic();
+		float __Back();
+
+	public:
+		TweenBehaviour(std::vector<Tween> tweens);
+		~TweenBehaviour();
+
+		void Update() override;
 	};
 }
 
-#endif // FACTORY2D_INPUT_BUTTON_H_
+#endif // FACTORY2D_BEHAVIOUR_TWEENBEHAVIOUR_H_

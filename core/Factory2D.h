@@ -34,7 +34,7 @@
 
 #include "Debug.h"
 #include "Game.h"
-
+#include "Serializable.h"
 
 /* MATH */
 #include "Math.h"
@@ -48,6 +48,7 @@
 /* BEHAVOUR */
 #include "Behavior/Behaviour.h"
 #include "Behavior/SpriteBehaviour.h"
+#include "Behavior/TweenBehaviour.h"
 
 /* ASSETS */
 #include "Asset/Asset.h"

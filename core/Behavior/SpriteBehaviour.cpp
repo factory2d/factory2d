@@ -36,18 +36,16 @@
 
 namespace F2D
 {
-	SpriteBehaviour::SpriteBehaviour() {
-	}
+	SpriteBehaviour::SpriteBehaviour() {}
 
-	SpriteBehaviour::SpriteBehaviour(std::string name) {
-		SpriteBehaviour(AssetManager::Load<F2D::PictureAsset>(name));
-	}
+	SpriteBehaviour::SpriteBehaviour(std::string path) :
+		SpriteBehaviour(AssetManager::Load<F2D::PictureAsset>(path)) {}
 
 	SpriteBehaviour::SpriteBehaviour(PictureAsset * p) {
 		// set picture asset inside sprite behaviour
 		picture = p;
 		
-		// cace picture width and height (in pixel);
+		// cache picture width and height (in pixel);
 		width = picture->Width(); 
 		height = picture->Height();
 	}
@@ -65,8 +63,6 @@ namespace F2D
 			glEnable(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, (GLuint)picture->Data());
 		}
-
-		
 
 		glBegin(GL_QUADS);
 		glTexCoord2f(0.f, 0.f); glColor3f(1.f, 1.f, 1.f); glVertex2f(0.0f, 0.0f);

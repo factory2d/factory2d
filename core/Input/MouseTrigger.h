@@ -49,8 +49,8 @@ namespace F2D
 		MouseTrigger(std::string name, unsigned char negative, unsigned char positive);
 		~MouseTrigger();
 
-		virtual float GetAxis();
-		virtual bool GetButton();
+		float GetAxis() override;
+		bool GetButton() override;
 	};
 }
 

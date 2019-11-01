@@ -5,6 +5,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Properties.h"
+
 /*
 #include <glm/vec3.hpp>					//	glm::vec3
 #include <glm/vec4.hpp>					//	glm::vec4
@@ -25,6 +27,25 @@ namespace F2D
 		float y = 0.0f;
 		float width = 0.0f;
 		float height = 0.0f;
+	};
+
+	class MyClass :
+		public glm::vec3 {
+	private:
+		int _attribute;
+
+	public:
+		GETSET(MyClass, int, x, {
+		  std::clog << "Getting attribute equals to " << _attribute << std::endl;
+		  return _attribute;
+			}, {
+			  std::clog << "Setting attribute to " << value << std::endl;
+			  _attribute = value;
+			});
+
+		MyClass()
+			: _attribute(0),
+			x(this) {}
 	};
 }
 

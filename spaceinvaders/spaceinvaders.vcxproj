@@ -20,19 +20,19 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{DD77BFFB-E22F-4320-8570-3AB2F3ABCC7B}</ProjectGuid>
-    <RootNamespace>core</RootNamespace>
+    <ProjectGuid>{6CD2D9BA-4276-4075-B59A-1D6681787308}</ProjectGuid>
+    <RootNamespace>spaceinvaders</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -76,11 +76,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>WIN32;_DEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -91,6 +91,10 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -105,7 +109,8 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -121,81 +126,37 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Behavior\Behaviour.cpp" />
-    <ClCompile Include="Behavior\CameraBehaviour.cpp" />
-    <ClCompile Include="Color.cpp" />
-    <ClCompile Include="Input\ButtonAction.cpp" />
-    <ClCompile Include="Input\AxisAction.cpp" />
-    <ClCompile Include="Input\Action.cpp" />
-    <ClCompile Include="Input\Controller.cpp" />
-    <ClCompile Include="Debug.cpp" />
-    <ClCompile Include="Asset\Asset.cpp" />
-    <ClCompile Include="Asset\PictureAsset.cpp" />
-    <ClCompile Include="Asset\AssetManager.cpp" />
-    <ClCompile Include="Input\KeyboardTrigger.cpp" />
-    <ClCompile Include="Input\MouseTrigger.cpp" />
-    <ClCompile Include="Objects\CameraObject.cpp" />
-    <ClCompile Include="Objects\FactoryObject.cpp" />
-    <ClCompile Include="Properties.cpp" />
-    <ClCompile Include="Quadtree.cpp" />
-    <ClCompile Include="Scene\SceneObject.cpp" />
-    <ClCompile Include="Objects\SpriteObject.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Behavior\SpriteBehaviour.cpp" />
-    <ClCompile Include="Serializable.cpp" />
-    <ClCompile Include="Time\TimeManager.cpp" />
-    <ClCompile Include="Input\InputManager.cpp" />
-    <ClCompile Include="MaterialManager\MaterialManager.cpp" />
-    <ClCompile Include="Math.cpp" />
-    <ClCompile Include="Object.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="Scene\SceneManager.cpp" />
-    <ClCompile Include="TagManager\TagManager.cpp" />
-    <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="Input\Trigger.cpp" />
-    <ClCompile Include="Behavior\TweenBehaviour.cpp" />
-    <ClCompile Include="Window\WindowManager.cpp" />
+    <ClCompile Include="Scenes\GameScene.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyGame.cpp" />
+    <ClCompile Include="Scenes\TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Behavior\Behaviour.h" />
-    <ClInclude Include="Behavior\CameraBehaviour.h" />
-    <ClInclude Include="Color.h" />
-    <ClInclude Include="Input\ButtonAction.h" />
-    <ClInclude Include="Input\AxisAction.h" />
-    <ClInclude Include="Input\Action.h" />
-    <ClInclude Include="Input\Controller.h" />
-    <ClInclude Include="Debug.h" />
-    <ClInclude Include="Asset\Asset.h" />
-    <ClInclude Include="Asset\PictureAsset.h" />
-    <ClInclude Include="Asset\AssetManager.h" />
-    <ClInclude Include="Factory2D.h" />
-    <ClInclude Include="Input\KeyboardTrigger.h" />
-    <ClInclude Include="Input\MouseTrigger.h" />
-    <ClInclude Include="Objects\CameraObject.h" />
-    <ClInclude Include="Objects\FactoryObject.h" />
-    <ClInclude Include="Properties.h" />
-    <ClInclude Include="Quadtree.h" />
-    <ClInclude Include="Scene\SceneObject.h" />
-    <ClInclude Include="Objects\SpriteObject.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Behavior\SpriteBehaviour.h" />
-    <ClInclude Include="Serializable.h" />
-    <ClInclude Include="Time\TimeManager.h" />
-    <ClInclude Include="Input\InputManager.h" />
-    <ClInclude Include="MaterialManager\MaterialManager.h" />
-    <ClInclude Include="Math.h" />
-    <ClInclude Include="Object.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="Scene\SceneManager.h" />
-    <ClInclude Include="TagManager\TagManager.h" />
-    <ClInclude Include="Transform.h" />
-    <ClInclude Include="Input\Trigger.h" />
-    <ClInclude Include="Behavior\TweenBehaviour.h" />
-    <ClInclude Include="Vector.h" />
-    <ClInclude Include="Window\WindowManager.h" />
+    <ClInclude Include="Scenes\GameScene.h" />
+    <ClInclude Include="MyGame.h" />
+    <ClInclude Include="Scenes\TitleScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\core\core.vcxproj">
+      <Project>{dd77bffb-e22f-4320-8570-3ab2f3abcc7b}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libjpeg-9.dll" />
+    <None Include="libpng16-16.dll" />
+    <None Include="libtiff-5.dll" />
+    <None Include="libwebp-7.dll" />
+    <None Include="SDL2.dll" />
+    <None Include="SDL2_image.dll" />
+    <None Include="zlib1.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\gamelogo.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

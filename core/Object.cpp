@@ -49,10 +49,11 @@ namespace F2D
 	unsigned int Object::GetUUID() {
 		return __uuid;
 	}
-	std::string Object::Serialize() {
+
+	/*std::string Object::Serialize() {
 		return std::string();
 	}
 	bool Object::Deserialize() {
 		return false;
-	}
+	}*/
 }

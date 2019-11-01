@@ -32,9 +32,12 @@
 
 #include <string>
 
+#include "Serializable.h"
+
 namespace F2D
 {
-	class Object {
+	class Object :
+		public F2D::Serializable {
 	private:
 		bool __destroy = false;
 		unsigned int __uuid = 0;
@@ -46,9 +49,6 @@ namespace F2D
 		Object();
 		~Object();
 		unsigned int GetUUID();
-
-		virtual std::string Serialize();
-		virtual bool Deserialize();
 	};
 }
 

@@ -20,33 +20,25 @@
  */
 
  /**
-  * @fileoverview ButtonObject.h
+  * @fileoverview Serializable.h
   *
-  * --- FILE NOTES ---
+  * I made this object just to make easy to serializable non base objects.
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_INPUT_BUTTON_H_
-#define FACTORY2D_INPUT_BUTTON_H_
+#ifndef FACTORY2D_SERIALIZABLE_H_
+#define FACTORY2D_SERIALIZABLE_H_
 
-#include "Action.h"
-
-// debug
-#include "../Debug.h"
+#include <string>
 
 namespace F2D
 {
-	class ButtonAction :
-		public Action {
+	class Serializable {
 	public:
-		ButtonAction(std::string name);
-		~ButtonAction();
-
-		bool GetButton() override;
-		bool GetButtonUp() override;
-		bool GetButtonDown() override;
+		virtual std::string Serialize();
+		virtual bool Deserialize();
 	};
 }
 
-#endif // FACTORY2D_INPUT_BUTTON_H_
+#endif //FACTORY2D_SERIALIZABLE_H_

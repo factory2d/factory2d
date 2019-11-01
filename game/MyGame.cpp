@@ -51,23 +51,23 @@ bool MyGame::Initialize() {
 
 	// create objects inside the scene
 	center = new F2D::FactoryObject("center");
-	center->transform->SetOrigin(8.0f, 8.0f, 0.0f);
-	center->transform->SetPosition(0.0f, 0.0f, 0.0f);
+	center->transform->origin = { 8.0f, 8.0f, 0.0f };
+	center->transform->position = { 0.0f, 0.0f, 0.0f };
 	center->transform->SetParent(scene1->transform);
 	center->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::PictureAsset>("Assets/center.png")));
 
 	object1 = new F2D::FactoryObject("object1");
-	object1->transform->SetOrigin(50.0f, 50.0f, 0.0f);
-	object1->transform->SetPosition(0.0f, 0.0f, 0.0f);
-	object1->transform->SetRotate(0.0f);
+	object1->transform->origin = { 50.0f, 50.0f, 0.0f };
+	object1->transform->position = { 0.0f, 0.0f, 0.0f };
+	object1->transform->angle = 0.0f;
 	object1->transform->SetParent(scene1->transform);
 	F2D::SpriteBehaviour *sprite1 = (F2D::SpriteBehaviour*)object1->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_orange.png")));
 	sprite1->width = 100.0f; sprite1->height = 100.0f;		// set sprite render size
 
 	object2 = new F2D::FactoryObject("object2");
-	object2->transform->SetOrigin(25.0f, 25.0f, 0.0f);
-	object2->transform->SetPosition(200.0f, 200.0f, 0.0f);
-	object2->transform->SetRotate(0.0f);
+	object2->transform->origin = { 25.0f, 25.0f, 0.0f };
+	object2->transform->position = { 200.0f, 200.0f, 0.0f };
+	object2->transform->angle = { 0.0f };
 	object2->transform->SetParent(object1->transform);
 	F2D::SpriteBehaviour *sprite2 = (F2D::SpriteBehaviour*)object2->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_green.png")));
 	sprite2->width = 50.0f; sprite2->height = 50.0f;		// set sprite render size
@@ -76,14 +76,14 @@ bool MyGame::Initialize() {
 	camera1 = new F2D::CameraObject("camera1");
 	camera1->viewport = new F2D::Rect(0.0f, 0.0f, 1.0f, 1.0f);
 	camera1->backgroundColor = F2D::Color(0.25f, 0.25f, 0.25f);
-	camera1->transform->SetPosition(0.0f, 0.0f, 0.0f);
+	camera1->transform->position = { 0.0f, 0.0f, 0.0f };
 	camera1->transform->SetParent(scene1->transform);
 	
 	camera2 = new F2D::CameraObject("camera2");
 	camera2->viewport = new F2D::Rect(0.0f, 0.0f, 0.45f, 0.45f);
 	camera2->backgroundColor = F2D::Color(1.0f, 0.0f, 0.0f);
 	camera2->clearColor = true;
-	camera2->transform->SetPosition(0.0f, 0.0f, 0.0f);
+	camera2->transform->position = { 0.0f, 0.0f, 0.0f };
 	camera2->transform->SetParent(object2->transform);
 
 
