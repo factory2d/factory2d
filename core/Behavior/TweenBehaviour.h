@@ -64,10 +64,13 @@ namespace F2D
 		public Behaviour {
 	private:
 		std::vector<Tween> __tweens;
+		float __basevalue = 0.0f;
 		float __value = 0.0f;
 		int __tween = F2D_TWEEN_LINEAR;
 		int __ease = F2D_TWEEN_EASEIN;
 		float __interval = 1.0f;
+		bool __loop = false;
+		bool __yoyo = false;
 
 		float(*__TweenIn)(float);
 		float __TweenOut(float t);
@@ -82,9 +85,10 @@ namespace F2D
 		static float __Sine(float t);
 		static float __Back(float t);
 		static float __Bounce(float t);
+		static float __Elastic(float t);
 
 	public:
-		TweenBehaviour(std::vector<Tween> tweens, float interval = 1.0f);
+		TweenBehaviour(std::vector<Tween> tweens, float interval = 1.0f, bool loop = true, bool yoyo = false);
 		~TweenBehaviour();
 
 		void Update() override;

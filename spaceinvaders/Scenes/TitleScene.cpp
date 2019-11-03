@@ -18,8 +18,8 @@ TitleScene::TitleScene(std::string name) :
 	__logoObject->AddBehaviour(new F2D::SpriteBehaviour("Assets/gamelogo.png"));
 
 	__logoObject->AddBehaviour(new F2D::TweenBehaviour({
-		{ __logoObject->transform->position.y, -900.0f, 0.0f, F2D::F2D_TWEEN_BOUNCE, F2D::F2D_TWEEN_EASEOUT}
-	}));
+		{ __logoObject->transform->position.y, -100.0f, 100.0f, F2D::F2D_TWEEN_ELASTIC, F2D::F2D_TWEEN_EASEINOUT}
+	}, 10.0f));
 }
 
 TitleScene::~TitleScene() {}

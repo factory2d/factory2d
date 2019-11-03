@@ -33,6 +33,8 @@ bool MyGame::Initialize() {
 	titleScene = new TitleScene("scene1");
 	F2D::SceneManager::Load(titleScene);
 
+	// create the scene camera
+
 	return false;
 }
 
