@@ -139,7 +139,6 @@
     <ClCompile Include="Input\MouseTrigger.cpp" />
     <ClCompile Include="Objects\CameraObject.cpp" />
     <ClCompile Include="Objects\FactoryObject.cpp" />
-    <ClCompile Include="Properties.cpp" />
     <ClCompile Include="Quadtree.cpp" />
     <ClCompile Include="Scene\SceneObject.cpp" />
     <ClCompile Include="Objects\SpriteObject.cpp" />
@@ -176,7 +175,6 @@
     <ClInclude Include="Input\MouseTrigger.h" />
     <ClInclude Include="Objects\CameraObject.h" />
     <ClInclude Include="Objects\FactoryObject.h" />
-    <ClInclude Include="Properties.h" />
     <ClInclude Include="Quadtree.h" />
     <ClInclude Include="Scene\SceneObject.h" />
     <ClInclude Include="Objects\SpriteObject.h" />
@@ -194,7 +192,6 @@
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Input\Trigger.h" />
     <ClInclude Include="Behavior\TweenBehaviour.h" />
-    <ClInclude Include="Vector.h" />
     <ClInclude Include="Window\WindowManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

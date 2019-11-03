@@ -56,6 +56,8 @@ namespace F2D
 		float &value;
 		float from;
 		float to;
+		int tween = F2D_TWEEN_LINEAR;
+		int ease = F2D_TWEEN_EASEINOUT;
 	};
 
 	class TweenBehaviour :
@@ -65,13 +67,24 @@ namespace F2D
 		float __value = 0.0f;
 		int __tween = F2D_TWEEN_LINEAR;
 		int __ease = F2D_TWEEN_EASEIN;
+		float __interval = 1.0f;
 
-		float __Linear();
-		float __Quadratic();
-		float __Back();
+		float(*__TweenIn)(float);
+		float __TweenOut(float t);
+		float __TweenInOut(float t);
+		float __Tween();
+
+		static float __Linear(float t);
+		static float __Quadratic(float t);
+		static float __Cubic(float t);
+		static float __Quart(float t);
+		static float __Quint(float t);
+		static float __Sine(float t);
+		static float __Back(float t);
+		static float __Bounce(float t);
 
 	public:
-		TweenBehaviour(std::vector<Tween> tweens);
+		TweenBehaviour(std::vector<Tween> tweens, float interval = 1.0f);
 		~TweenBehaviour();
 
 		void Update() override;

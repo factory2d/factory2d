@@ -35,72 +35,114 @@
 namespace F2D
 {
 	// linear
-	float TweenBehaviour::__Linear() {
-		return __value;
+	float TweenBehaviour::__Linear(float t) {
+		return t;
 	}
 
-	// quadratic
-	float TWEEN_QUADIN(float t) {
-		return std::powf(t, 2.0f);
-	}
-	float TWEEN_QUADOUT(float t) {
-		return  (1 - TWEEN_QUADIN(1 - t));
-	}
-	float TWEEN_QUADINOUT(float t) {
-		return (t < 0.5) ? (TWEEN_QUADIN(t * 2.0) / 2.0) : (1 - TWEEN_QUADIN((1 - t) * 2) / 2);
+	float TweenBehaviour::__Quadratic(float t) {
+		return powf(t, 2.0f);
 	}
 
-	float TweenBehaviour::__Quadratic() {
-		__ease = F2D_TWEEN_EASEINOUT;
+	float TweenBehaviour::__Cubic(float t) {
+		return powf(t, 3.0f);
+	}
+
+	float TweenBehaviour::__Quart(float t) {
+		return powf(t, 4);
+	}
+
+	float TweenBehaviour::__Quint(float t) {
+		return powf(t, 5);
+	}
+
+	float TweenBehaviour::__Sine(float t) {
+		return (1.0f - cosf(t * 3.1415f / 2.0f));
+	}
+
+	float TweenBehaviour::__Back(float t) {
+		float s = 1.70158f;
+		return t * t * ((s + 1.0f) * t - s);
+	}
+
+	float TweenBehaviour::__Bounce(float t) {
+		float ret = 0.0f;
+		t = 1.0f - t;
+
+
+		if(t < (1 / 2.75f)) {
+			ret = 7.5625f * t * t;
+		}
+		else if(t < (2.0f / 2.75f)) {
+			t = t - (1.5f / 2.75f);
+			ret = 7.5625f * t * t + 0.75f;
+		}
+		else if(t < (2.5f / 2.75f)) {
+			t = t - (2.25f / 2.75f);
+			ret = 7.5625f * t * t + 0.9375f;
+		}
+		else {
+			t = t - (2.625 / 2.75);
+			ret = 7.5625 * t * t + 0.984375;
+		}
+
+		return 1 - ret;
+	}
+
+	float TweenBehaviour::__TweenOut(float t) {
+		return (1.0f - __TweenIn(1.0f - t));
+	}
+
+	float TweenBehaviour::__TweenInOut(float t) {
+		return (t < 0.5f) ? (__TweenIn(t * 2.0f) / 2.0f) : (1.0f - __TweenIn((1.0f - t) * 2.0f) / 2.0f);;
+	}
+
+	float TweenBehaviour::__Tween() {
 		switch(__ease) {
 		case F2D_TWEEN_EASEIN:
-			return TWEEN_QUADIN(__value);
+			return __TweenIn(__value);
 		case F2D_TWEEN_EASEOUT:
-			return TWEEN_QUADOUT(__value);
+			return __TweenOut(__value);
 		case F2D_TWEEN_EASEINOUT:
-			return TWEEN_QUADINOUT(__value);
+			return __TweenInOut(__value);
 		}
 
 		return 0.0f;
 	}
 
-	// back
-	float TWEEN_BACKIN(float t) {
-		float s = 1.70158;
-		return t * t * ((s + 1) * t - s);
-	}
-	float TWEEN_BACKOUT(float t) {
-		return  (1 - TWEEN_BACKIN(1 - t));
-	}
-	float TWEEN_BACKINOUT(float t) {
-		return (t < 0.5) ? (TWEEN_BACKIN(t * 2.0) / 2.0) : (1 - TWEEN_BACKIN((1 - t) * 2) / 2);
-	}
-
-	float TweenBehaviour::__Back() {
-		__ease = F2D_TWEEN_EASEINOUT;
-		switch(__ease) {
-		case F2D_TWEEN_EASEIN:
-			return TWEEN_BACKIN(__value);
-		case F2D_TWEEN_EASEOUT:
-			return TWEEN_BACKOUT(__value);
-		case F2D_TWEEN_EASEINOUT:
-			return TWEEN_BACKINOUT(__value);
-		}
-
-		return 0.0f;
-	}
-
-	TweenBehaviour::TweenBehaviour(std::vector<Tween> tweens) {
+	TweenBehaviour::TweenBehaviour(std::vector<Tween> tweens, float interval) {
 		__tweens = std::vector<Tween>(tweens);
+		__interval = interval;
 	}
 
 	void TweenBehaviour::Update() {
-		__value += TimeManager::Delta()*0.5f;
-		if(__value > 1.0f)
-			__value -= 1.0f;
+		__value += TimeManager::Delta() / __interval;
+		if(__value > 1.0f) {
+			__value = 0.0f;
+			std::cout << "FIM" << std::endl;
+		}
 
 		for(int x = 0; x < __tweens.size(); x++) {
-			__tweens[x].value = __tweens[x].to*__Back();
+			switch(__tweens[x].tween) {
+			case F2D_TWEEN_QUADRATIC:
+				__TweenIn = &TweenBehaviour::__Quadratic; break;
+			case F2D_TWEEN_CUBIC:
+				__TweenIn = &TweenBehaviour::__Cubic; break;
+			case F2D_TWEEN_QUART:
+				__TweenIn = &TweenBehaviour::__Quart; break;
+			case F2D_TWEEN_QUINT:
+				__TweenIn = &TweenBehaviour::__Quint; break;
+			case F2D_TWEEN_SINE:
+				__TweenIn = &TweenBehaviour::__Sine; break;
+			case F2D_TWEEN_BOUNCE:
+				__TweenIn = &TweenBehaviour::__Bounce; break;
+			case F2D_TWEEN_BACK:
+				__TweenIn = &TweenBehaviour::__Back; break;
+			default:
+				__TweenIn = &TweenBehaviour::__Linear; break;
+			}
+
+			__ease = __tweens[x].ease;
+			__tweens[x].value = __tweens[x].from + (__tweens[x].to - __tweens[x].from)*__Tween();
 		}
 	}
 }
