@@ -38,16 +38,17 @@ namespace F2D
 	class SpriteBehaviour :
 		public Behaviour {
 	private:
-
-	public:
-		PictureAsset *picture = nullptr;
+		int __animation = 0;		// current animation
+		int __animationFrame = 0;	// current animation frame
+		int __frame = 0;			// spritesheet frame
+		float __interval = 1.0f;	// spritesheet intervar;
 		
-		float width = 0.0f;
-		float height = 0.0f;
-
+	public:
+		SpriteAsset *picture = nullptr;
+		
 		SpriteBehaviour();
 		SpriteBehaviour(std::string path);
-		SpriteBehaviour(PictureAsset * picture);
+		SpriteBehaviour(SpriteAsset * picture);
 		~SpriteBehaviour();
 
 		void Update() override;

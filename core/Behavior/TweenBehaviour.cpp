@@ -25,6 +25,8 @@
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+  * @based on Luiz Fernando Ribeiro de Sá REDBOX Tween Library
+  *           tween.js Tween Library <https://github.com/tweenjs/tween.js/>
   */
 
 #include "TweenBehaviour.h"

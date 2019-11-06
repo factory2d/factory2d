@@ -36,8 +36,8 @@ namespace F2D
 {
 	std::map <std::string, Asset*> AssetManager::__assets = {};
 
-	bool AssetManager::LoadAsset(PictureAsset * asset, std::string path) {
-		PictureAsset *p = (PictureAsset*)AssetManager::Get(path);
+	bool AssetManager::LoadAsset(SpriteAsset * asset, std::string path) {
+		SpriteAsset *p = (SpriteAsset*)AssetManager::Get(path);
 
 		if(p == nullptr) {
 			if(asset->Load(path)) {

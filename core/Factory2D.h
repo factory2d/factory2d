@@ -65,7 +65,7 @@
 #include "Input/KeyboardTrigger.h"
 
 /* MATERIAL */
-#include "Color.h"
+#include "Material/Color.h"
 
 /* SCENE */
 #include "Scene/SceneManager.h"

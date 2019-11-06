@@ -51,10 +51,10 @@ namespace F2D
 		glm::mat4 wT;
 		CameraObject *c = CameraObject::GetActiveCamera();
 		int windowWidth = WindowManager::Width(); int windowHeight = WindowManager::Height();
-		int viewportX = windowWidth * c->viewport->x;
-		int viewportY = windowHeight * c->viewport->y;
-		int viewportWidth = windowWidth * c->viewport->width;
-		int viewportHeight = windowHeight * c->viewport->height;
+		int viewportX = windowWidth * c->viewport.x;
+		int viewportY = windowHeight * c->viewport.y;
+		int viewportWidth = windowWidth * c->viewport.width;
+		int viewportHeight = windowHeight * c->viewport.height;
 
 		// set the viewport
 		glViewport(viewportX, viewportY,

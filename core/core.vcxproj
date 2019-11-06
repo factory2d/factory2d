@@ -126,7 +126,7 @@
   <ItemGroup>
     <ClCompile Include="Behavior\Behaviour.cpp" />
     <ClCompile Include="Behavior\CameraBehaviour.cpp" />
-    <ClCompile Include="Color.cpp" />
+    <ClCompile Include="Material\Color.cpp" />
     <ClCompile Include="Input\ButtonAction.cpp" />
     <ClCompile Include="Input\AxisAction.cpp" />
     <ClCompile Include="Input\Action.cpp" />
@@ -137,6 +137,7 @@
     <ClCompile Include="Asset\AssetManager.cpp" />
     <ClCompile Include="Input\KeyboardTrigger.cpp" />
     <ClCompile Include="Input\MouseTrigger.cpp" />
+    <ClCompile Include="Material\Material.cpp" />
     <ClCompile Include="Objects\CameraObject.cpp" />
     <ClCompile Include="Objects\FactoryObject.cpp" />
     <ClCompile Include="Quadtree.cpp" />
@@ -145,9 +146,10 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Behavior\SpriteBehaviour.cpp" />
     <ClCompile Include="Serializable.cpp" />
+    <ClCompile Include="Material\Texture.cpp" />
     <ClCompile Include="Time\TimeManager.cpp" />
     <ClCompile Include="Input\InputManager.cpp" />
-    <ClCompile Include="MaterialManager\MaterialManager.cpp" />
+    <ClCompile Include="Material\MaterialManager.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -161,7 +163,7 @@
   <ItemGroup>
     <ClInclude Include="Behavior\Behaviour.h" />
     <ClInclude Include="Behavior\CameraBehaviour.h" />
-    <ClInclude Include="Color.h" />
+    <ClInclude Include="Material\Color.h" />
     <ClInclude Include="Input\ButtonAction.h" />
     <ClInclude Include="Input\AxisAction.h" />
     <ClInclude Include="Input\Action.h" />
@@ -173,6 +175,7 @@
     <ClInclude Include="Factory2D.h" />
     <ClInclude Include="Input\KeyboardTrigger.h" />
     <ClInclude Include="Input\MouseTrigger.h" />
+    <ClInclude Include="Material\Material.h" />
     <ClInclude Include="Objects\CameraObject.h" />
     <ClInclude Include="Objects\FactoryObject.h" />
     <ClInclude Include="Quadtree.h" />
@@ -181,9 +184,10 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Behavior\SpriteBehaviour.h" />
     <ClInclude Include="Serializable.h" />
+    <ClInclude Include="Material\Texture.h" />
     <ClInclude Include="Time\TimeManager.h" />
     <ClInclude Include="Input\InputManager.h" />
-    <ClInclude Include="MaterialManager\MaterialManager.h" />
+    <ClInclude Include="Material\MaterialManager.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Renderer.h" />

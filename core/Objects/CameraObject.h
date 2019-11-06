@@ -37,7 +37,7 @@
 
 #include "../Math.h"
 #include "FactoryObject.h"
-#include "../Color.h"
+#include "../Material/Color.h"
 
 namespace F2D
 {
@@ -55,14 +55,14 @@ namespace F2D
 		void Update() override;
 		void Draw() override;
 
-		Rect* viewport = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
+		Rect viewport = { 0.0f, 0.0f, 1.0f, 1.0f };// = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
 
 		static unsigned int Count();
 		static CameraObject* GetCameraAt(unsigned int index);
 		static CameraObject* GetActiveCamera();
 		static void SetActiveCamera(CameraObject *camera);
 
-		Color backgroundColor = Color(0.5f, 0.5f, 0.5f);
+		Color backgroundColor = { 0.5f, 0.5f, 0.5f };
 		bool clearColor = true;
 	};
 }

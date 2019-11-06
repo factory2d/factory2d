@@ -31,19 +31,45 @@
 #define FACTORY2D_ASSET_PICTUREASSET_H_
 
 #include <SDL_opengl.h>
+#include <vector>
 #include "Asset.h"
 
 namespace F2D
 {
-	class PictureAsset :
+	// I'll use YAML to store this data as a asset
+	struct SpriteSheet {
+		unsigned short x;
+		unsigned short y;
+		unsigned short width;
+		unsigned short height;
+		unsigned short originx = 0;
+		unsigned short originy = 0;
+	};
+
+	// I'll use YAML to store this data as a asset too
+	struct SpriteFrame {
+		int frame;
+		float interval = 1.0f;
+	};
+
+	struct SpriteAnimation {
+		std::string name = "no name";
+		std::vector<SpriteFrame> frames;
+	};
+
+	class SpriteAsset :
 		public Asset {
 	private:
-		int __width = 0;
-		int __height = 0;
+		unsigned short __width = 0;
+		unsigned short __height = 0;
+
 	public:
+		std::vector<SpriteSheet> sprites;
+		std::vector<SpriteAnimation> animation;
+
 		virtual bool Load(std::string path);
-		int Width() { return __width; }
-		int Height() { return __height; }
+		unsigned short Width() { return __width; }
+		unsigned short Height() { return __height; }
 	};
 }
 

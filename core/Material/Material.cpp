@@ -20,48 +20,17 @@
  */
 
  /**
-  * @fileoverview AssetManager.h
+  * @fileoverview Material.cpp
   *
-  * --- FILE NOTES ---
+  * Base game object
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
-#ifndef FACTORY2D_ASSET_ASSETMANAGER_H_
-#define FACTORY2D_ASSET_ASSETMANAGER_H_
 
-#include <string>
-#include <map>
-#include <vector> 
-
-#include "Asset.h"
-#include "PictureAsset.h"
+#include "Material.h"
 
 namespace F2D
 {
-	class AssetManager {
-	private:
-		static std::map <std::string, Asset*> __assets;
-
-		// load picture asset
-		static bool LoadAsset(SpriteAsset * asset, std::string path);
-
-		// manage assets inside the manager
-		static void Push(std::string key, Asset *asset);
-		static void Pop(std::string key);
-		static Asset * Get(std::string key);
-
-	public:
-		template<typename T>
-		static T * Load(std::string path) {
-			T * asset = new T();
-
-			if(LoadAsset(asset, path)) {
-				return asset;
-			}
-
-			return nullptr;
-		}
-	};
+	Material::Material() {}
+	Material::~Material() {}
 }
-
-#endif

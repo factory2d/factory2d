@@ -40,5 +40,17 @@
     <Image Include="Assets\256.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
+    <Image Include="Assets\sprite_sheet.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Assets\256_green.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Assets\256_orange.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Assets\center.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
   </ItemGroup>
 </Project>

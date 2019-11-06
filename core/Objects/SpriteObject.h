@@ -9,7 +9,7 @@ namespace F2D
 	class SpriteObject :
 		public FactoryObject {
 	public:
-		PictureAsset *p;
+		SpriteAsset *p;
 
 		SpriteObject() {};
 		SpriteObject(std::string name);

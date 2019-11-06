@@ -25,6 +25,8 @@
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+  * @based on Luiz Fernando Ribeiro de Sá REDBOX Tween Library
+  *           tween.js Tween Library <https://github.com/tweenjs/tween.js/>
   */
 
 #ifndef FACTORY2D_BEHAVIOUR_TWEENBEHAVIOUR_H_
@@ -56,8 +58,8 @@ namespace F2D
 		float &value;
 		float from;
 		float to;
-		int tween = F2D_TWEEN_LINEAR;
-		int ease = F2D_TWEEN_EASEINOUT;
+		unsigned short tween = F2D_TWEEN_LINEAR;
+		unsigned short ease = F2D_TWEEN_EASEINOUT;
 	};
 
 	class TweenBehaviour :
@@ -66,8 +68,8 @@ namespace F2D
 		std::vector<Tween> __tweens;
 		float __basevalue = 0.0f;
 		float __value = 0.0f;
-		int __tween = F2D_TWEEN_LINEAR;
-		int __ease = F2D_TWEEN_EASEIN;
+		unsigned short __tween = F2D_TWEEN_LINEAR;
+		unsigned short __ease = F2D_TWEEN_EASEIN;
 		float __interval = 1.0f;
 		bool __loop = false;
 		bool __yoyo = false;

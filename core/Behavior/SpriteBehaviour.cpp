@@ -32,22 +32,22 @@
 #include <GL\GLU.h>
 
 #include "SpriteBehaviour.h"
+#include "../Time/TimeManager.h"
 #include "../Asset/AssetManager.h"
+#include "../Material/Material.h"
 
 namespace F2D
 {
 	SpriteBehaviour::SpriteBehaviour() {}
 
 	SpriteBehaviour::SpriteBehaviour(std::string path) :
-		SpriteBehaviour(AssetManager::Load<F2D::PictureAsset>(path)) {}
+		SpriteBehaviour(AssetManager::Load<F2D::SpriteAsset>(path)) {}
 
-	SpriteBehaviour::SpriteBehaviour(PictureAsset * p) {
+	SpriteBehaviour::SpriteBehaviour(SpriteAsset * p) {
 		// set picture asset inside sprite behaviour
 		picture = p;
 		
 		// cache picture width and height (in pixel);
-		width = picture->Width(); 
-		height = picture->Height();
 	}
 
 	SpriteBehaviour::~SpriteBehaviour() {}
@@ -55,7 +55,13 @@ namespace F2D
 	void SpriteBehaviour::Update() {
 	}
 
+
+	// TODO:
+	// this place is a little nightmare, need lots of
+	// optimizations!!
+	// I'm commentint everything, or I can get lost xD
 	void SpriteBehaviour::Draw() {
+		// apply the texture
 		if(picture == nullptr) {
 			glDisable(GL_TEXTURE_2D);
 		}
@@ -64,11 +70,82 @@ namespace F2D
 			glBindTexture(GL_TEXTURE_2D, (GLuint)picture->Data());
 		}
 
+		// get material properties
+		// send this stuff to material object, so I'll didn't have to
+		// apply this code when we create another draw behaviour
+		Material *material = &transform->GetFactoryObject()->material;
+
+		// apply the material properties
+		glEnable(GL_BLEND);
+		switch(material->blend) {
+		case F2D_BLEND_MULTIPLY:
+			glBlendFunc(GL_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA);
+			break;
+		case F2D_BLEND_ALPHA:
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			break;
+		default:
+			glDisable(GL_BLEND);
+			break;
+		}
+
+		// update sprite animation
+		if(picture->animation.size() == 0) {
+			// if we didn't have any animation we will 
+			// always use sprite sheet frame 0
+			__animation = 0;
+			__frame = 0;
+		}
+		else {
+			// update animation interval based on frame interval
+			__interval -= TimeManager::Delta();
+			if(__interval <= 0.0f) {
+				// go to the next frame
+				__animationFrame++;
+				if(__animationFrame >= picture->animation[__animation].frames.size()) {
+					// loop the animation when finished
+					__animationFrame = 0;
+				}
+
+				__frame = picture->animation[__animation].frames[__animationFrame].frame;
+				__interval = picture->animation[__animation].frames[__animationFrame].interval;
+			}
+		}
+
+		// will cache with vertex buffes
+		// with vertex buffer I can allocate the sprite
+		// mesh in video memory, making it faster to load
+		// and draw in opengl video buffer.
+		float width = picture->sprites[__frame].width;
+		float height = picture->sprites[__frame].height;
+
+		float coordWidth = width / (float)picture->Width();
+		float coordHeight = height / (float)picture->Height();
+		float minX = (float)picture->sprites[__frame].x / (float)picture->Width();
+		float maxX = minX + (float)picture->sprites[__frame].width / (float)picture->Width();
+		float minY = (float)picture->sprites[__frame].y / (float)picture->Height();
+		float maxY = minY + (float)picture->sprites[__frame].height / (float)picture->Height();
+
 		glBegin(GL_QUADS);
-		glTexCoord2f(0.f, 0.f); glColor3f(1.f, 1.f, 1.f); glVertex2f(0.0f, 0.0f);
-		glTexCoord2f(1.f, 0.f); glColor3f(1.f, 1.f, 1.f); glVertex2f(width, 0.0f);
-		glTexCoord2f(1.f, 1.f); glColor3f(1.f, 1.f, 1.f); glVertex2f(width, height);
-		glTexCoord2f(0.f, 1.f); glColor3f(1.f, 1.f, 1.f); glVertex2f(0.0f, height);
+		// left top
+		glTexCoord2f(minX, minY); 
+		glColor4f(material->color.r, material->color.g, material->color.b, material->color.a); 
+		glVertex2f(0.0f, 0.0f);
+
+		// right top
+		glTexCoord2f(maxX, minY); 
+		glColor4f(material->color.r, material->color.g, material->color.b, material->color.a); 
+		glVertex2f(width, 0.0f);
+
+		// right bottom
+		glTexCoord2f(maxX, maxY); 
+		glColor4f(material->color.r, material->color.g, material->color.b, material->color.a); 
+		glVertex2f(width, height);
+
+		// left bottom
+		glTexCoord2f(minX, maxY); 
+		glColor4f(material->color.r, material->color.g, material->color.b, material->color.a); 
+		glVertex2f(0.0f, height);
 		glEnd();
 	}
 }

@@ -35,6 +35,7 @@
 
 #include "../Object.h"
 #include "../Transform.h"
+#include "../Material/Material.h"
 #include "../Behavior/Behaviour.h"
 
 namespace F2D
@@ -50,6 +51,7 @@ namespace F2D
 
 	public:
 		Transform* transform;
+		Material material;
 
 		// constructor and destructor
 		FactoryObject() {};

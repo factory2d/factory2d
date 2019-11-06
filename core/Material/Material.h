@@ -20,48 +20,39 @@
  */
 
  /**
-  * @fileoverview AssetManager.h
+  * @fileoverview SpriteBehaviour.h
   *
   * --- FILE NOTES ---
   *
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
-#ifndef FACTORY2D_ASSET_ASSETMANAGER_H_
-#define FACTORY2D_ASSET_ASSETMANAGER_H_
 
-#include <string>
-#include <map>
-#include <vector> 
+#ifndef FACTORY2D_MATERIAL_MATERIAL_H_
+#define FACTORY2D_MATERIAL_MATERIAL_H_
 
-#include "Asset.h"
-#include "PictureAsset.h"
+#include "../Serializable.h"
+#include "Color.h"
+#include "Texture.h"
 
 namespace F2D
 {
-	class AssetManager {
+	enum {
+		F2D_BLEND_NONE,
+		F2D_BLEND_MULTIPLY,
+		F2D_BLEND_ALPHA,
+	};
+
+	class Material :
+		public Serializable {
 	private:
-		static std::map <std::string, Asset*> __assets;
-
-		// load picture asset
-		static bool LoadAsset(SpriteAsset * asset, std::string path);
-
-		// manage assets inside the manager
-		static void Push(std::string key, Asset *asset);
-		static void Pop(std::string key);
-		static Asset * Get(std::string key);
 
 	public:
-		template<typename T>
-		static T * Load(std::string path) {
-			T * asset = new T();
+		int blend = F2D_BLEND_NONE;
+		Color color = Color::white;
 
-			if(LoadAsset(asset, path)) {
-				return asset;
-			}
-
-			return nullptr;
-		}
+		Material();
+		~Material();
 	};
 }
 
-#endif
+#endif // FACTORY2D_MATERIAL_MATERIAL_H_

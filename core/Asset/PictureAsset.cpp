@@ -36,7 +36,7 @@
 
 namespace F2D
 {
-	bool PictureAsset::Load(std::string path) {
+	bool SpriteAsset::Load(std::string path) {
 		Asset::Load(path);
 
 		// load picture file
@@ -54,12 +54,15 @@ namespace F2D
 			if(surface->format->BytesPerPixel == 4)
 				bytesPerPixel = GL_RGBA;
 
-			glTexImage2D(GL_TEXTURE_2D, 0, 3, 
+			glTexImage2D(GL_TEXTURE_2D, 0, surface->format->BytesPerPixel,
 				surface->w, surface->h, 0, bytesPerPixel,
 				GL_UNSIGNED_BYTE, surface->pixels);
 
 			__width = surface->w;
 			__height = surface->h;
+
+			if(sprites.size() == 0)
+				sprites = { {0, 0, __width, __height} };
 
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -73,4 +76,10 @@ namespace F2D
 
 		return false;
 	}
+
+	/*bool SpriteAsset::Load(std::string path, std::vector<Sprite> sprites) {
+		sprites = sprites;
+		SpriteAsset::Load(path);
+		return false;
+	}*/
 }

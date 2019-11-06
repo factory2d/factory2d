@@ -9,6 +9,7 @@ F2D::CameraObject* camera2;
 F2D::FactoryObject* center;
 F2D::FactoryObject* object1;
 F2D::FactoryObject* object2;
+F2D::FactoryObject* sprite1;
 
 bool MyGame::Initialize() {
 	// configure our windows
@@ -41,9 +42,9 @@ bool MyGame::Initialize() {
 
 	// load our game assets
 	// load a picture into the memory
-	F2D::PictureAsset *p;
-	p = F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_orange.png"); // load the picture and put in cache
-	p = F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_orange.png"); // loading the same picture, we will use the cached
+	F2D::SpriteAsset *p;
+	p = F2D::AssetManager::Load<F2D::SpriteAsset>("Assets/256_orange.png"); // load the picture and put in cache
+	p = F2D::AssetManager::Load<F2D::SpriteAsset>("Assets/256_orange.png"); // loading the same picture, we will use the cached
 
 	// create a new scene
 	scene1 = new F2D::SceneObject("scene1");
@@ -54,34 +55,50 @@ bool MyGame::Initialize() {
 	center->transform->origin = { 8.0f, 8.0f, 0.0f };
 	center->transform->position = { 0.0f, 0.0f, 0.0f };
 	center->transform->SetParent(scene1->transform);
-	center->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::PictureAsset>("Assets/center.png")));
+	center->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::SpriteAsset>("Assets/center.png")));
+	center->material.blend = F2D::F2D_BLEND_ALPHA;
 
 	object1 = new F2D::FactoryObject("object1");
 	object1->transform->origin = { 50.0f, 50.0f, 0.0f };
 	object1->transform->position = { 0.0f, 0.0f, 0.0f };
 	object1->transform->angle = 0.0f;
 	object1->transform->SetParent(scene1->transform);
-	F2D::SpriteBehaviour *sprite1 = (F2D::SpriteBehaviour*)object1->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_orange.png")));
-	sprite1->width = 100.0f; sprite1->height = 100.0f;		// set sprite render size
+	object1->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::SpriteAsset>("Assets/256_orange.png")));
+	//sprite1->width = 100.0f; sprite1->height = 100.0f;		// set sprite render size
 
 	object2 = new F2D::FactoryObject("object2");
 	object2->transform->origin = { 25.0f, 25.0f, 0.0f };
 	object2->transform->position = { 200.0f, 200.0f, 0.0f };
 	object2->transform->angle = { 0.0f };
 	object2->transform->SetParent(object1->transform);
-	F2D::SpriteBehaviour *sprite2 = (F2D::SpriteBehaviour*)object2->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::PictureAsset>("Assets/256_green.png")));
-	sprite2->width = 50.0f; sprite2->height = 50.0f;		// set sprite render size
+	object2->AddBehaviour(new F2D::SpriteBehaviour(F2D::AssetManager::Load<F2D::SpriteAsset>("Assets/256_green.png")));
+	object2->material.blend = F2D::F2D_BLEND_MULTIPLY;
+	//object2->material.color.a = 0.5f;
+	//sprite2->width = 50.0f; sprite2->height = 50.0f;		// set sprite render size
+
+	sprite1 = new F2D::FactoryObject("spriteSheet");
+	sprite1->transform->origin = { 25.0f, 25.0f, 0.0f };
+	sprite1->transform->position = { 200.0f, 200.0f, 0.0f };
+	sprite1->transform->angle = { 0.0f };
+	sprite1->transform->SetParent(scene1->transform);
+	F2D::SpriteAsset *spriteSheet = F2D::AssetManager::Load<F2D::SpriteAsset>("Assets/shaun.png");
+	spriteSheet->sprites = { {0, 0, 36, 48}, {36, 0, 36, 48}, {72, 0, 36, 48} };
+	spriteSheet->animation = { {"idle", {{0, 0.25f}, {1, 0.25f}, {0, 0.25f}, {2, 0.25f}} } };
+	F2D::SpriteBehaviour *spriteBehaviour = (F2D::SpriteBehaviour*)sprite1->AddBehaviour(new F2D::SpriteBehaviour(spriteSheet));
+	//spriteSheet->
+	//spriteSheet->AddBehaviour());
+	
 
 	// create the scene camera
 	camera1 = new F2D::CameraObject("camera1");
-	camera1->viewport = new F2D::Rect(0.0f, 0.0f, 1.0f, 1.0f);
-	camera1->backgroundColor = F2D::Color(0.25f, 0.25f, 0.25f);
+	camera1->viewport = { 0.0f, 0.0f, 1.0f, 1.0f };
+	camera1->backgroundColor = { 1.0f, 0.0f, 1.0f };
 	camera1->transform->position = { 0.0f, 0.0f, 0.0f };
 	camera1->transform->SetParent(scene1->transform);
 	
 	camera2 = new F2D::CameraObject("camera2");
-	camera2->viewport = new F2D::Rect(0.0f, 0.0f, 0.45f, 0.45f);
-	camera2->backgroundColor = F2D::Color(1.0f, 0.0f, 0.0f);
+	camera2->viewport = { 0.0f, 0.0f, 0.45f, 0.45f };
+	camera2->backgroundColor = { 1.0f, 0.0f, 0.0f };
 	camera2->clearColor = true;
 	camera2->transform->position = { 0.0f, 0.0f, 0.0f };
 	camera2->transform->SetParent(object2->transform);
