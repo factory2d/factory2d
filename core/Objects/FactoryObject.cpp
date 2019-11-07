@@ -109,6 +109,12 @@ namespace F2D
 		__behaviours.push_back(behaviour);
 		return __behaviours.back();
 	}
+	Behaviour * FactoryObject::GetBehaviour(int behaviour) {
+		if(behaviour >= 0 && behaviour < __behaviours.size())
+			return __behaviours[behaviour];
+		else
+			return nullptr;
+	}
 	bool FactoryObject::RemoveBehaviour(std::string name) {
 		return false;
 	}

@@ -83,10 +83,10 @@ bool MyGame::Initialize() {
 	sprite1->transform->SetParent(scene1->transform);
 	F2D::SpriteAsset *spriteSheet = F2D::AssetManager::Load<F2D::SpriteAsset>("Assets/shaun.png");
 	spriteSheet->sprites = { {0, 0, 36, 48}, {36, 0, 36, 48}, {72, 0, 36, 48} };
-	spriteSheet->animation = { {"idle", {{0, 0.25f}, {1, 0.25f}, {0, 0.25f}, {2, 0.25f}} } };
+	spriteSheet->animation = { {"idle", {{0, 0.25f}} },
+		{"walk", {{0, 0.25f}, {1, 0.25f}, {0, 0.25f}, {2, 0.25f}} } };
 	F2D::SpriteBehaviour *spriteBehaviour = (F2D::SpriteBehaviour*)sprite1->AddBehaviour(new F2D::SpriteBehaviour(spriteSheet));
-	//spriteSheet->
-	//spriteSheet->AddBehaviour());
+	spriteBehaviour->Play("walk");
 	
 
 	// create the scene camera

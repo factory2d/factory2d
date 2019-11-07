@@ -47,11 +47,14 @@ namespace F2D
 	private:
 
 	public:
+		unsigned int texture = 0;
 		int blend = F2D_BLEND_NONE;
 		Color color = Color::white;
 
 		Material();
 		~Material();
+
+		void Apply();
 	};
 }
 

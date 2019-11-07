@@ -31,6 +31,7 @@
 #define FACTORY2D_BEHAVIOUR_SPRITEBEHAVIOUR_H_
 
 #include "Behaviour.h"
+#include "../Material/Material.h"
 #include "../Asset/PictureAsset.h"
 
 namespace F2D
@@ -38,6 +39,7 @@ namespace F2D
 	class SpriteBehaviour :
 		public Behaviour {
 	private:
+		Material * __material;
 		int __animation = 0;		// current animation
 		int __animationFrame = 0;	// current animation frame
 		int __frame = 0;			// spritesheet frame
@@ -50,6 +52,9 @@ namespace F2D
 		SpriteBehaviour(std::string path);
 		SpriteBehaviour(SpriteAsset * picture);
 		~SpriteBehaviour();
+
+		bool Play(std::string animation);
+		bool Stop();
 
 		void Update() override;
 		void Draw() override;

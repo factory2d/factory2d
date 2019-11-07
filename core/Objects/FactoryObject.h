@@ -69,6 +69,7 @@ namespace F2D
 
 		// behaviour
 		Behaviour* AddBehaviour(Behaviour* action);
+		Behaviour* GetBehaviour(int behaviour);
 		bool RemoveBehaviour(std::string name);
 	};
 }

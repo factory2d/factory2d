@@ -27,10 +27,40 @@
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
+#include "SDL.h"
+#include "SDL_opengl.h"
+#include <GL\GLU.h>
+
 #include "Material.h"
 
 namespace F2D
 {
 	Material::Material() {}
 	Material::~Material() {}
+
+	void Material::Apply() {
+		if(texture == 0) {
+			glDisable(GL_TEXTURE_2D);
+			return;
+		}
+
+		// apply texture
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, texture);
+
+		// apply texture blend
+		glEnable(GL_BLEND);
+		switch(blend) {
+		case F2D_BLEND_MULTIPLY:
+			glBlendFunc(GL_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA);
+			break;
+		case F2D_BLEND_ALPHA:
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			break;
+		default:
+			glDisable(GL_BLEND);
+			break;
+		}
+	
+	}
 }
