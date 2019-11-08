@@ -75,11 +75,10 @@ namespace F2D
 		__material = &transform->GetFactoryObject()->material;
 		__material->texture = (GLuint)picture->Data();
 
-
-				// get material properties
+		// get material properties
+		// TODO:
 		// send this stuff to material object, so I'll didn't have to
-		// apply this code when we create another draw behaviour
-		
+		// apply this code when we create another draw behaviour		
 
 		// update sprite animation
 		if(picture->animation.size() == 0) {
@@ -116,41 +115,21 @@ namespace F2D
 		float height = picture->sprites[__frame].height;
 
 		// TODO:
-		// I need to send this min/max stuff to the material
-		// as UV map
+		// - send this min/max stuff to the material as UV map
+		// - cache each frame vertex
 		float minX = (float)picture->sprites[__frame].x / (float)picture->Width();
 		float maxX = minX + (float)picture->sprites[__frame].width / (float)picture->Width();
 		float minY = (float)picture->sprites[__frame].y / (float)picture->Height();
 		float maxY = minY + (float)picture->sprites[__frame].height / (float)picture->Height();
 
-		// TODO:
-		// I really want to take it out to a abstract function,
-		// so it make easy to port the core to another api,
-		// like DX for Xbox.
-		// maybe a easy way is create a vertex struct array with
-		// x, y, ux, uy, &color
-		// I need to check how spine works to didn't have to
-		// rethink the vertex stuff :-/
-		glBegin(GL_QUADS);
-		// left top
-		glTexCoord2f(minX, minY); 
-		glColor4f(__material->color.r, __material->color.g, __material->color.b, __material->color.a);
-		glVertex2f(0.0f, 0.0f);
+		Vertex vertex[6] = {};
+		vertex[0] = { {0.0f, 0.0f, 0.0f}, {minX, minY}, __material->color};
+		vertex[1] = { {width, 0.0f, 0.0f}, {maxX, minY}, __material->color };
+		vertex[2] = { {width, height, 0.0f}, {maxX, maxY}, __material->color };
+		vertex[3] = { {0.0f, 0.0f, 0.0f}, {minX, minY}, __material->color };
+		vertex[4] = { {width, height, 0.0f}, {maxX, maxY}, __material->color };
+		vertex[5] = { {0.0f, height, 0.0f}, {minX, maxY}, __material->color };
 
-		// right top
-		glTexCoord2f(maxX, minY); 
-		glColor4f(__material->color.r, __material->color.g, __material->color.b, __material->color.a);
-		glVertex2f(width, 0.0f);
-
-		// right bottom
-		glTexCoord2f(maxX, maxY); 
-		glColor4f(__material->color.r, __material->color.g, __material->color.b, __material->color.a);
-		glVertex2f(width, height);
-
-		// left bottom
-		glTexCoord2f(minX, maxY); 
-		glColor4f(__material->color.r, __material->color.g, __material->color.b, __material->color.a);
-		glVertex2f(0.0f, height);
-		glEnd();
+		Renderer::Render(vertex, 6);
 	}
 }

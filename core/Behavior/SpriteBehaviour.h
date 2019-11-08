@@ -31,6 +31,7 @@
 #define FACTORY2D_BEHAVIOUR_SPRITEBEHAVIOUR_H_
 
 #include "Behaviour.h"
+#include "../Renderer.h"
 #include "../Material/Material.h"
 #include "../Asset/PictureAsset.h"
 

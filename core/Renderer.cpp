@@ -119,6 +119,18 @@ namespace F2D
 		glDisable(GL_SCISSOR_TEST);
 	}
 
+	void Renderer::Render(struct Vertex (vertices)[], int count) {
+		// TODO:
+		// use VBO (vertex buffer object)
+		glBegin(GL_TRIANGLES);
+		for(int x = 0; x < 3; x++) {
+			glColor4f(vertices[x].color.r, vertices[x].color.g, vertices[x].color.b, vertices[x].color.a);
+			glTexCoord2f(vertices[x].uv.x, vertices[x].uv.y);
+			glVertex3f(vertices[x].vertex.x, vertices[x].vertex.y, vertices[x].vertex.z);
+		}
+		glEnd();
+	}
+
 	bool Renderer::VSync() {
 		return __allowVSync;
 	}

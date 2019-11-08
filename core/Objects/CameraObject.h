@@ -35,8 +35,8 @@
 #include <GL\GLU.h>
 #include <vector> 
 
-#include "../Math.h"
 #include "FactoryObject.h"
+#include "../Math.h"
 #include "../Material/Color.h"
 
 namespace F2D

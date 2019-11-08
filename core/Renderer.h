@@ -31,9 +31,17 @@
 #define FACTORY2D_RENDERER_H_
 
 #include "Window/WindowManager.h"
+#include "Math.h"
+#include "Material/Color.h"
 
 namespace F2D
 {
+	struct Vertex {
+		glm::vec3 vertex = { 0.0f, 0.0f, 0.0f };
+		glm::vec2 uv = { 0.0f, 0.0f };
+		Color color = { 1.0f, 1.0f, 1.0f, 1.0f };
+	};
+
 	class Renderer {
 	private:
 		static bool __allowVSync;
@@ -43,6 +51,7 @@ namespace F2D
 
 		static void Begin();
 		static void End();
+		static void Render(struct Vertex (vertices)[], int count);
 
 		static bool VSync(); static void VSync(bool value);
 
