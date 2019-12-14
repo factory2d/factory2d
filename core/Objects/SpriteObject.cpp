@@ -1,6 +1,4 @@
-#include "SDL.h"
-#include "SDL_opengl.h"
-#include <GL\GLU.h>
+#include "../gl.h"
 
 #include "SpriteObject.h"
 

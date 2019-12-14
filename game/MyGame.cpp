@@ -87,7 +87,7 @@ bool MyGame::Initialize() {
 		{"walk", {{0, 0.25f}, {1, 0.25f}, {0, 0.25f}, {2, 0.25f}} } };
 	F2D::SpriteBehaviour *spriteBehaviour = (F2D::SpriteBehaviour*)sprite1->AddBehaviour(new F2D::SpriteBehaviour(spriteSheet));
 	spriteBehaviour->Play("walk");
-	
+
 
 	// create the scene camera
 	camera1 = new F2D::CameraObject("camera1");
@@ -95,7 +95,7 @@ bool MyGame::Initialize() {
 	camera1->backgroundColor = { 1.0f, 0.0f, 1.0f };
 	camera1->transform->position = { 0.0f, 0.0f, 0.0f };
 	camera1->transform->SetParent(scene1->transform);
-	
+
 	camera2 = new F2D::CameraObject("camera2");
 	camera2->viewport = { 0.0f, 0.0f, 0.45f, 0.45f };
 	camera2->backgroundColor = { 1.0f, 0.0f, 0.0f };

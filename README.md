@@ -8,6 +8,12 @@ The project description in one Tweet (120 characters)
 
 ### Installing
 
+#### Linux
+apt-get install libsdl2-dev libsdl2-image-dev libglew-dev libglm-dev
+
+
+  libsdl2-mixer-2.0-0 libsdl2-image-2.0-0 libsdl2-2.0-0 libsdl2-ttf-2.0-0
+
 ## Deployment
 
 ## Built With
@@ -22,7 +28,7 @@ Now I'm using some of my free time to develop a free, powerfull and easy to use 
 ## Licensing
 F2D are available under the <a href="https://www.zlib.net/zlib_license.html" target="_blank">zlib license:</a>
 
-This software is provided 'as-is', without any express or implied 
+This software is provided 'as-is', without any express or implied
 warranty.  In no event will the authors be held liable for any damages
 arising from the use of this software.
 

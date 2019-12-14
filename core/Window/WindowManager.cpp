@@ -57,7 +57,7 @@ namespace F2D {
 		}
 		else {
 			// use OpenGL 2.1
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
 			//SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, 0);
@@ -83,6 +83,14 @@ namespace F2D {
 					//printf("OpenGL context could not be created! SDL Error: %s\n", SDL_GetError());
 				}
 				else {
+					// use GLEW
+					glewInit();
+					//glewExperimental = GL_TRUE;
+					//GLenum glewError = glewInit();
+					//if(glewError != GLEW_OK) {
+						//_ERROR(glewGetErrorString(glewError));
+					//}
+
 					// use VSync
 					if(SDL_GL_SetSwapInterval(false) < 0) {
 						_ERROR(SDL_GetError());

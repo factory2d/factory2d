@@ -27,9 +27,7 @@
   * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
   */
 
-#include "SDL.h"
-#include "SDL_opengl.h"
-#include <GL\GLU.h>
+#include "../gl.h"
 
 #include "SpriteBehaviour.h"
 #include "../Time/TimeManager.h"
@@ -48,6 +46,61 @@ namespace F2D
 		picture = p;
 
 		// cache picture width and height (in pixel);
+		float w, h;
+		float minX, maxX, minY, maxY;
+		/*
+		float minX = (float)picture->sprites[__frame].x / (float)picture->Width();
+		float maxX = minX + (float)picture->sprites[__frame].width / (float)picture->Width();
+		float minY = (float)picture->sprites[__frame].y / (float)picture->Height();
+		float maxY = minY + (float)picture->sprites[__frame].height / (float)picture->Height();
+		*/
+
+		// cache sprite vertex
+		__framesVertex = new Vertex*[p->sprites.size()];
+		for(int x = 0; x < p->sprites.size(); x++) {
+			w = picture->sprites[__frame].width;
+			h = picture->sprites[__frame].height;
+			minX = (float)picture->sprites[x].x / (float)picture->Width();
+			maxX = minX + w / (float)picture->Width();
+			minY = (float)picture->sprites[x].y / (float)picture->Height();
+			maxY = minY + h / (float)picture->Height();
+
+			__framesVertex[x] = new Vertex[4];
+			__framesVertex[x][0] = { 0, 0, 0.0f, minX, minY };
+			__framesVertex[x][1] = { w, 0, 0.0f, maxX, minY };
+			__framesVertex[x][2] = { w, h, 0.0f, maxX, maxY };
+			__framesVertex[x][3] = { 0, h, 0.0f, minX, maxY };
+			/*__framesVertex[x][0].vertex[0] = 0.0f; __framesVertex[x][0].vertex[1] = 0.0f; __framesVertex[x][0].vertex[2] = 0.0f;
+			__framesVertex[x][1].vertex[0] = 10.0f; __framesVertex[x][1].vertex[1] = 0.0f; __framesVertex[x][1].vertex[2] = 0.0f;
+			__framesVertex[x][2].vertex[0] = 10.0f; __framesVertex[x][2].vertex[1] = 10.0f; __framesVertex[x][2].vertex[2] = 0.0f;*/
+			//&__framesVertex[x][0][0] = &({ 0.0f,0.0f,0.0f,1.0f,1.0f,2.0f,2.0f,2.0f });
+			//p->sprites[x].width/
+		}
+		//picture->sprites.size()
+
+		return;
+		//VBO data
+		GLfloat vertexData[] = {
+			0.0f, 0.0f,
+			50.0f, 0.0f,
+			50.0f, 50.0f,
+			0.0f, 50.0f
+		};
+
+		//IBO data
+		/*
+		GLuint indexData[] = { 0, 1, 2, 0, 2, 3 };
+
+		//Create VBO
+		glGenBuffers(1, &__frameVBO);
+		glBindBuffer(GL_ARRAY_BUFFER, __frameVBO);
+		glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(GLfloat), vertexData, GL_STATIC_DRAW);
+
+		//Create IBO
+		glGenBuffers(1, &__frameIBO);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, __frameIBO);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, 4 * sizeof(GLuint), indexData, GL_STATIC_DRAW);
+		*/
 	}
 
 	SpriteBehaviour::~SpriteBehaviour() {}
@@ -106,30 +159,35 @@ namespace F2D
 		// apply material
 		__material->Apply();
 
+		// render current sprite frame
 		// TODO:
-		// will cache with vertex buffes
-		// with vertex buffer I can allocate the sprite
-		// mesh in video memory, making it faster to load
-		// and draw in opengl video buffer.
-		float width = picture->sprites[__frame].width;
-		float height = picture->sprites[__frame].height;
+		// use VBO
+		int index[6] = { 0, 1, 2, 0, 2, 3 };
+		/*
+		glGenBuffers(1, &__vao);
+		glBindBuffer(GL_ARRAY_BUFFER, __vao);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 4, &__framesVertex[0][0].x, GL_STATIC_DRAW);
 
-		// TODO:
-		// - send this min/max stuff to the material as UV map
-		// - cache each frame vertex
-		float minX = (float)picture->sprites[__frame].x / (float)picture->Width();
-		float maxX = minX + (float)picture->sprites[__frame].width / (float)picture->Width();
-		float minY = (float)picture->sprites[__frame].y / (float)picture->Height();
-		float maxY = minY + (float)picture->sprites[__frame].height / (float)picture->Height();
+		glGenBuffers(1, &__index_vbo);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, __index_vbo);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * 6, index, GL_STATIC_DRAW);
 
-		Vertex vertex[6] = {};
-		vertex[0] = { {0.0f, 0.0f, 0.0f}, {minX, minY}, __material->color};
-		vertex[1] = { {width, 0.0f, 0.0f}, {maxX, minY}, __material->color };
-		vertex[2] = { {width, height, 0.0f}, {maxX, maxY}, __material->color };
-		vertex[3] = { {0.0f, 0.0f, 0.0f}, {minX, minY}, __material->color };
-		vertex[4] = { {width, height, 0.0f}, {maxX, maxY}, __material->color };
-		vertex[5] = { {0.0f, height, 0.0f}, {minX, maxY}, __material->color };
+		glBindBuffer(GL_ARRAY_BUFFER, __vao);
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glVertexPointer(3, GL_FLOAT, sizeof(Vertex), BUFFER_OFFSET(0));		// The starting point of the VBO, for the vertices
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		glClientActiveTexture(GL_TEXTURE0);
+		glTexCoordPointer(2, GL_FLOAT, sizeof(Vertex), BUFFER_OFFSET(12)); // The starting point of texcoords, 24 bytes away
+		//glEnableClientState(GL_NORMAL_ARRAY);
+		//glNormalPointer(GL_FLOAT, sizeof(MyVertex), BUFFER_OFFSET(12));      // The starting point of normals, 12 bytes away
+		//glClientActiveTexture(GL_TEXTURE0);
+		//glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		//
 
-		Renderer::Render(vertex, 6);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, __index_vbo);
+
+		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, BUFFER_OFFSET(0));
+		return;*/
+		Renderer::Render(__framesVertex[__frame], index, 6);
 	}
 }

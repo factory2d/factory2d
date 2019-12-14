@@ -30,7 +30,7 @@
 #ifndef FACTORY2D_ASSET_PICTUREASSET_H_
 #define FACTORY2D_ASSET_PICTUREASSET_H_
 
-#include <SDL_opengl.h>
+#include "../gl.h"
 #include <vector>
 #include "Asset.h"
 

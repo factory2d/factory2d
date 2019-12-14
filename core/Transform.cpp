@@ -32,8 +32,7 @@
 #include "Time/TimeManager.h"
 #include "Renderer.h"
 
-#include "SDL_opengl.h"
-#include <GL\GLU.h>
+#include "gl.h"
 
 namespace F2D
 {
@@ -133,7 +132,6 @@ namespace F2D
 
 		//glUniformMatrix4fv(glGetUniformLocation(programID, "MV"), 1, GL_TRUE, glm::value_ptr(ModelViewMatrix));
 		//glUniformMatrix4fv(glGetUniformLocation(programID, "MVP"), 1, GL_TRUE, glm::value_ptr(ModelViewProjectionMatrix));
-		
 	}
 
 	unsigned int Transform::GetChildCount() {

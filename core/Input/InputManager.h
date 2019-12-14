@@ -25,7 +25,7 @@
   * Here we manage our input, I'm using my old UTools plugin as referenct
   * (https://pt.slideshare.net/alexrdes/u-tools-unite-brasil-42578443)
   *
-  * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+  * @author Alexandre Ribeiro de Sï¿½ (@alexribeirodesa)
   */
 
 #ifndef FACTORY2D_INPUT_INPUTMANAGER_H_
@@ -49,9 +49,9 @@ a little about my UTools (https://pt.slideshare.net/alexrdes/u-tools-unite-brasi
 */
 
 #include <string>
-#include <vector> 
+#include <vector>
 #include <map>
-#include "SDL.h"
+#include "SDL2/SDL.h"
 #include "Controller.h"
 
 // debug
@@ -63,7 +63,7 @@ namespace F2D
 		F2D_UNKNOWN = 0,
 
 		// keyboard (this is just a mask to OGL/DX
-		// yes, I'll need to port the core to DX in the future to build for 
+		// yes, I'll need to port the core to DX in the future to build for
 		// Xbox and Windows Universal
 		F2D_KEYBOARD_ESCAPE = SDLK_ESCAPE,
 		F2D_KEYBOARD_RETURN = SDLK_RETURN,

@@ -20,44 +20,20 @@
  */
 
  /**
-  * @fileoverview Renderer.h
+  * @fileoverview Game.h
   *
-  * --- FILE NOTES ---
+  * Base game object
   *
-  * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+  * @author Alexandre Ribeiro de Sï¿½ (@alexribeirodesa)
   */
 
-#ifndef FACTORY2D_RENDERER_H_
-#define FACTORY2D_RENDERER_H_
+#ifndef FACTORY2D_GL_H__
+#define FACTORY2D_GL_H__
 
-#define BUFFER_OFFSET(i)	((void*)(i))
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <GL/glew.h>
+#include <SDL2/SDL_opengl.h>
+#include <GL/glu.h>
 
-#include "Window/WindowManager.h"
-#include "Math.h"
-#include "Material/Color.h"
-
-namespace F2D
-{
-	struct Vertex {
-		float x, y, z;
-		float uvx, uvy;
-		//float r, g, b, a;
-	};
-
-	class Renderer {
-	private:
-		static bool __allowVSync;
-
-	public:
-		static bool integerPosition;
-
-		static void Begin();
-		static void End();
-		static void Render(struct Vertex *vertices, int size);
-		static void Render(struct Vertex *vertices, int index[], int size);
-
-		static bool VSync(); static void VSync(bool value);
-	};
-}
-
-#endif // FACTORY2D_RENDERER_H_
+#endif // FACTORY2D_GL_H__

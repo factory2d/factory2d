@@ -45,7 +45,13 @@ namespace F2D
 		int __animationFrame = 0;	// current animation frame
 		int __frame = 0;			// spritesheet frame
 		float __interval = 1.0f;	// spritesheet intervar;
-		
+
+		unsigned int __frameVBO = 0;
+		unsigned int __frameIBO = 0;
+		Vertex **__framesVertex;// [][][];
+		unsigned int __vao = 0;			// Vertex array object
+		unsigned int __index_vbo = 0;	// Index buffer object
+
 	public:
 		SpriteAsset *picture = nullptr;
 		

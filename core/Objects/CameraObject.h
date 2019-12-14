@@ -30,9 +30,7 @@
 #ifndef FACTORY2D_OBJECTS_CAMERAOBJECT_H_
 #define FACTORY2D_OBJECTS_CAMERAOBJECT_H_
 
-#include "SDL.h"
-#include "SDL_opengl.h"
-#include <GL\GLU.h>
+#include "../gl.h"
 #include <vector> 
 
 #include "FactoryObject.h"

@@ -25,12 +25,12 @@
   * Here we manage our input, I'm using my old UTools plugin as referenct
   * (https://pt.slideshare.net/alexrdes/u-tools-unite-brasil-42578443)
   *
-  * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+  * @author Alexandre Ribeiro de Sï¿½ (@alexribeirodesa)
   */
 
 #include "InputManager.h"
 
-#include "SDL.h"
+#include <SDL2/SDL.h>
 
 #include "../Time/TimeManager.h"
 
@@ -106,7 +106,7 @@ namespace F2D
 				break;
 			case 2:
 				__keyboardKeys[F2D_MOUSE_MIDDLE] = true;
-				break;			
+				break;
 			case 3:
 				__keyboardKeys[F2D_MOUSE_RIGHT] = true;
 				break;

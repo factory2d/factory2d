@@ -29,9 +29,7 @@
 
 #define GL_GLEXT_PROTOTYPES
 
-#include "SDL.h"
-#include "SDL_opengl.h"
-#include <GL\GLU.h>
+#include "gl.h"
 
 #include "Renderer.h"
 #include "Objects/CameraObject.h"
@@ -119,14 +117,22 @@ namespace F2D
 		glDisable(GL_SCISSOR_TEST);
 	}
 
-	void Renderer::Render(struct Vertex (vertices)[], int count) {
-		// TODO:
-		// use VBO (vertex buffer object)
+	void Renderer::Render(Vertex *vertices, int size) {
 		glBegin(GL_TRIANGLES);
-		for(int x = 0; x < 3; x++) {
-			glColor4f(vertices[x].color.r, vertices[x].color.g, vertices[x].color.b, vertices[x].color.a);
-			glTexCoord2f(vertices[x].uv.x, vertices[x].uv.y);
-			glVertex3f(vertices[x].vertex.x, vertices[x].vertex.y, vertices[x].vertex.z);
+		for(int x = 0; x < size; x++) {
+			//glColor4f(vertices[x].color.r, vertices[x].color.g, vertices[x].color.b, vertices[x].color.a);
+			glTexCoord2f(vertices[x].uvx, vertices[x].uvy);
+			glVertex3f(vertices[x].x, vertices[x].y, vertices[x].z);
+		}
+		glEnd();
+	}
+
+	void Renderer::Render(Vertex *vertices, int index[], int size) {
+		glBegin(GL_TRIANGLES);
+		for(int x = 0; x < size; x++) {
+			//glColor4f(vertices[x].color.r, vertices[x].color.g, vertices[x].color.b, vertices[x].color.a);
+			glTexCoord2f(vertices[index[x]].uvx, vertices[index[x]].uvy);
+			glVertex3f(vertices[index[x]].x, vertices[index[x]].y, vertices[index[x]].z);
 		}
 		glEnd();
 	}
