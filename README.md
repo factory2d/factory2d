@@ -5,14 +5,13 @@ The project description in one Tweet (120 characters)
 ### Prerequisites
 * SDL2 (https://www.libsdl.org)
 * SDL_image2 (https://www.libsdl.org/projects/SDL_image/)
+* GLEW (http://glew.sourceforge.net/)
+* GLM (https://glm.g-truc.net/0.9.9/index.html)
 
 ### Installing
 
 #### Linux
 apt-get install libsdl2-dev libsdl2-image-dev libglew-dev libglm-dev
-
-
-  libsdl2-mixer-2.0-0 libsdl2-image-2.0-0 libsdl2-2.0-0 libsdl2-ttf-2.0-0
 
 ## Deployment
 

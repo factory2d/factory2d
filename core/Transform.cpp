@@ -24,12 +24,12 @@
   *
   * --- FILE NOTES ---
   *
-  * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+  * @author Alexandre Ribeiro de Sï¿½ (@alexribeirodesa)
   */
 
 #include "Transform.h"
 
-#include "Time/TimeManager.h"
+#include "Timer/TimeManager.h"
 #include "Renderer.h"
 
 #include "gl.h"
@@ -93,6 +93,7 @@ namespace F2D
 			glm::vec3 o = __origin;
 
 			// round the values when integer position enabled
+			// still not sure if this is the best way to do that... anyway...
 			// this is really good in pixel games :3
 			if(Renderer::integerPosition) {
 				p.x = round(p.x); p.y = round(p.y); p.z = round(p.z);

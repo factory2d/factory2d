@@ -24,12 +24,12 @@
  *
  * Manage the game time and fps
  *
- * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+ * @author Alexandre Ribeiro de Sï¿½ (@alexribeirodesa)
  */
 
 #include "TimeManager.h"
 
-#include "SDL.h"
+#include "SDL2/SDL.h"
 
 namespace F2D
 {

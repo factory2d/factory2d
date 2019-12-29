@@ -24,7 +24,7 @@
   *
   * Base game object
   *
-  * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+  * @author Alexandre Ribeiro de Sï¿½ (@alexribeirodesa)
   */
 
 #include "gl.h"
@@ -32,7 +32,7 @@
 
 #include "Game.h"
 #include "Renderer.h"
-#include "Time/TimeManager.h"
+#include "Timer/TimeManager.h"
 #include "Window/WindowManager.h"
 #include "Input/InputManager.h"
 #include "Scene/SceneManager.h"

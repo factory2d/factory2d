@@ -24,13 +24,13 @@
   *
   * --- FILE NOTES ---
   *
-  * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+  * @author Alexandre Ribeiro de Sï¿½ (@alexribeirodesa)
   */
 
 #include "../gl.h"
 
 #include "SpriteBehaviour.h"
-#include "../Time/TimeManager.h"
+#include "../Timer/TimeManager.h"
 #include "../Asset/AssetManager.h"
 #include "../Material/Material.h"
 
@@ -163,7 +163,10 @@ namespace F2D
 		// TODO:
 		// use VBO
 		int index[6] = { 0, 1, 2, 0, 2, 3 };
-		/*
+    
+    Renderer::Render(__framesVertex[__frame], index, 6);
+
+    /*
 		glGenBuffers(1, &__vao);
 		glBindBuffer(GL_ARRAY_BUFFER, __vao);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 4, &__framesVertex[0][0].x, GL_STATIC_DRAW);
@@ -187,7 +190,7 @@ namespace F2D
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, __index_vbo);
 
 		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, BUFFER_OFFSET(0));
-		return;*/
-		Renderer::Render(__framesVertex[__frame], index, 6);
+		return;
+    */
 	}
 }

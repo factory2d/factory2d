@@ -24,7 +24,7 @@
   *
   * Debug output
   *
-  * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+  * @author Alexandre Ribeiro de Sï¿½ (@alexribeirodesa)
   */
 
 #include <iostream>

@@ -19,12 +19,12 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
- /**
+/**
   * @fileoverview Renderer.cpp
   *
   * --- FILE NOTES ---
   *
-  * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+  * @author Alexandre Ribeiro de Sï¿½ (@alexribeirodesa)
   */
 
 #define GL_GLEXT_PROTOTYPES
@@ -41,7 +41,7 @@ namespace F2D
 	bool start = false;
 	bool Renderer::integerPosition = false;
 	bool Renderer::__allowVSync = true; // allow user use monitor vsync
-	
+
 	void Renderer::Begin() {
 		// TODO:
 		// every time a render begin I'm re-creating all of these
@@ -57,11 +57,11 @@ namespace F2D
 		// set the viewport
 		glViewport(viewportX, viewportY,
 			viewportWidth, viewportHeight);
-		
+
 		// cut the window area to clear and render
 		glScissor(viewportX, viewportY,
 			viewportWidth, viewportHeight);
-		
+
 		glEnable(GL_SCISSOR_TEST);
 		if(c->clearColor) {
 			glClearColor(c->backgroundColor.r, c->backgroundColor.g, c->backgroundColor.b, 1.0f);
@@ -73,18 +73,18 @@ namespace F2D
 
 		glLoadIdentity();
 		glOrtho(0.0, windowWidth, windowHeight, 0.0, 1.0, -1.0);
-		
+
 		// camera matrix test 1
 		// this one is working, but I really really really 
 		// like to use matrix transformation. (cam mat tst 2)
-		glTranslatef(windowWidth * 0.5f, 
-					 windowHeight * 0.5f, 
-					 0.0f);
-		
+		glTranslatef(windowWidth * 0.5f,
+			windowHeight * 0.5f,
+			0.0f);
+
 		wT = -c->transform->GetWorldTransform();
-		glRotatef((glm::atan(wT[0][1], wT[0][0])*-57.2958f)-180.0f, 0.0f, 0.0f, 1.0f);
+		glRotatef((glm::atan(wT[0][1], wT[0][0])*-57.2958f) - 180.0f, 0.0f, 0.0f, 1.0f);
 		glTranslatef(wT[3][0], wT[3][1], wT[3][2]);
-		
+
 		//Initialize Modelview Matrix
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();

@@ -5,7 +5,7 @@
 MyGame::MyGame() {}
 MyGame::~MyGame() {}
 
-TitleScene* titleScene;
+F2D::SceneObject* titleScene;
 
 bool MyGame::Initialize() {
 	// configure our windows
@@ -14,6 +14,7 @@ bool MyGame::Initialize() {
 	F2D::WindowManager::Width(480);
 	F2D::WindowManager::Height(640);
 	F2D::WindowManager::Initialize();
+	F2D::Renderer::VSync(true);
 
 	// configure our input
 	// create a new controller
@@ -30,7 +31,7 @@ bool MyGame::Initialize() {
 	actionBtn->Push(new F2D::KeyboardTrigger("keyboard", 'z'));	// alternative button
 
 	// create a new scene
-	titleScene = new TitleScene("scene1");
+	titleScene = new F2D::SceneObject("scene1");
 	F2D::SceneManager::Load(titleScene);
 
 	// create the scene camera

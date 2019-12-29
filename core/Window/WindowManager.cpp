@@ -24,7 +24,7 @@
  *
  * Create and manage the game window
  *
- * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+ * @author Alexandre Ribeiro de Sï¿½ (@alexribeirodesa)
  *
  */
 
@@ -34,7 +34,7 @@
 #include "WindowManager.h"
 #include "../Debug.h"
 
-#include "../Time/TimeManager.h"
+#include "../Timer/TimeManager.h"
 
 namespace F2D {
 	// window components
@@ -57,7 +57,7 @@ namespace F2D {
 		}
 		else {
 			// use OpenGL 2.1
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
 			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
 			//SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, 0);

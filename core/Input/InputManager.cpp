@@ -32,7 +32,7 @@
 
 #include <SDL2/SDL.h>
 
-#include "../Time/TimeManager.h"
+#include "../Timer/TimeManager.h"
 
 namespace F2D
 {

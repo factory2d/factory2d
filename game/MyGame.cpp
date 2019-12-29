@@ -104,8 +104,6 @@ bool MyGame::Initialize() {
 	camera2->transform->SetParent(object2->transform);
 
 
-
-
 	// WIP STUFF, IGNORE IT FOR NOW!!
 	// I'm using this space to test new stuff, the game must work with
 	// this, but, the feature can have some issues os just didn't work

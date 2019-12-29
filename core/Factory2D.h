@@ -24,7 +24,7 @@
   *
   * Factory2D core include
   *
-  * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+  * @author Alexandre Ribeiro de Sï¿½ (@alexribeirodesa)
   */
 
 #ifndef FACTORY2D_FACTORY2D_H_
@@ -46,9 +46,9 @@
 #include "Objects/SpriteObject.h"
 
 /* BEHAVOUR */
-#include "Behavior/Behaviour.h"
-#include "Behavior/SpriteBehaviour.h"
-#include "Behavior/TweenBehaviour.h"
+#include "Behaviour/Behaviour.h"
+#include "Behaviour/SpriteBehaviour.h"
+#include "Behaviour/TweenBehaviour.h"
 
 /* ASSETS */
 #include "Asset/Asset.h"
@@ -79,7 +79,7 @@
 #include "TagManager/TagManager.h"
 
 /* TIME */
-#include "Time/TimeManager.h"
+#include "Timer/TimeManager.h"
 
 /* WINDOW */
 #include "Window/WindowManager.h"

@@ -24,7 +24,7 @@
   *
   * --- FILE NOTES ---
   *
-  * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
+  * @author Alexandre Ribeiro de Sï¿½ (@alexribeirodesa)
   */
 
 #ifndef FACTORY2D_OBJECTS_FACTORYOBJECT_H_
@@ -36,7 +36,7 @@
 #include "../Object.h"
 #include "../Transform.h"
 #include "../Material/Material.h"
-#include "../Behavior/Behaviour.h"
+#include "../Behaviour/Behaviour.h"
 
 namespace F2D
 {

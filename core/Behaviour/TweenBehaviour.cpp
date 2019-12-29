@@ -24,15 +24,15 @@
   *
   * --- FILE NOTES ---
   *
-  * @author Alexandre Ribeiro de Sá (@alexribeirodesa)
-  * @based on Luiz Fernando Ribeiro de Sá REDBOX Tween Library
+  * @author Alexandre Ribeiro de Sï¿½ (@alexribeirodesa)
+  * @based on Luiz Fernando Ribeiro de Sï¿½ REDBOX Tween Library
   *           tween.js Tween Library <https://github.com/tweenjs/tween.js/>
   */
 
 #include "TweenBehaviour.h"
 
 #include <iostream>
-#include "../Time/TimeManager.h"
+#include "../Timer/TimeManager.h"
 
 namespace F2D
 {
